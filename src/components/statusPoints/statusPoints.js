@@ -10,7 +10,7 @@ export default function StatusPoints(props) {
     style={styles.statusPoints}
     inputMode='numeric'
     placeholder={props.statusName}
-    onChangeText={value => setPoints(value + props.points)
+    onChangeText={(value) => props.setPoints(value)
     }
     />
 

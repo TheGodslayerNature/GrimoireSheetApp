@@ -10,10 +10,10 @@ export default function App() {
   const [userName, setUserName] = useState('');
 
     classes = [
-    { name: "coringa" }, 
-    { name: "emergente"}, 
-    { name: "sombra"},
-    { name: "supressor"}
+    { name: "Coringa" }, 
+    { name: "Emergente"}, 
+    { name: "Sombra"},
+    { name: "Supressor"}
   ];
 
   onSelectedItemsChange = selectItems => {
@@ -22,6 +22,7 @@ export default function App() {
 
     var valor = 0;
   return (
+
     <SafeAreaView style= {styles.container}>
     <StatusBar/>
 
@@ -44,18 +45,11 @@ export default function App() {
     selectText='Escolha a classe'
     />
 
-    {/* Procurar como funciona os input multiSelect */}
-
-
-    {/* <MultiSelect style={{flex: 1}}
-          items={classes}
-          selectText="Escolha uma Classe"
-    /> */}
-
 
     <StatusPoints
     statusName="FOR"
     points={valor}
+    setPoints={(value)  =>  valor += Number(value)}
     />
     <StatusPoints
     statusName="TEC"
@@ -73,7 +67,7 @@ export default function App() {
     <Text>Quantidade de pontos adicionadas = {valor}</Text>
 
     <TouchableOpacity style={styles.btn}
-    onPress={console.log(valor)}
+    onPress={() => console.log(valor)}
     >
     <Text>Adicinar Pontos</Text>
 
