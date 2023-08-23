@@ -7,20 +7,14 @@ import StatusPoints from './src/components/statusPoints/statusPoints';
 
 export default function App() {
   const [userLevel, setUserLevel] = useState(0);
-  const [userName, setUserName] = useState('');
+  const [userName, setUserName] = useState("");
 
-    classes = [
-    { name: "Coringa" }, 
-    { name: "Emergente"}, 
-    { name: "Sombra"},
-    { name: "Supressor"}
-  ];
+    var classes;
 
-  onSelectedItemsChange = selectItems => {
-    classes = [];
-  }
+    classes = [{name: "Carta Coringa"}, {name: "Emergente"}, {name: "Supressor"}, {name: "Tocha"}, {name: "Sombra"}]
 
     var valor = 0;
+
   return (
 
     <SafeAreaView style= {styles.container}>
@@ -36,23 +30,24 @@ export default function App() {
     style={styles.characterInput}
     placeholder='Nivel do personagem'
     inputMode='numeric'
-    onChangeText={(level) => setUserLevel(level)}
+    onChangeText={(value) => setUserLevel(Number(value))}
     />
 
     <MultiSelect
-    items={this.classes}
-    onSelectedItemsChange={this.onSelectedItemsChange}
     selectText='Escolha a classe'
+    onSelectedItemsChange={(item) => (item)}
+    items={classes}
     />
 
 
     <StatusPoints
     statusName="FOR"
     points={valor}
-    setPoints={(value)  =>  valor += Number(value)}
+    setPoints={(value: Number)  =>  valor += Number(value)}
     />
     <StatusPoints
     statusName="TEC"
+    setPoints={(value: Number)  =>  valor += Number(value)}
     />
     <StatusPoints
     statusName="MAG"
