@@ -13,7 +13,12 @@ export default function App() {
 
     classes = [{name: "Carta Coringa"}, {name: "Emergente"}, {name: "Supressor"}, {name: "Tocha"}, {name: "Sombra"}]
 
-    var valor = 0;
+    var forPoints = 0;
+    var tecPoints = 0;
+    var vitPoints = 0;
+    var magPoints = 0;
+    var agiPoints = 0;
+    var sorPoints = 0;
 
   return (
 
@@ -42,27 +47,39 @@ export default function App() {
 
     <StatusPoints
     statusName="FOR"
-    points={valor}
-    setPoints={(value: Number)  =>  valor += Number(value)}
+    setPoints={(value: Number)  =>  forPoints += Number(value)}
     />
     <StatusPoints
     statusName="TEC"
-    setPoints={(value: Number)  =>  valor += Number(value)}
+    setPoints={(value: Number)  =>  tecPoints += Number(value)}
+    />
+    <StatusPoints
+    statusName="VIT"
+    setPoints={(value: Number)  =>  vitPoints += Number(value)}
     />
     <StatusPoints
     statusName="MAG"
+    setPoints={(value: Number)  =>  magPoints += Number(value)}
     />
     <StatusPoints
     statusName="AGI"
+    setPoints={(value: Number)  =>  agiPoints += Number(value)}
     />  
     <StatusPoints
     statusName="SOR"
+    setPoints={(value: Number)  =>  sorPoints += Number(value)}
     />
 
-    <Text>Quantidade de pontos adicionadas = {valor}</Text>
+    <Text>Quantidade de pontos adicionadas = </Text>
 
     <TouchableOpacity style={styles.btn}
-    onPress={() => console.log(valor)}
+    onPress={() => console.log(`Os pontos ao apertar o botão são
+    FOR = ${forPoints},\n
+    TEC = ${tecPoints},\n
+    VIT = ${vitPoints},\n
+    MAG = ${magPoints},\n
+    SOR = ${sorPoints}
+    `)}
     >
     <Text>Adicinar Pontos</Text>
 
