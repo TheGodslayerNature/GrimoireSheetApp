@@ -4,12 +4,16 @@ import SectionedMultiSelect from 'react-native-sectioned-multi-select';
 import MultiSelect from 'react-native-multiple-select'
 
 import StatusPoints from './src/components/statusPoints/statusPoints';
+import User from "./src/components/user/User";
 
 export default function App() {
   const [userLevel, setUserLevel] = useState(0);
   const [userName, setUserName] = useState("");
 
     var classes;
+
+    const user:User = new User(userName, "Carta Coringa", 18, userLevel);
+
 
     classes = [{name: "Carta Coringa"}, {name: "Emergente"}, {name: "Supressor"}, {name: "Tocha"}, {name: "Sombra"}]
 
