@@ -8,3 +8,8 @@ test('The input should render with the correct placeholder', () => {
 
     expect(input.props.placeholder).toBeTruthy();
  })
+
+
+ test('expecting dropDownPicker ', () => { 
+
+  })

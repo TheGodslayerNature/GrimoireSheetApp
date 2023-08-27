@@ -1,8 +1,6 @@
-import { useState } from 'react';
-import { SafeAreaView, StyleSheet, Text, TextInput, View, TouchableOpacity,StatusBar} from 'react-native';
-import SectionedMultiSelect from 'react-native-sectioned-multi-select';
-import MultiSelect from 'react-native-multiple-select'
-
+import React ,{ useState } from 'react';
+import { SafeAreaView, StyleSheet, Text, TextInput, View,StatusBar, Pressable} from 'react-native';
+import RNPickerSelect from 'react-native-picker-select';
 import StatusPoints from './src/components/statusPoints/statusPoints';
 import User from "./src/components/user/User";
 
@@ -42,10 +40,16 @@ export default function App() {
     onChangeText={(value) => setUserLevel(Number(value))}
     />
 
-    <MultiSelect
-    selectText='Escolha a classe'
-    onSelectedItemsChange={(item) => (item)}
-    items={classes}
+    <RNPickerSelect
+    value={""}
+    onValueChange={(value:String) => console.log(value)}
+    items={[
+      { label: 'Carta Coringa', value: 'Carta Coringa' },
+      { label: 'Emergente', value: 'Emergente' },
+      { label: 'Supressor', value: 'Supressor' },
+      { label: "Tocha", value: 'Tocha'},
+      { label: "Sombra", value: "Sombra"}
+  ]}
     />
 
 
@@ -74,9 +78,8 @@ export default function App() {
     setPoints={(value: Number)  =>  sorPoints += Number(value)}
     />
 
-    <Text>Quantidade de pontos adicionadas = </Text>
 
-    <TouchableOpacity style={styles.btn}
+    <Pressable style={styles.btn}
     onPress={() => console.log(`Os pontos ao apertar o botão são
     FOR = ${forPoints},\n
     TEC = ${tecPoints},\n
@@ -87,7 +90,7 @@ export default function App() {
     >
     <Text>Adicinar Pontos</Text>
 
-    </TouchableOpacity>
+    </Pressable>
     </SafeAreaView>
   );
 }
