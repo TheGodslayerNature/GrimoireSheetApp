@@ -10,17 +10,11 @@ export default function App() {
 
     var classes;
 
-    const user:User = new User(userName, "Carta Coringa", 18, userLevel);
+    const user:User = new User(userName, "Carta Coringa", 0, userLevel);
 
 
     classes = [{name: "Carta Coringa"}, {name: "Emergente"}, {name: "Supressor"}, {name: "Tocha"}, {name: "Sombra"}]
 
-    var forPoints = 0;
-    var tecPoints = 0;
-    var vitPoints = 0;
-    var magPoints = 0;
-    var agiPoints = 0;
-    var sorPoints = 0;
 
   return (
 
@@ -55,38 +49,33 @@ export default function App() {
 
     <StatusPoints
     statusName="FOR"
-    setPoints={(value: Number)  =>  forPoints += Number(value)}
+    setPoints={(value: Number)  =>  user.setPoints(Number(value))}
     />
     <StatusPoints
     statusName="TEC"
-    setPoints={(value: Number)  =>  tecPoints += Number(value)}
+    setPoints={(value: Number)  =>   user.setPoints(Number(value))}
     />
     <StatusPoints
     statusName="VIT"
-    setPoints={(value: Number)  =>  vitPoints += Number(value)}
+    setPoints={(value: Number)  =>   user.setPoints(Number(value))}
     />
     <StatusPoints
     statusName="MAG"
-    setPoints={(value: Number)  =>  magPoints += Number(value)}
+    setPoints={(value: Number)  =>   user.setPoints(Number(value))}
     />
     <StatusPoints
     statusName="AGI"
-    setPoints={(value: Number)  =>  agiPoints += Number(value)}
+    setPoints={(value: Number)  =>   user.setPoints(Number(value))}
     />  
     <StatusPoints
     statusName="SOR"
-    setPoints={(value: Number)  =>  sorPoints += Number(value)}
+    setPoints={(value: Number)  =>   user.setPoints(Number(value))}
     />
 
 
     <Pressable style={styles.btn}
     onPress={() => console.log(`Os pontos ao apertar o botão são
-    FOR = ${forPoints},\n
-    TEC = ${tecPoints},\n
-    VIT = ${vitPoints},\n
-    MAG = ${magPoints},\n
-    SOR = ${sorPoints}
-    `)}
+    user= ${user.getPoints()}`)}
     >
     <Text>Adicinar Pontos</Text>
 
@@ -124,5 +113,28 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: "black",
     margin: 10
-  }
+  },
+});
+
+const pickerSelectStyles = StyleSheet.create({
+  inputIOS: {
+    fontSize: 16,
+    paddingVertical: 12,
+    paddingHorizontal: 10,
+    borderWidth: 1,
+    borderColor: 'gray',
+    borderRadius: 4,
+    color: 'black',
+    paddingRight: 30, // to ensure the text is never behind the icon
+  },
+  inputAndroid: {
+    fontSize: 16,
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+    borderWidth: 0.5,
+    borderColor: 'purple',
+    borderRadius: 8,
+    color: 'black',
+    paddingRight: 30, // to ensure the text is never behind the icon
+  },
 });
