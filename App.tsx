@@ -2,7 +2,8 @@ import React ,{ useState } from 'react';
 import { SafeAreaView, StyleSheet, Text, TextInput, View,StatusBar, Pressable} from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 import StatusPoints from './src/components/statusPoints/statusPoints';
-import User from "./src/components/user/User";
+import {User} from "./src/components/user/User";
+import { Status} from './src/components/statusPoints/status';
 
 export default function App() {
   const [userLevel, setUserLevel] = useState(0);
@@ -10,7 +11,9 @@ export default function App() {
 
     var classes;
 
-    const user:User = new User(userName, "Carta Coringa", 0, userLevel);
+    const status:Status = new Status(0,0,0,0,0,0);
+
+    const user:User = new User(userName, "Carta Coringa", 18, userLevel,status);
 
 
     classes = [{name: "Carta Coringa"}, {name: "Emergente"}, {name: "Supressor"}, {name: "Tocha"}, {name: "Sombra"}]
@@ -49,33 +52,32 @@ export default function App() {
 
     <StatusPoints
     statusName="FOR"
-    setPoints={(value: Number)  =>  user.setPoints(Number(value))}
+    setPoints={(value: Number)  =>  user.setPointsFor(Number(value))}
     />
     <StatusPoints
     statusName="TEC"
-    setPoints={(value: Number)  =>   user.setPoints(Number(value))}
+    setPoints={(value: Number)  =>   user.setPointsTec(Number(value))}
     />
     <StatusPoints
     statusName="VIT"
-    setPoints={(value: Number)  =>   user.setPoints(Number(value))}
+    setPoints={(value: Number)  =>   user.setPointsVit(Number(value))}
     />
     <StatusPoints
     statusName="MAG"
-    setPoints={(value: Number)  =>   user.setPoints(Number(value))}
+    setPoints={(value: Number)  =>   user.setPointsMag(Number(value))}
     />
     <StatusPoints
     statusName="AGI"
-    setPoints={(value: Number)  =>   user.setPoints(Number(value))}
+    setPoints={(value: Number)  =>   user.setPointsAgi(Number(value))}
     />  
     <StatusPoints
     statusName="SOR"
-    setPoints={(value: Number)  =>   user.setPoints(Number(value))}
+    setPoints={(value: Number)  =>   user.setPointsSor(Number(value))}
     />
 
 
     <Pressable style={styles.btn}
-    onPress={() => console.log(`Os pontos ao apertar o botão são
-    user= ${user.getPoints()}`)}
+    onPress={() => user.printValues()}
     >
     <Text>Adicinar Pontos</Text>
 
