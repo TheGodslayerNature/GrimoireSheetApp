@@ -11,10 +11,9 @@ export default function App() {
 
     var classes;
 
-    const status:Status = new Status(0,0,0,0,0,0);
+    const status:Status = new Status();
 
-    const user:User = new User(userName, "Carta Coringa", 18, userLevel,status);
-
+    const user:User = new User(userName, "Carta Coringa", userLevel, status);
 
     classes = [{name: "Carta Coringa"}, {name: "Emergente"}, {name: "Supressor"}, {name: "Tocha"}, {name: "Sombra"}]
 
@@ -82,6 +81,21 @@ export default function App() {
     <Text>Adicinar Pontos</Text>
 
     </Pressable>
+
+
+    <TextInput
+    placeholder='Pontos de vida'
+    />
+
+    <TextInput
+    placeholder='Pontos de Energia'
+    />
+
+    <TextInput
+    placeholder='Pontos de Defesa'
+    />
+
+
     </SafeAreaView>
   );
 }

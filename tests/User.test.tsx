@@ -1,14 +1,14 @@
 import { Status } from "../src/components/statusPoints/status";
 import {User} from "../src/components/user/User";
 
-const nullStatus = new Status(0,0,0,0,0,0);
+const nullStatus = new Status();
 
 var userLevel = 1;
 
-var newUser:User = new User("Joker", "Coringa", 18, userLevel, nullStatus);
+var newUser:User = new User("Joker", "Coringa", userLevel, nullStatus);
 
 test('should create the object with the correctly values', () => { 
-   var user:User = new User("Joker", "Coringa", 18, 1, nullStatus);   
+   var user:User = new User("Joker", "Coringa", 1, nullStatus);   
 
    expect(user.userName).toEqual("Joker");
    expect(user.userClass).toEqual("Coringa");
@@ -17,7 +17,7 @@ test('should create the object with the correctly values', () => {
  })
 
  test('should sum the status points', () => { 
-  var user:User = new User("Joker", "Coringa", 18, 1, nullStatus);
+  var user:User = new User("Joker", "Coringa", 1, nullStatus);
 
   expect(user.statusPoints).toEqual(18);
 
@@ -44,7 +44,7 @@ test('should create the object with the correctly values', () => {
     })
 
     test('cannot set points if surpass total value', () => { 
-      newUser.setPointsFor(20);
+      newUser.setPointsFor(2);
       
       expect(newUser.getPoints()).toEqual("There is no more points avaliable");
      })

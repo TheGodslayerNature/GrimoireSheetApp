@@ -1,17 +1,11 @@
 export class Status {
-    forca:number;
-    tec:number;
-    vit:number;
-    mag:number;
-    agi:number;
-    sor:number;
+    
+    forca:number = 0;
+    tec:number = 0;
+    vit:number = 0;
+    mag:number = 0;
+    agi:number = 0;
+    sor:number = 0;
 
-    constructor(forca:number, tec:number, vit:number, mag:number, agi:number, sor:number ) {
-        this.forca = forca;
-        this.tec = tec;
-        this.vit = vit;
-        this.mag = mag;
-        this.agi = agi;
-        this.sor = sor;
-    }
+    constructor() {}
 }

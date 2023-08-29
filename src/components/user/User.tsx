@@ -8,10 +8,10 @@ export class User {
     userLevel: number;
     status:Status;
 
-    constructor(userName: String, userClass: String, statusPoints:number, userLevel:number, status:Status) {
+    constructor(userName: String, userClass: String, userLevel:number, status:Status) {
         this.userName = userName;
         this.userClass = userClass;
-        this.statusPoints = statusPoints;
+        this.statusPoints = 18;
         this.userLevel = userLevel;
         this.status = status;
     };
