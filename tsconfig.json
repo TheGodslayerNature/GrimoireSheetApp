@@ -8,5 +8,6 @@
           "tests": ["tests/*"],
           "@components/*": ["src/components/*"],
         },
+        "strict": true,
       }
     }
