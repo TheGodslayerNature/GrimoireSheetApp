@@ -43,8 +43,18 @@ test('should create the object with the correctly values', () => {
     expect(newUser.getPoints()).toEqual("There is no more points avaliable");
     })
 
-    test('cannot set points if surpass total value', () => { 
+     test('the status points should return if the user change his mind', () => { 
+      newUser.setPointsFor(17);
+
+      expect(newUser.getPoints()).toEqual(1);
+
       newUser.setPointsFor(2);
-      
-      expect(newUser.getPoints()).toEqual("There is no more points avaliable");
-     })
+      expect(newUser.getPoints()).toEqual(16);
+
+      //Tentar consseguir fazer os pontos retonarem toda vez que o valor setado deva sobrar
+
+      newUser.setPointsFor(17);
+
+      expect(newUser.getPoints()).toEqual(1);
+      })
+     

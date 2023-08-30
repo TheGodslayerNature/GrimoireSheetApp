@@ -42,11 +42,17 @@ export class User {
     //Adicionar pontos nos respectivos status
 
     setPointsFor(value:number) {
-        if(this.statusPoints < 1) {
-            return "There is no more points avaliable"
+        if(this.status.forca > value) {
+            this.statusPoints = (1) + this.status.forca - value;
+            return;
         }
         this.status.forca = value;
         this.statusPoints -= value;
+
+        if(this.statusPoints < 1) {
+            return "There is no more points avaliable"
+        }
+        
     }
 
     setPointsTec(value:number) {

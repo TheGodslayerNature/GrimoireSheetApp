@@ -1,5 +1,5 @@
 import React ,{ useState } from 'react';
-import { SafeAreaView, StyleSheet, Text, TextInput, View,StatusBar, Pressable} from 'react-native';
+import { SafeAreaView, StyleSheet, Text, TextInput, View,StatusBar, Pressable, Image} from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 import StatusPoints from './src/components/statusPoints/statusPoints';
 import {User} from "./src/components/user/User";
@@ -24,13 +24,22 @@ export default function App() {
     <StatusBar/>
 
     <TextInput
-    style={styles.characterInput}
+    style={[styles.characterInput, {
+      flexDirection: 'row',
+    }]}
     placeholder='Nome do personagem'
     onChangeText={(name) => setUserName(name)}
     />
 
     <TextInput
-    style={styles.characterInput}
+    style={{
+      justifyContent: 'center',
+      alignItems: 'flex-start',
+      borderWidth: 1.5,
+      marginLeft: 0,
+      marginBottom: 0,
+      flexDirection: 'row'
+    }}
     placeholder='Nivel do personagem'
     inputMode='numeric'
     onChangeText={(value) => setUserLevel(Number(value))}
@@ -40,11 +49,11 @@ export default function App() {
     value={""}
     onValueChange={(value:String) => console.log(value)}
     items={[
-      { label: 'Carta Coringa', value: 'Carta Coringa' },
-      { label: 'Emergente', value: 'Emergente' },
-      { label: 'Supressor', value: 'Supressor' },
-      { label: "Tocha", value: 'Tocha'},
-      { label: "Sombra", value: "Sombra"}
+      { label: 'Carta Coringa', value: '' },
+      { label: 'Emergente', value: '' },
+      { label: 'Supressor', value: '' },
+      { label: "Tocha", value: ''},
+      { label: "Sombra", value: ""}
   ]}
     />
 
@@ -84,17 +93,43 @@ export default function App() {
 
 
     <TextInput
+    style={{
+    borderWidth: 2,
+    textAlign: 'auto',
+    margin: 10,
+    }}
     placeholder='Pontos de vida'
     />
 
     <TextInput
+    style={{
+    borderWidth: 2,
+    textAlign: 'auto',
+    margin: 10,
+    }}
     placeholder='Pontos de Energia'
     />
 
     <TextInput
+    style={{
+    borderWidth: 2,
+    textAlign: 'auto',
+    margin: 10,
+    }}
     placeholder='Pontos de Defesa'
     />
 
+    {/* <Image source={require('./assets/imgs/hexagon.png')}
+  style={styles.hexagonStyle}
+  /> */}
+
+{/* <View> */}
+
+  
+      {/* <View style={styles.topTriangle} />
+      <View style={styles.rectangle}/>
+      <View style={styles.bottomTriangle} /> */}
+{/* </View> */}
 
     </SafeAreaView>
   );
@@ -109,10 +144,11 @@ const styles = StyleSheet.create({
   },
   characterInput: {
     height: 50,
-    width: '80%',
+    width: '50%',
     borderWidth: 2,
     textAlign: 'center',
-    margin: 10
+    margin: 0,
+    padding: 0,
   },
   statusPoints: {
     height: 50,
@@ -130,6 +166,35 @@ const styles = StyleSheet.create({
     borderColor: "black",
     margin: 10
   },
+  rectangle: {
+    width: 200,
+    height: 100,
+    backgroundColor: '',
+    borderWidth: 2
+  },
+  topTriangle: {
+    borderLeftWidth: 200 / 2,
+    borderLeftColor: 'transparent',
+    borderRightWidth: 200 / 2,
+    borderRightColor: 'transparent',
+    borderBottomWidth: Math.round(200 * 0.57735) / 2,
+    borderBottomColor: 'red',
+  },
+  bottomTriangle: {
+    borderLeftWidth: 200 / 2,
+    borderLeftColor: 'transparent',
+    borderRightWidth: 200 / 2,
+    borderRightColor: 'transparent',
+    borderTopWidth: Math.round(200 * 0.57735) / 2,
+    borderTopColor: 'red',
+  },
+  HexagonalInput: {
+    
+  },
+  hexagonStyle: {
+    height: "30%",
+    alignItems: 'center',
+  }
 });
 
 const pickerSelectStyles = StyleSheet.create({
