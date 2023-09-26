@@ -100,6 +100,22 @@ export default function App() {
         placeholder="Pontos de Energia"
       />
 
+      <View 
+>
+        <Pressable
+        style={{
+          borderWidth: 2.5,
+          borderColor: 'red',
+          borderRadius: 3,
+          width: "150%",
+        }}
+        >
+          <Text style={{
+            alignItems: 'center'
+          }}>CRIAR PERSONAGEM</Text>
+        </Pressable>
+      </View>
+
     </SafeAreaView>
   );
 }
