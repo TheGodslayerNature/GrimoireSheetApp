@@ -1,4 +1,5 @@
-import {Player } from '../src/components/player/Player';
+import {Player} from '../src/components/player/Player';
+import { InvalidEmailException } from '../src/components/player/InvalidEmailException';
 test('should create an player object with the email and his password', () => {
     var player: Player = new Player("jj@gmail.com", "zetaman12");
 
@@ -6,12 +7,13 @@ test('should create an player object with the email and his password', () => {
     expect("zetaman12").toEqual(player.getPassword())
 });
 
-test('should crate an player if the email is valid', () => {
-    var player: Player = new Player("","");
+test('shouldn\'t create an player if the email is invalid', () => {
+    var player: Player = new Player("JJ@gmail.com","");
 
-    var isValid = player.emailIsValid("JJ$gmail.com");
-    expect(isValid).toBeFalsy(); 
-
-    isValid = player.emailIsValid("jj@gmail.com")
-    expect(isValid).toBeTruthy();
+    try {
+        player.emailIsValid("JJ$gmail.com")
+    } catch(e:unknown) {
+        var knowError = e as InvalidEmailException;
+        expect(knowError.message).toEqual("Email invalido");
+    }
 });
