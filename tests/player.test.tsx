@@ -17,3 +17,13 @@ test('shouldn\'t create an player if the email is invalid', () => {
         expect(knowError.message).toEqual("Email invalido");
     }
 });
+
+test('the password should have at least 9 digits', () => {
+    var player: Player = new Player("JJ@gmail.com","");
+
+    var password = player.passwordIsValid("1345");
+    expect(password).toBeFalsy();
+
+    password = player.passwordIsValid("zetaman12");
+    expect(password).toBeTruthy();
+});

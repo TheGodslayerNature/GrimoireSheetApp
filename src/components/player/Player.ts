@@ -25,4 +25,11 @@ export class Player {
             throw new InvalidEmailException("Email invalido");
         }
     }
+
+    passwordIsValid(password:String) {
+        if(password.length >= 9) {
+            return true;
+        }
+        return !password.length;
+    }
 }
