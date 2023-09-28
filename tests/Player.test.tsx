@@ -27,3 +27,20 @@ test('the password should have at least 9 digits', () => {
     password = player.passwordIsValid("zetaman12");
     expect(password).toBeTruthy();
 });
+
+test('the player should add an character', () => {
+    var player: Player = new Player("jj@gmail.com", "zetaman12");
+    player.addCharacter("Hanzo");
+
+    expect(["Hanzo"]).toStrictEqual(player.getCharactersList())
+});
+
+test('the player should more than one character', () => {
+    var player: Player = new Player("jj@gmail.com", "zetaman12");
+    player.addCharacter("Hanzo");
+
+    expect(["Hanzo"]).toStrictEqual(player.getCharactersList())
+    player.addCharacter("Liliam")
+
+    expect(player.getCharactersList()).toStrictEqual(["Hanzo", "Liliam"]);
+});

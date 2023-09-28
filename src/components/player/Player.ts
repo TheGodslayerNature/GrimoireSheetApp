@@ -3,6 +3,8 @@ import { InvalidEmailException } from "./InvalidEmailException";
 export class Player {
     email:String;
     password:String;
+    //Depois criar uma lista que suporte varios personagens
+    characters:String[] = [];
 
     constructor(email:String, password:String){
         this.emailIsValid(email);
@@ -31,5 +33,14 @@ export class Player {
             return true;
         }
         return !password.length;
+    }
+
+    addCharacter(name: String) {
+        this.characters.push(name)
+    }
+
+
+    getCharactersList(){
+        return this.characters;
     }
 }
