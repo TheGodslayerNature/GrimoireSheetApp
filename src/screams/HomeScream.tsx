@@ -18,7 +18,7 @@ export default function HomeScream( {navigation}:any ) {
             <View style={styles.btnContainer}>
                     <Pressable 
                     style={styles.btnStyle}
-                    onPress={ () => navigation.navigate("Second")}>
+                    onPress={ () => navigation.navigate("StatusScream")}>
                         <Text style={{
                             textAlign: 'center',
                             fontSize: 14
