@@ -2,13 +2,12 @@ import { User, Status } from "../src/components/user/User";
 
 var userLevel = 1;
 
-var newUser: User = new User("Joker", "Coringa", userLevel);
+var newUser: User = new User("Joker", userLevel);
 
 test("should create the object with the correctly values", () => {
-  var user: User = new User("Joker", "Coringa", 1);
+  var user: User = new User("Joker", 1);
 
   expect(user.userName).toEqual("Joker");
-  expect(user.userClass).toEqual("Coringa");
 
   expect(user.userLevel).toEqual(1);
   expect(user.availablePoints()).toEqual(18);

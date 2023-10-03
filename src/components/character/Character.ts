@@ -1,9 +1,10 @@
 import { Player } from "components/player/Player";
 import { CharacterClass } from "./CharacterClass";
+import { Status, User } from "../user/User";
 
 export class Character{
-    characterName:String;
-    level:number;
+    
+    user:User;
     player:Player;
     arcana:Arcana;
     klass:CharacterClass;
@@ -11,30 +12,54 @@ export class Character{
     energy:number;
     damageReduction:number;
 
-    constructor(
-        characterName:String, level:number, 
-        player:Player, arcana:Arcana,
-        klass:CharacterClass, aspectPoints: number, 
-        energy: number, damageReduction: number
-        ) 
+    constructor(user:User, player:Player, arcana:Arcana,klass:CharacterClass,) 
         {
-            this.characterName = characterName;
-            this.level= level;
+            this.user = user;
             this.player = player;
             this.arcana = arcana;
             this.klass = klass;
-            this.aspectPoints = aspectPoints;
-            this.energy= energy;
-            this.damageReduction = damageReduction;
+            this.aspectPoints = 4;
+            this.energy=  this.energyCalculate();
+            this.damageReduction = 1;
     }
 
     toString(): string{
-        var result =`name: ${this.characterName}, level: ${this.level}, player: {${this.player.toString()}}, Arcana: ${Arcana[this.arcana]}, classe: ${this.klass.toString()}, aspectPoints: ${this.aspectPoints}, energy: ${this.energy}, damageReduction: ${this.damageReduction}`;
+        var result =`name: ${this.user.getName()}, level: ${this.user.getLevel()}, player: {${this.player.toString()}}, Arcana: ${Arcana[this.arcana]}, classe: ${this.klass.toString()}, aspectPoints: ${this.aspectPoints}, energy: ${this.energy}, damageReduction: ${this.damageReduction}`;
 
         return result;
+    }
+
+    energyCalculate(): number{
+        return Math.floor(this.user.getStatusPointsFor(Status.VIT) + (this.user.getLevel() / 2))
+    }
+
+    lifePoints(): number {
+        var pv = Math.floor(25 + ((5 + this.user.getStatusPointsFor(Status.VIT)) * this.user.getLevel()) );
+        return pv;
     }
 }
 
 export enum Arcana {
-    EMPEROR
+    JOKER,
+    MAGE,
+    PRIESTESS,
+    EMPRRESS,
+    EMPEROR,
+    HIEROPHANT,
+    LOVERS,
+    CHARIOT,
+    JUSTICE,
+    HERMIT,
+    FORTUNE,
+    STRENGTH,
+    HANGED,
+    DEATH,
+    TEMPERANCE,
+    DEVIL,
+    TOWER,
+    STAR,
+    MOON,
+    SUN,
+    JUDGMENT,
+    WORLD
 }

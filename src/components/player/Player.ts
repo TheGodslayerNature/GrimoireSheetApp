@@ -1,10 +1,10 @@
+import { Character } from "components/character/Character";
 import { InvalidEmailException } from "./InvalidEmailException";
 
 export class Player {
     email:String;
     password:String;
-    //Depois criar uma lista que suporte varios personagens
-    characters:String[] = [];
+    characters:Character[] = [];
 
     constructor(email:String, password:String){
         this.emailIsValid(email);
@@ -35,8 +35,8 @@ export class Player {
         return !password.length;
     }
 
-    addCharacter(name: String) {
-        this.characters.push(name)
+    addCharacter(character: Character) {
+        this.characters.push(character)
     }
 
 

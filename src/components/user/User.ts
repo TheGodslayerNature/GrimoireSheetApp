@@ -1,14 +1,13 @@
 const MAX_POINTS:number = 18;
 
 export class User {
+
     userName: String;
-    userClass: String;
     userLevel: number;
     statusPoints: number[];
 
-    constructor(userName: String, userClass: String, userLevel:number) {
+    constructor(userName: String,userLevel:number) {
         this.userName = userName;
-        this.userClass = userClass;
         this.userLevel = userLevel;
         this.statusPoints = [0, 0, 0, 0, 0, 0];
     };
@@ -25,16 +24,17 @@ export class User {
         this.userName = name;
     }
 
-    setUserClass(userClass: String) {
-        this.userClass = userClass;
-    }
-
     setUserLevel(level:number) {
         this.userLevel = level;
     }
 
-    
-    //Adicionar pontos nos respectivos status
+    getName() {
+        return this.userName;
+    }
+
+    getLevel() {
+        return this.userLevel;
+    }
 
     setPointsFor(status:Status, points:number) {
         let oldPoints = this.getStatusPointsFor(status);
