@@ -6,8 +6,8 @@ import { SafeAreaView,
   StatusBar,
   Pressable,} from 'react-native'
 import React, { useState } from "react";
-import StatusPoints from "../components/statusPoints/statusPoints";
-import { User, Status } from "../components/user/User";
+import StatusPoints from "../../components/statusPoints/statusPoints";
+import { User, Status } from "../../components/user/User";
 
 const STATUS = [
   Status.FOR,

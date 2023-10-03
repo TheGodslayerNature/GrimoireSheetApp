@@ -43,4 +43,8 @@ export class Player {
     getCharactersList(){
         return this.characters;
     }
+
+    toString(): String {
+        return `email: ${this.email}, senha: ${this.password}`
+    }
 }
