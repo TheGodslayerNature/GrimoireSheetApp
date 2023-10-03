@@ -1,22 +1,23 @@
 import { Player } from "components/player/Player";
 import { CharacterClass } from "./CharacterClass";
 import { Status, User } from "../user/User";
+import { Arcanas } from "./Arcanas";
 
 export class Character{
     
     user:User;
     player:Player;
-    arcana:Arcana;
+    arcanas:Arcanas;
     klass:CharacterClass;
     aspectPoints:number;
     energy:number;
     damageReduction:number;
 
-    constructor(user:User, player:Player, arcana:Arcana,klass:CharacterClass,) 
+    constructor(user:User, player:Player, arcanas:Arcanas,klass:CharacterClass,) 
         {
             this.user = user;
             this.player = player;
-            this.arcana = arcana;
+            this.arcanas = arcanas;
             this.klass = klass;
             this.aspectPoints = 4;
             this.energy=  this.energyCalculate();
@@ -24,7 +25,7 @@ export class Character{
     }
 
     toString(): string{
-        var result =`name: ${this.user.getName()}, level: ${this.user.getLevel()}, player: {${this.player.toString()}}, Arcana: ${Arcana[this.arcana]}, classe: ${this.klass.toString()}, aspectPoints: ${this.aspectPoints}, energy: ${this.energy}, damageReduction: ${this.damageReduction}`;
+        var result =`name: ${this.user.getName()}, level: ${this.user.getLevel()}, player: {${this.player.toString()}}, Arcana: ${this.arcanas.arcanaName.toLocaleUpperCase()}, classe: ${this.klass.toString()}, aspectPoints: ${this.aspectPoints}, energy: ${this.energy}, damageReduction: ${this.damageReduction}`;
 
         return result;
     }

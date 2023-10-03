@@ -2,7 +2,11 @@ import { User, Status } from "../src/components/user/User";
 
 var userLevel = 1;
 
-var newUser: User = new User("Joker", userLevel);
+var newUser:User;
+
+beforeEach(() => {
+  newUser = new User("Joker", userLevel);
+})
 
 test("should create the object with the correctly values", () => {
   var user: User = new User("Joker", 1);
