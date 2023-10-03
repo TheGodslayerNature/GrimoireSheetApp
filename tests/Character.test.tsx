@@ -18,7 +18,7 @@ test('should create and character with the right values', () => {
 test('given an character with 2 points in VIT and his level is 2, then his energy must be 3 ', () => {
     var user:User = new User("Kaleesi", 2);
     user.setPointsFor(Status.VIT, 2);
-    var character:Character = new Character(user, player, Arcana.CHARIOT, klass);
+    var character:Character = new Character(user,player, Arcana.CHARIOT, klass);
 
     expect(3).toEqual(character.energy)
 });
@@ -37,5 +37,27 @@ test('the characters must have 30 life points for base, but he receives a minor 
 
     kaleesi.setPointsFor(Status.VIT, 3);
     expect(33).toEqual(character.lifePoints());
+});
+test('character must change life points everytime that the level increse', () => {
+    var lima:User = new User("Lima", 1);
+    var character:Character = new Character(lima,player, Arcana.CHARIOT, klass);
+    expect(30).toEqual(character.lifePoints());
+
+    lima.setUserLevel(2);
+    expect(35).toEqual(character.lifePoints());
+
+    lima.setPointsFor(Status.VIT, 2);
+    expect(39).toEqual(character.lifePoints());
+});
+
+test('character must change energy everytime that the level increse', () => {
+    var user:User = new User("Kaleesi", 2);
+    var character:Character = new Character(user, player, Arcana.CHARIOT, klass);
+
+    expect(1).toEqual(character.getEnergy());
+
+    user.setUserLevel(4);
+
+    expect(2).toEqual(character.getEnergy());
 });
 

@@ -33,8 +33,13 @@ export class Character{
         return Math.floor(this.user.getStatusPointsFor(Status.VIT) + (this.user.getLevel() / 2))
     }
 
+    getEnergy() {
+        return this.energyCalculate();
+    }
+
     lifePoints(): number {
-        var pv = Math.floor(25 + ((5 + this.user.getStatusPointsFor(Status.VIT)) * this.user.getLevel()) );
+        var vitPvCalculate = (5 + this.user.getStatusPointsFor(Status.VIT)) * this.user.getLevel();
+        var pv = Math.floor(25 + vitPvCalculate);
         return pv;
     }
 }
