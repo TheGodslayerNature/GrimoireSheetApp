@@ -1,4 +1,4 @@
-const MAX_POINTS:number = 18;
+const INITIAL_MAX_POINTS:number = 18;
 
 export class User {
 
@@ -13,7 +13,7 @@ export class User {
     };
 
     availablePoints(): number {
-        return MAX_POINTS - this.totalPoints();
+        return INITIAL_MAX_POINTS - this.totalPoints();
     }
 
     totalPoints() { 
@@ -41,7 +41,7 @@ export class User {
 
         this.statusPoints[status] = points;
 
-        if (this.totalPoints() > MAX_POINTS) {
+        if (this.totalPoints() > INITIAL_MAX_POINTS) {
             this.statusPoints[status] = oldPoints;
             throw new Error("Total points exceeded the maximum");
         }

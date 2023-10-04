@@ -1,8 +1,9 @@
-import {Player} from '../src/components/player/Player';
+import { Player} from '../src/components/player/Player';
 import { InvalidEmailException } from '../src/components/player/InvalidEmailException';
-import { Arcana, Character } from '../src/components/character/Character';
+import { Character } from '../src/components/character/Character';
 import { User } from '../src/components/user/User';
 import { CharacterClass, Klass } from '../src/components/character/CharacterClass';
+import { Arcanas } from '../src/components/character/Arcanas';
 
 const klass:CharacterClass = new CharacterClass(Klass.JOKER);
 test('should create an player object with the email and his password', () => {
@@ -36,7 +37,7 @@ test('the password should have at least 9 digits', () => {
 test('the player should add an character', () => {
     var player: Player = new Player("jj@gmail.com", "zetaman12");
     var hanzo:User = new User("Hanzo", 1);
-    var character:Character = new Character(hanzo, player, Arcana.DEATH, klass);
+    var character:Character = new Character(hanzo, player, Arcanas.DEATH, klass);
     player.addCharacter(character);
 
     expect([character]).toStrictEqual(player.getCharactersList())
@@ -45,12 +46,12 @@ test('the player should add an character', () => {
 test('the player should more than one character', () => {
     var player: Player = new Player("jj@gmail.com", "zetaman12");
     var hanzo:User = new User("Hanzo", 1);
-    var hanzoCharacter:Character = new Character(hanzo, player, Arcana.DEATH, klass);
+    var hanzoCharacter:Character = new Character(hanzo, player, Arcanas.DEATH, klass);
     player.addCharacter(hanzoCharacter);
     expect([hanzoCharacter]).toStrictEqual(player.getCharactersList())
 
     var liliam:User = new User("Liliam", 4);
-    var liliamCharacter:Character = new Character(liliam, player, Arcana.HANGED, klass);
+    var liliamCharacter:Character = new Character(liliam, player, Arcanas.HANGED, klass);
     player.addCharacter(liliamCharacter)
 
     expect(player.getCharactersList()).toStrictEqual([hanzoCharacter, liliamCharacter]);

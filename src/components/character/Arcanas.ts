@@ -1,7 +1,7 @@
 import { ArcanaSkills } from "./util/ArcanaSkills";
 
 export class Arcanas {
-    public static JOKER = new Arcanas("Fool",ArcanaSkills.FOOL_COMBAT_SKILL, ArcanaSkills.FOOL_OUT_OF_COMBAT_SKILL);
+    public static FOOL = new Arcanas("Fool",ArcanaSkills.FOOL_COMBAT_SKILL, ArcanaSkills.FOOL_OUT_OF_COMBAT_SKILL);
 
     public static MAGE = new Arcanas("Mage",ArcanaSkills.MAGE_COMBAT_SKILL,ArcanaSkills.MAGE_OUT_OF_COMBAT_SKILL);
     
