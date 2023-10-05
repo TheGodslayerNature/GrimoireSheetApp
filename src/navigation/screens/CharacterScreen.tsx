@@ -32,7 +32,15 @@ export default function CharacterScream({navigation}:any) {
       data={characters}
       renderItem={({item}) => <Text>O nome da personagem é: {item.user.getName()}</Text>}
       />
+      
+      <Pressable style={styles.btnStyle}
+      onPress={ () => navigation.navigate("Status")
+      }
+      >
+        <Text>Ir para status Screen</Text>
+      </Pressable>
     </View>
+  
     
   )
 }

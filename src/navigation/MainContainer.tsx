@@ -10,12 +10,14 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator} from '@react-navigation/native-stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'  
 import Ionicons from 'react-native-ionicons';
+import CreatingPersona from './screens/CreatingPersona'
 
 
 const homeName = "Home";
 const statusScreenName = "Status";
 const CharacterScreenName = "Character";
 const CharacterCreatingScreenName = "Creating Character";
+const creatingPesonaScreen = "CreatingPersona";
 
 const Tab = createBottomTabNavigator();
 
@@ -29,6 +31,7 @@ export default function MainContainer() {
         <Stack.Screen name={statusScreenName} component={StatusScreen}/>
         <Stack.Screen name={CharacterScreenName} component={CharacterScreen}/>
         <Stack.Screen name={CharacterCreatingScreenName} component={CreatingCharacterScreen}/>
+        <Stack.Screen name={creatingPesonaScreen} component={CreatingPersona}/>
       </Stack.Navigator>
     </NavigationContainer>
     /*
