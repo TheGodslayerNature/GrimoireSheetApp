@@ -1,6 +1,8 @@
 import { StatusBar, StyleSheet, SafeAreaView, Text, View, TextInput, Pressable } from "react-native";
 
-export default function HomeScream( {navigation}:any ) {
+const CharacterScreenName = "Character";
+
+export default function HomeScreen( {navigation}:any ) {
     return(
         <SafeAreaView style={styles.container}>
             <Text style={styles.title}>GRIMOIRE OF THE HEART</Text>
@@ -18,7 +20,7 @@ export default function HomeScream( {navigation}:any ) {
             <View style={styles.btnContainer}>
                     <Pressable 
                     style={styles.btnStyle}
-                    onPress={ () => navigation.navigate("StatusScream")}>
+                    onPress={ () => navigation.navigate(CharacterScreenName)}>
                         <Text style={{
                             textAlign: 'center',
                             fontSize: 14

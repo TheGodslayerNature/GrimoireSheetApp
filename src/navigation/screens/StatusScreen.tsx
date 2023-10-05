@@ -18,11 +18,11 @@ const STATUS = [
   Status.SOR,
 ];
 
-export default function StatusScream() {
+export default function StatusScreen() {
   const [userLevel, setUserLevel] = useState(0);
   const [userName, setUserName] = useState("");
 
-  const user: User = new User(userName, "Carta Coringa", userLevel);
+  const user: User = new User(userName, 2);
 
   let points = [0, 0, 0, 0, 0, 0];
 
@@ -97,14 +97,11 @@ export default function StatusScream() {
         placeholder="Pontos de Energia"
       />
 
-      <View 
->
         <Pressable
         style={{
           borderWidth: 2.5,
           borderColor: 'red',
           borderRadius: 3,
-          width: "150%",
           paddingRight: 40,
         }}
         >
@@ -112,7 +109,6 @@ export default function StatusScream() {
             alignItems: 'center'
           }}>CRIAR PERSONAGEM</Text>
         </Pressable>
-      </View>
 
     </SafeAreaView>
   

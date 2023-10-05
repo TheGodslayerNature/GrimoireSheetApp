@@ -1,9 +1,10 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-import HomeScream from './screens/HomeScreeen'
-import StatusScream from './screens/StatusScreen'
-import CharacterScream from './screens/CharacterScreen'
+import HomeScreen from './screens/HomeScreeen'
+import StatusScreen from './screens/StatusScreen'
+import CharacterScreen from './screens/CharacterScreen'
+import CreatingCharacterScreen from './screens/CreatingCharacterScreen'
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator} from '@react-navigation/native-stack'
@@ -12,48 +13,32 @@ import Ionicons from 'react-native-ionicons';
 
 
 const homeName = "Home";
-const statusScreeeName = "Status";
+const statusScreenName = "Status";
 const CharacterScreenName = "Character";
+const CharacterCreatingScreenName = "Creating Character";
 
 const Tab = createBottomTabNavigator();
+
+const Stack = createNativeStackNavigator();
 
 export default function MainContainer() {
   return (
     <NavigationContainer>
-      <Tab.Navigator
-      initialRouteName={homeName}
-      /*
-      screenOptions={({route}) => ({
-        tabBarIcon: ({focused,color,size}) => {
-        let iconName;
-        let rn = route.name;
-
-        if(rn === homeName){
-          iconName = focused ? "home": 'home-outline'
-        } 
-        else if( rn === statusScreeeName) {
-          iconName = focused ? "list": 'list-outline'
-        }
-        else if( rn === CharacterScreenName) {
-          iconName = focused ? "settings": 'settings-outline'
-        }
-
-        return <Ionicons
-        name={iconName}
-        size={size}
-        color={color}
-        />
-        }
-        
-      })}
-      */
-      >
-
-        <Tab.Screen name={homeName}component={HomeScream}/>
-        <Tab.Screen name={statusScreeeName}component={StatusScream}/>
-        <Tab.Screen name={CharacterScreenName}component={CharacterScream}/>
-
+      <Stack.Navigator initialRouteName='Home'>
+        <Stack.Screen name='Home' component={HomeScreen}/>
+        <Stack.Screen name={statusScreenName} component={StatusScreen}/>
+        <Stack.Screen name={CharacterScreenName} component={CharacterScreen}/>
+        <Stack.Screen name={CharacterCreatingScreenName} component={CreatingCharacterScreen}/>
+      </Stack.Navigator>
+    </NavigationContainer>
+    /*
+    <NavigationContainer>
+      <Tab.Navigator initialRouteName={homeName}>
+        <Tab.Screen name={homeName}component={HomeScreen} options={{ tabBarStyle: {display:'none'}}}/>
+        <Tab.Screen name={statusScreeeName}component={StatusScreen}/>
+        <Tab.Screen name={CharacterScreenName}component={CharacterScreen}/>
       </Tab.Navigator>
     </NavigationContainer>
+    */
   )
 }
