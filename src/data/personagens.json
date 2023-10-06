@@ -1,0 +1,40 @@
+[
+  {
+    "user": {
+      "userName": "Kalessi",
+      "userLevel": 2,
+      "statusPoints": [1, 2, 3, 4, 5, 6]
+    },
+    "player": {
+      "email": "al@hotmail.com",
+      "password": "qwerty123"
+    },
+    "arcanas": {
+      "arcanaName": "String",
+      "combatArcana": "String",
+      "outOfCombat": "String"
+    },
+    "klass": { "klass": "Klass" },
+    "character": {
+      "aspectPoints": 4,
+      "energy": 3,
+      "damageReduction": 1,
+      "persona": [
+        {
+          "name": "l Trainer",
+          "arcana": {
+            "arcanaName": "String",
+            "combatArcana": "String",
+            "outOfCombat": "String"
+          },
+          "conviction": "String",
+          "naturalSkill": "String",
+          "pm": 4,
+          "magDeck": [],
+          "magTypes": [],
+          "personaLevel": 0
+        }
+      ]
+    }
+  }
+]

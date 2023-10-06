@@ -4,7 +4,6 @@ import { InvalidEmailException } from "./InvalidEmailException";
 export class Player {
     email:String;
     password:String;
-    characters:Character[] = [];
 
     constructor(email:String, password:String){
         this.emailIsValid(email);
@@ -35,14 +34,6 @@ export class Player {
         return !password.length;
     }
 
-    addCharacter(character: Character) {
-        this.characters.push(character)
-    }
-
-
-    getCharactersList(){
-        return this.characters;
-    }
 
     toString(): String {
         return `email: ${this.email}, senha: ${this.password}`

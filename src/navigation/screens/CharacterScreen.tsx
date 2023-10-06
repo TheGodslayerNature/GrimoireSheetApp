@@ -20,34 +20,38 @@ import { User } from "../../components/user/User";
 import { Arcanas } from "../../components/character/Arcanas";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Persona } from "../../components/persona/Persona";
-import { Mag } from "../../components/mag/Mag";
+import { Mag, MagType } from "../../components/mag/Mag";
 import { Card } from "react-native-elements";
+import personagensData from "../../data/personagens.json";
+import MagTypes from "components/magTypes/MagTypes";
 
-const player: Player = new Player("jj@gmail.com", "zetaman12");
+var valoresDoJson = personagensData[0];
+
+const player: Player = new Player(valoresDoJson.player.email, valoresDoJson.player.password);
 const klass: CharacterClass = new CharacterClass(Klass.JOKER);
-var kaleesi: User = new User("Kaleesi", 1);
+var kaleesi: User = new User(valoresDoJson.user.userName, valoresDoJson.user.userLevel);
 
 const mags: Mag[] = [];
 const persona: Persona = new Persona(
-  "Jeane'darc",
-  Arcanas.CHARIOT,
-  "",
-  "",
-  6,
-  mags
+  valoresDoJson.character.persona[0].name, 
+  Arcanas.CHARIOT, "", "", 6, 
+  valoresDoJson.character.persona[0].magDeck, MagType.BUFF
 );
 
 const lessi: Character = new Character(kaleesi, player, Arcanas.CHARIOT, klass);
 
 {
   lessi.setPersona(persona);
-  persona.setPersonaLevel(1);
+  persona.setPersonaLevel(persona.getLevel());
 }
 
-const characters: Character[] = [lessi];
+
+
+const characters: Character[] = [lessi]; 
 
 export default function CharacterScream({ navigation }: any) {
   return (
+    
     <View style={styles.container}>
       <Pressable
         style={styles.btnStyle}
