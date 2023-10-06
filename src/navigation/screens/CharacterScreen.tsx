@@ -24,7 +24,7 @@ export default function CharacterScream({navigation}:any) {
       <Pressable 
       style={styles.btnStyle}
       onPress={() => {
-        navigation.navigate('Creating Character');
+        navigation.navigate('Status');
       }}>
         <Text style={styles.btnTextStyle}>Criar Ficha</Text>
       </Pressable>
@@ -32,13 +32,6 @@ export default function CharacterScream({navigation}:any) {
       data={characters}
       renderItem={({item}) => <Text>O nome da personagem é: {item.user.getName()}</Text>}
       />
-      
-      <Pressable style={styles.btnStyle}
-      onPress={ () => navigation.navigate("CreatingPersona")
-      }
-      >
-        <Text>Ir para status Screen</Text>
-      </Pressable>
     </View>
   
     

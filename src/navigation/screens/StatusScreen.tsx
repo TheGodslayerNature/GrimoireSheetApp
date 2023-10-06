@@ -1,13 +1,16 @@
-import { SafeAreaView,
+import {
+  SafeAreaView,
   StyleSheet,
   Text,
   TextInput,
   View,
   StatusBar,
-  Pressable,} from 'react-native'
+  Pressable,
+} from "react-native";
 import React, { useState } from "react";
 import StatusPoints from "../../components/statusPoints/statusPoints";
 import { User, Status } from "../../components/user/User";
+import { Picker } from "@react-native-picker/picker";
 
 const STATUS = [
   Status.FOR,
@@ -19,8 +22,9 @@ const STATUS = [
 ];
 
 const creatingPesonaScreen = "CreatingPersona";
+const klasses:String[] = ["Carta-Coringa", "Emergente", "Sombra", "Supressor", "Tocha"];
 
-export default function StatusScreen( {navigation}:any) {
+export default function StatusScreen({ navigation }: any) {
   const [userLevel, setUserLevel] = useState(0);
   const [userName, setUserName] = useState("");
 
@@ -33,45 +37,50 @@ export default function StatusScreen( {navigation}:any) {
     user.printStatusValues();
   };
   return (
-    
     <SafeAreaView style={styles.container}>
       <StatusBar />
 
       <View
-        style={[{
-          flexDirection: "row",
-          justifyContent: 'space-between',
-        }, ]}
+        style={[
+          {
+            flexDirection: "row",
+          },
+        ]}
       >
         <TextInput
-          style={[
-            styles.characterInput,]}
+          style={[styles.characterInput]}
           placeholder="Nome do personagem"
           onChangeText={(name) => setUserName(name)}
         />
 
         <TextInput
-          style={[,{
-            height: 50,
-            width: 50,
-            borderWidth: 1.5,
-            marginLeft: 50, 
-            alignContent: 'center',
-            alignItems: 'center',
-            textAlign: 'center',
-          }]}
+          style={[
+            ,
+            {
+              height: 50,
+              width: 50,
+              borderWidth: 1.5,
+              marginLeft: 50,
+              alignContent: "center",
+              alignItems: "center",
+              textAlign: "center",
+            },
+          ]}
           placeholder="Nível"
           inputMode="numeric"
-          editable={String(userLevel).at(1)? false : true}
+          editable={String(userLevel).at(1) ? false : true}
           onChangeText={(value) => setUserLevel(Number(value))}
         />
+        
+        <Picker style={{ width: 150, height: 50 }}>
+          {klasses.map((kla) => (
+            <Picker.Item key={0} value={""} label={kla.toString()} />
+          ))}
+        </Picker>
 
       </View>
 
-      <View style={styles.ImageStyle}>
-
-
-      </View>
+      <View style={styles.ImageStyle}></View>
 
       <View style={{ flexDirection: "row", padding: 15 }}>
         {STATUS.map((status) => (
@@ -104,31 +113,32 @@ export default function StatusScreen( {navigation}:any) {
         placeholder="Pontos de Energia"
       />
 
-        <Pressable
-        onPress={ () => navigation.navigate("Home")}
+      <Pressable
+        onPress={() => navigation.navigate("CreatingPersona")}
         style={{
           borderWidth: 2.5,
-          borderColor: 'gold',
+          borderColor: "gold",
           borderRadius: 20,
           paddingRight: 40,
           marginTop: 20,
-          justifyContent: 'center',
-          alignContent: 'center',
-          alignItems: 'center',
+          justifyContent: "center",
+          alignContent: "center",
+          alignItems: "center",
         }}
-        >
-          <Text style={{
+      >
+        <Text
+          style={{
             margin: 15,
-          }}>CRIAR PERSONAGEM</Text>
-        </Pressable>
-
+          }}
+        >
+          CRIAR PERSONAGEM
+        </Text>
+      </Pressable>
     </SafeAreaView>
-  
-  )
+  );
 }
 
 const styles = StyleSheet.create({
-  
   container: {
     flex: 1,
     backgroundColor: "#fff",
@@ -157,7 +167,5 @@ const styles = StyleSheet.create({
     borderColor: "black",
     margin: 10,
   },
-  ImageStyle: {
-    
-  }
-})
+  ImageStyle: {},
+});
