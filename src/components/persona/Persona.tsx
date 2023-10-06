@@ -9,6 +9,7 @@ export class Persona {
     pm:number;
     magDeck:Mag[];
     magTypes:MagType[];
+    personaLevel:number = 0;
     
     constructor(
         name:String, arcana:Arcanas, 
@@ -31,5 +32,12 @@ export class Persona {
 
     getMags() {
         return this.magDeck;
+    }
+
+    setPersonaLevel(level:number) {
+        this.personaLevel = level;
+    }
+    getLevel() {
+        return this.personaLevel;
     }
 }

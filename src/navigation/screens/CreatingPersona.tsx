@@ -11,7 +11,7 @@ export default function CreatingPersona({navigation}:any) {
           flexDirection: "row",
         }}
       >
-        <TextInput placeholder="Nome" style={styles.inputStyle} />
+        <TextInput placeholder="Nome da persona" style={styles.inputStyle} />
         <TextInput placeholder="Nivel" style={styles.boxInput} />
 
         <TextInput
@@ -28,7 +28,7 @@ export default function CreatingPersona({navigation}:any) {
         }}
       >
         <TextInput placeholder="Convicção" style={styles.inputStyle} />
-        <TextInput placeholder="habilidade natural" style={styles.inputStyle} />
+        <TextInput placeholder="Habilidade natural" style={styles.inputStyle} />
 
       </View>
 

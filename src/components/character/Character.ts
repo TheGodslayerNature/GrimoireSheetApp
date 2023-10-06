@@ -2,6 +2,7 @@ import { Player } from "components/player/Player";
 import { CharacterClass } from "./CharacterClass";
 import { Status, User } from "../user/User";
 import { Arcanas } from "./Arcanas";
+import { Persona } from "components/persona/Persona";
 
 export class Character{
     
@@ -12,6 +13,7 @@ export class Character{
     aspectPoints:number;
     energy:number;
     damageReduction:number;
+    persona:Persona[] = [];
 
     constructor(user:User, player:Player, arcanas:Arcanas,klass:CharacterClass,) 
         {
@@ -42,6 +44,14 @@ export class Character{
         var vitPvCalculate = (5 + this.user.getStatusPointsFor(Status.VIT)) * this.user.getLevel();
         var pv = Math.floor(25 + vitPvCalculate);
         return pv;
+    }
+
+    setPersona(persona:Persona) {
+        this.persona.push(persona);
+    }
+
+    getPersona() {
+        return this.persona;
     }
 }
 
