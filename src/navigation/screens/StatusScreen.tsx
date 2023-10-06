@@ -18,7 +18,9 @@ const STATUS = [
   Status.SOR,
 ];
 
-export default function StatusScreen() {
+const creatingPesonaScreen = "CreatingPersona";
+
+export default function StatusScreen( {navigation}:any) {
   const [userLevel, setUserLevel] = useState(0);
   const [userName, setUserName] = useState("");
 
@@ -49,11 +51,16 @@ export default function StatusScreen() {
         />
 
         <TextInput
-          style={[styles.characterInput,{
-            height: 20,
+          style={[,{
+            height: 50,
+            width: 50,
             borderWidth: 1.5,
+            marginLeft: 50, 
+            alignContent: 'center',
+            alignItems: 'center',
+            textAlign: 'center',
           }]}
-          placeholder="Nivel do personagem"
+          placeholder="Nível"
           inputMode="numeric"
           editable={String(userLevel).at(1)? false : true}
           onChangeText={(value) => setUserLevel(Number(value))}
@@ -98,15 +105,20 @@ export default function StatusScreen() {
       />
 
         <Pressable
+        onPress={ () => navigation.navigate("Home")}
         style={{
           borderWidth: 2.5,
-          borderColor: 'red',
-          borderRadius: 3,
+          borderColor: 'gold',
+          borderRadius: 20,
           paddingRight: 40,
+          marginTop: 20,
+          justifyContent: 'center',
+          alignContent: 'center',
+          alignItems: 'center',
         }}
         >
           <Text style={{
-            alignItems: 'center'
+            margin: 15,
           }}>CRIAR PERSONAGEM</Text>
         </Pressable>
 
@@ -125,7 +137,7 @@ const styles = StyleSheet.create({
   },
   characterInput: {
     height: 50,
-    width: "50%",
+    width: "80%",
     borderWidth: 2,
     textAlign: "center",
   },

@@ -1,8 +1,9 @@
-import { View, Text, StyleSheet, TextInput, CheckBox} from "react-native";
-
+import { View, Text, StyleSheet, TextInput} from "react-native";
+import { Picker } from '@react-native-picker/picker'
 import React from "react";
 
 export default function CreatingPersona() {
+  const magicTypes:String[] = ["Fire", "Ice"];
   return (
     <View style={styles.container}>
       <TextInput placeholder="Nome" style={styles.inputStyle}/>
@@ -12,21 +13,11 @@ export default function CreatingPersona() {
       <TextInput placeholder="Pontos de Magia" inputMode="numeric" style={styles.inputStyle}/>
 
       <View style={styles.checkBoxContainer}>
-      <CheckBox style={styles.checkBoxStyle}/><Text >PHYSICAL</Text>
-      <CheckBox /><Text>Fire</Text>
-      <CheckBox /><Text>ICE</Text>
-      <CheckBox /><Text>WIND</Text>
-      <CheckBox /><Text>LIGHTNING</Text>
-      <CheckBox /><Text>LIGHT</Text>
-      <CheckBox /><Text>DARKNESS</Text>
-      <CheckBox /><Text>OMNIPOTENT</Text>
-      <CheckBox /><Text>HEALING</Text>
-      <CheckBox /><Text>DEFENSE</Text>
-      <CheckBox /><Text>BUFF</Text>
-      <CheckBox /><Text>DEBUFF</Text>
-      <CheckBox /><Text>STATUS</Text>
-      <CheckBox /><Text>INTEL</Text>
-      <CheckBox /><Text>MISCELLANEOUS</Text>
+      <Picker style={{width: 150, height: 50}}>
+            {magicTypes.map((arc) => ( 
+                <Picker.Item key={0} value={""} label={arc.toString()}/>
+            ))}
+        </Picker>
       </View>
     </View>
   );

@@ -34,7 +34,7 @@ export default function CharacterScream({navigation}:any) {
       />
       
       <Pressable style={styles.btnStyle}
-      onPress={ () => navigation.navigate("Status")
+      onPress={ () => navigation.navigate("CreatingPersona")
       }
       >
         <Text>Ir para status Screen</Text>

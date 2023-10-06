@@ -5,12 +5,13 @@ import HomeScreen from './screens/HomeScreeen'
 import StatusScreen from './screens/StatusScreen'
 import CharacterScreen from './screens/CharacterScreen'
 import CreatingCharacterScreen from './screens/CreatingCharacterScreen'
+import CreatingPersona from './screens/CreatingPersona'
+
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator} from '@react-navigation/native-stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'  
 import Ionicons from 'react-native-ionicons';
-import CreatingPersona from './screens/CreatingPersona'
 
 
 const homeName = "Home";
