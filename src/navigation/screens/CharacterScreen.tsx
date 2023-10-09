@@ -93,9 +93,7 @@ export default function CharacterScream({ navigation }: any) {
             (pers) => (
               lessi.setPersona(persona),
               (
-                <Text>
-                  Persona : {pers.name}; Nível: {pers.getLevel()}
-                </Text>
+                <li key={0}>Persona: {pers.name}; Nível: {pers.getLevel()}</li>
               )
             )
           )}

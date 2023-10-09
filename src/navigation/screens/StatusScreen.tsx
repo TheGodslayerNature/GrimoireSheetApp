@@ -74,8 +74,8 @@ export default function StatusScreen({ navigation }: any) {
         
         <Picker style={{ width: 150, height: 50 }}>
           {klasses.map((kla) => (
-            <Picker.Item key={0} value={""} label={kla.toString()} />
-          ))}
+            <Picker.Item key={klasses.indexOf(kla)} value={""} label={kla.toString()} />
+          ))} 
         </Picker>
 
       </View>
@@ -84,10 +84,10 @@ export default function StatusScreen({ navigation }: any) {
 
       <View style={{ flexDirection: "row", padding: 15 }}>
         {STATUS.map((status) => (
-          <StatusPoints
-            statusName={Status[status]}
-            setPoints={(value: number) => (points[status] = value)}
-          />
+          <li key={status}><StatusPoints
+          statusName={Status[status]}
+          setPoints={(value:number) => (points[status] = value)}
+          /></li>
         ))}
       </View>
 
