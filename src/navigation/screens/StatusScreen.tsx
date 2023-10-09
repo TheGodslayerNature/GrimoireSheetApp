@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import StatusPoints from "../../components/statusPoints/statusPoints";
-import { User, Status } from "../../components/user/User";
+import { User, Status } from "../../components/user/UserStatus";
 import { Picker } from "@react-native-picker/picker";
 
 const STATUS = [

@@ -1,7 +1,7 @@
 import { Arcana, Character} from "../src/components/character/Character";
 import { Player} from '../src/components/player/Player';
 import { CharacterClass, Klass } from "../src/components/character/CharacterClass";
-import { Status, User } from "../src/components/user/User";
+import { Status, User } from "../src/components/user/UserStatus";
 import { Arcanas } from "../src/components/character/Arcanas";
 
 const player: Player = new Player("jj@gmail.com", "zetaman12");

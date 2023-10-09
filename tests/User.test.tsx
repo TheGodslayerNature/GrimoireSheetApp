@@ -1,4 +1,4 @@
-import { User, Status } from "../src/components/user/User";
+import { User, Status } from "../src/components/user/UserStatus";
 
 var userLevel = 1;
 

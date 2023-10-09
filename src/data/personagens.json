@@ -1,6 +1,6 @@
 [
   {
-    "user": {
+    "userStatus": {
       "userName": "Kalessi",
       "userLevel": 2,
       "statusPoints": [1, 2, 3, 4, 5, 6]

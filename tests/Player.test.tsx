@@ -1,7 +1,7 @@
 import { Player} from '../src/components/player/Player';
 import { InvalidEmailException } from '../src/components/player/InvalidEmailException';
 import { Character } from '../src/components/character/Character';
-import { User } from '../src/components/user/User';
+import { User } from '../src/components/user/UserStatus';
 import { CharacterClass, Klass } from '../src/components/character/CharacterClass';
 import { Arcanas } from '../src/components/character/Arcanas';
 

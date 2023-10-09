@@ -1,9 +1,14 @@
 import { View, Text, StyleSheet, TextInput, Pressable } from "react-native";
 import { Picker } from "@react-native-picker/picker";
-import React from "react";
+import React, {useState} from "react";
 import MagTypes from "../../components/magTypes/MagTypes";
+import personagens from "../../data/personagens.json";
+
 
 export default function CreatingPersona({navigation}:any) {
+  const [name, setName] = useState("");
+  const [level, setLevel] = useState();
+
   return (
     <View style={styles.container}>
       <View
@@ -11,7 +16,11 @@ export default function CreatingPersona({navigation}:any) {
           flexDirection: "row",
         }}
       >
-        <TextInput placeholder="Nome da persona" style={styles.inputStyle} />
+        <TextInput placeholder="Nome da persona" style={styles.inputStyle} 
+        onChangeText={(n) => {
+          setName(n); 
+          console.log(name)}}
+        />
         <TextInput placeholder="Nivel" style={styles.boxInput} />
 
         <TextInput
