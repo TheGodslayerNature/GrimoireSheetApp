@@ -6,13 +6,6 @@ import { MagType } from 'components/mag/Mag';
 const magicTypes: String[] = [ "Select an magic","PHYSICAL" ,"FIRE", "ICE", "WIND", "LIGHTNING", "LIGHT", "DARKNESS", "OMNIPOTENT", "HEALING", "DEFENSE", "BUFF", "DEBUFF", "STATUS", "INTEL", "MISCELLANEOUS"];
 //const magType:MagType[] = [];
 
-{
-  for (let index = 0; index < magicTypes.length; index++) {
-    const element = magicTypes[index];
-    console.log(magicTypes.indexOf(element))
-  }
-
-}
 export default function MagTypes() {
   return (
     <View>

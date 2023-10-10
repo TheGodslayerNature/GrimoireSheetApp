@@ -2,18 +2,18 @@ export class Mag {
 
     magType:MagType;
     tier:number; 
-    name:String; 
-    categoria:String;
-    alcance:String; 
-    efeito:String; 
-    descricao:String
+    name:string; 
+    categoria:string;
+    alcance:string; 
+    efeito:string; 
+    descricao:string
     damage:number = 0;
 
     constructor(
         magType:MagType,
-        tier:number, name:String, 
-        categoria:String, alcance:String, 
-        efeito:String, descricao:String
+        tier:number, name:string, 
+        categoria:string, alcance:string, 
+        efeito:string, descricao:string
         )
         {
             this.magType = magType; 
@@ -25,7 +25,7 @@ export class Mag {
             this.descricao = descricao;
         }
 
-        toString():String {
+        toString():string {
             return `tier ${this.tier}; name: ${this.name}; categoria: ${this.categoria}; alcance: ${this.alcance}; efeito: ${this.efeito}; descrição: ${this.descricao}`
         }
 

@@ -1,7 +1,6 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-import HomeScreen from './screens/HomeScreeen'
 import StatusScreen from './screens/StatusScreen'
 import CharacterScreen from './screens/CharacterScreen'
 import CreatingCharacterScreen from './screens/CreatingCharacterScreen'
@@ -27,11 +26,9 @@ const Stack = createNativeStackNavigator();
 export default function MainContainer() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Home'>
-        <Stack.Screen name='Home' component={HomeScreen}/>
+      <Stack.Navigator initialRouteName={CharacterCreatingScreenName}>
+      <Stack.Screen name={CharacterScreenName} component={CharacterScreen}/>
         <Stack.Screen name={statusScreenName} component={StatusScreen}/>
-        <Stack.Screen name={CharacterScreenName} component={CharacterScreen}/>
-        <Stack.Screen name={CharacterCreatingScreenName} component={CreatingCharacterScreen}/>
         <Stack.Screen name={creatingPesonaScreen} component={CreatingPersona}/>
       </Stack.Navigator>
     </NavigationContainer>

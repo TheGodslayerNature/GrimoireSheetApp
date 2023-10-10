@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import {
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  ScrollView,
+} from "react-native";
 
 import { Arcanas } from "../../components/character/Arcanas";
 import { Character } from "../../components/character/Character";
@@ -11,9 +18,19 @@ import CharacterView from "../../components/characters/Characters";
 import { Mag, MagType } from "../../components/mag/Mag";
 import { Persona } from "../../components/persona/Persona";
 import { Player } from "../../components/player/Player";
-import { User } from "../../components/user/UserStatus";
+import { UserStatus } from "../../components/user/UserStatus";
 import personagensData from "../../data/personagens.json";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+
+/*
+Paleta de cores
+
+Azul petroleo: #084d6e
+
+amarelo: #FDED00;
+
+
+*/
 
 var valoresDoJson = personagensData[0];
 
@@ -23,7 +40,7 @@ const player: Player = new Player(
 );
 
 const klass: CharacterClass = new CharacterClass(Klass.JOKER);
-var kaleesi: User = new User(
+var kaleesi: UserStatus = new UserStatus(
   valoresDoJson.userStatus.userName,
   valoresDoJson.userStatus.userLevel
 );
@@ -70,11 +87,25 @@ export default function CharacterScreen({ navigation }: any) {
 
   return (
     <View style={styles.container}>
-      {characters.map((character, i) => (
-        <li key={i}>
-          <CharacterView character={character} />
-        </li>
-      ))}
+      <Image
+        source={require("../../../assets/imgs/cabecalho-removebg-preview.png")}
+        style={styles.imgStyle}
+      />
+
+      <View style={styles.scrollContainer}>
+        <ScrollView contentContainerStyle={styles.scrollStyle} 
+        horizontal={true}
+        pagingEnabled={true}
+        centerContent={true}
+        >
+          {characters.map((character, i) => (
+            <li key={i}>
+              <CharacterView character={character} />
+            </li>
+          ))}
+        </ScrollView>
+      </View>
+
       <Pressable
         style={styles.btnStyle}
         onPress={() => {
@@ -92,6 +123,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignContent: "center",
     alignItems: "center",
+    backgroundColor: '#084d6e',
   },
   btnStyle: {
     justifyContent: "center",
@@ -99,20 +131,18 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: "20%",
     height: "12%",
-    backgroundColor: "#E1D200",
+    backgroundColor: "#FDED00",
+    margin: 25,
   },
   btnTextStyle: {
     fontWeight: "bold",
-    color: "#0066FF",
+    color: "black",
   },
-  characterContainer: {
-    flex: 1,
+  scrollContainer: {
+    // height: 300,
   },
-  imgStyle: {
-    height: 200,
-    width: 150,
-    resizeMode: "contain",
-    borderWidth: 1.5,
-    borderColor: "gold",
+  imgStyle: {},
+  scrollStyle: {
+    maxWidth: 400
   },
 });

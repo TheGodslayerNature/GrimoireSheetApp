@@ -19,7 +19,7 @@ import {
 } from "react-native";
 
 import StatusPoints from "../../components/statusPoints/statusPoints";
-import { Status, User } from "../../components/user/UserStatus";
+import { Status, UserStatus } from "../../components/user/UserStatus";
 import personagensData from "../../data/personagens.json";
 
 var valoresDoJson = personagensData[0];
@@ -50,7 +50,7 @@ export default function StatusScreen({ navigation }: any) {
   const [userLevel, setUserLevel] = useState(0);
   const [userName, setUserName] = useState("");
 
-  const user: User = new User(userName, 2);
+  const user: UserStatus = new UserStatus(userName, 2);
 
   let points = [0, 0, 0, 0, 0, 0];
 
@@ -151,14 +151,15 @@ export default function StatusScreen({ navigation }: any) {
             Arcanas.DEVIL,
             new CharacterClass(Klass.JOKER)
           );
+          
           AsyncStorage.getItem("characters").then((ids) => {
             let characters = ids ? (JSON.parse(ids!) as Array<string>) : [];
-            characters.push(character.user.userName.toString());
+            characters.push(character.user.userName);
             console.log(characters);
             
             AsyncStorage.multiSet([
               ["characters", JSON.stringify(characters)],
-              [character.user.getName().toString(), JSON.stringify(character)],
+              [character.user.getName(), JSON.stringify(character)],
             ]).then(() => console.log("saved!!"));
           });
 
@@ -190,7 +191,7 @@ export default function StatusScreen({ navigation }: any) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#084d6e",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -214,6 +215,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderWidth: 2,
     borderColor: "black",
+    color: "#FDED00",
     margin: 10,
   },
   ImageStyle: {},

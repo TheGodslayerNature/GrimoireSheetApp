@@ -2,10 +2,10 @@ import { Character } from "components/character/Character";
 import { InvalidEmailException } from "./InvalidEmailException";
 
 export class Player {
-    email:String;
-    password:String;
+    email:string;
+    password:string;
 
-    constructor(email:String, password:String){
+    constructor(email:string, password:string){
         this.emailIsValid(email);
         this.email = email;
         this.password = password;
@@ -19,7 +19,7 @@ export class Player {
         return this.password;
     }
 
-    emailIsValid(validEmail:String) {
+    emailIsValid(validEmail:string) {
         var postFix = validEmail.substring(validEmail.lastIndexOf("@"));
 
         if(postFix.at(0)!= "@") {
@@ -27,7 +27,7 @@ export class Player {
         }
     }
 
-    passwordIsValid(password:String) {
+    passwordIsValid(password:string) {
         if(password.length >= 9) {
             return true;
         }
@@ -35,7 +35,7 @@ export class Player {
     }
 
 
-    toString(): String {
+    toString(): string {
         return `email: ${this.email}, senha: ${this.password}`
     }
 }

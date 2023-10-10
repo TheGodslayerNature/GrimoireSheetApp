@@ -1,12 +1,12 @@
 import { Player } from "components/player/Player";
 import { CharacterClass } from "./CharacterClass";
-import { Status, User } from "../user/UserStatus";
+import { Status, UserStatus } from "../user/UserStatus";
 import { Arcanas } from "./Arcanas";
 import { Persona } from "components/persona/Persona";
 
 export class Character{
     
-    user:User;
+    user:UserStatus;
     player:Player;
     arcanas:Arcanas;
     klass:CharacterClass;
@@ -15,7 +15,7 @@ export class Character{
     damageReduction:number;
     persona:Persona[] = [];
 
-    constructor(user:User, player:Player, arcanas:Arcanas,klass:CharacterClass,) 
+    constructor(user:UserStatus, player:Player, arcanas:Arcanas,klass:CharacterClass,) 
         {
             this.user = user;
             this.player = player;

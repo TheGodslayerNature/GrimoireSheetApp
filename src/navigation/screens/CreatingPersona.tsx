@@ -66,6 +66,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: '#084d6e',
   },
   checkBoxContainer: {
     marginBottom: 20,

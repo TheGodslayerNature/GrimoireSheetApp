@@ -1,12 +1,12 @@
 const INITIAL_MAX_POINTS:number = 18;
 
-export class User {
+export class UserStatus {
 
-    userName: String;
+    userName: string;
     userLevel: number;
     statusPoints: number[];
 
-    constructor(userName: String,userLevel:number) {
+    constructor(userName: string,userLevel:number) {
         this.userName = userName;
         this.userLevel = userLevel;
         this.statusPoints = [0, 0, 0, 0, 0, 0];
@@ -20,7 +20,7 @@ export class User {
         return this.statusPoints.reduce((acc, elem) => acc + elem, 0);
     }
 
-    setUserName(name:String) {
+    setUserName(name:string) {
         this.userName = name;
     }
 
