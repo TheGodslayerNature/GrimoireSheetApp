@@ -1,30 +1,19 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  FlatList,
-  Pressable,
-  Image,
-} from "react-native";
-import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import React, { useEffect, useState } from "react";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 
+import { Arcanas } from "../../components/character/Arcanas";
 import { Character } from "../../components/character/Character";
-import { Player } from "../../components/player/Player";
 import {
   CharacterClass,
   Klass,
 } from "../../components/character/CharacterClass";
-import { User } from "../../components/user/UserStatus";
-import { Arcanas } from "../../components/character/Arcanas";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Persona } from "../../components/persona/Persona";
+import CharacterView from "../../components/characters/Characters";
 import { Mag, MagType } from "../../components/mag/Mag";
-import { Card } from "@rneui/themed";
+import { Persona } from "../../components/persona/Persona";
+import { Player } from "../../components/player/Player";
+import { User } from "../../components/user/UserStatus";
 import personagensData from "../../data/personagens.json";
-import MagTypes from "components/magTypes/MagTypes";
-import ThemedCard from "@rneui/themed/dist/Card";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 var valoresDoJson = personagensData[0];
 
@@ -32,6 +21,7 @@ const player: Player = new Player(
   valoresDoJson.player.email,
   valoresDoJson.player.password
 );
+
 const klass: CharacterClass = new CharacterClass(Klass.JOKER);
 var kaleesi: User = new User(
   valoresDoJson.userStatus.userName,
@@ -56,11 +46,35 @@ const lessi: Character = new Character(kaleesi, player, Arcanas.CHARIOT, klass);
   persona.setPersonaLevel(persona.getLevel());
 }
 
-const characters: Character[] = [lessi];
+export default function CharacterScreen({ navigation }: any) {
+  const [characters, setCharacters] = useState([] as Character[]);
 
-export default function CharacterScream({ navigation }: any) {
+  useEffect(() => {
+    (async () => {
+      try {
+        const value = await AsyncStorage.getItem("characters");
+        let ids: string[] = value ? JSON.parse(value) : [];
+        console.log(ids);
+        let pairs = await AsyncStorage.multiGet(ids);
+        let loadedChars: Character[] = pairs
+          .filter((p) => p[1] != null)
+          .map((p) => JSON.parse(p[1]!));
+        console.log(loadedChars);
+        setCharacters(loadedChars);
+      } catch (error) {
+        // Error retrieving data
+        console.log(error);
+      }
+    })();
+  }, []);
+
   return (
     <View style={styles.container}>
+      {characters.map((character, i) => (
+        <li key={i}>
+          <CharacterView character={character} />
+        </li>
+      ))}
       <Pressable
         style={styles.btnStyle}
         onPress={() => {
@@ -69,36 +83,6 @@ export default function CharacterScream({ navigation }: any) {
       >
         <Text style={styles.btnTextStyle}>Criar Ficha</Text>
       </Pressable>
-
-      <ThemedCard>
-        <View style={styles.characterContainer}>
-          <View
-            style={{
-              flexDirection: "row",
-            }}
-          >
-            <Image
-              source={require("../../../assets/imgs/anne.jpg")}
-              style={styles.imgStyle}
-            />
-            <Image
-              style={styles.imgStyle}
-              source={require("../../../assets/imgs/persona.jpg")}
-            />
-          </View>
-
-          <Text>Nome: {lessi.user.getName()}</Text>
-          <Text>Nível: {lessi.user.getLevel()}</Text>
-          {lessi.getPersona().map(
-            (pers) => (
-              lessi.setPersona(persona),
-              (
-                <li key={0}>Persona: {pers.name}; Nível: {pers.getLevel()}</li>
-              )
-            )
-          )}
-        </View>
-      </ThemedCard>
     </View>
   );
 }

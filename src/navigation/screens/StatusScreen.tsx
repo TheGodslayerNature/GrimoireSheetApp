@@ -1,16 +1,32 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Picker } from "@react-native-picker/picker";
+import { Arcanas } from "../../components/character/Arcanas";
+import { Character } from "../../components/character/Character";
 import {
+  CharacterClass,
+  Klass,
+} from "../../components/character/CharacterClass";
+import { Player } from "../../components/player/Player";
+import React, { useState } from "react";
+import {
+  Pressable,
   SafeAreaView,
+  StatusBar,
   StyleSheet,
   Text,
   TextInput,
   View,
-  StatusBar,
-  Pressable,
 } from "react-native";
-import React, { useState } from "react";
+
 import StatusPoints from "../../components/statusPoints/statusPoints";
-import { User, Status } from "../../components/user/UserStatus";
-import { Picker } from "@react-native-picker/picker";
+import { Status, User } from "../../components/user/UserStatus";
+import personagensData from "../../data/personagens.json";
+
+var valoresDoJson = personagensData[0];
+
+// var RNFS =  require('react-native-fs');
+
+// var personagensPath = RNFS.DocumentDirectoryPath + "../../data/personagens.json";
 
 const STATUS = [
   Status.FOR,
@@ -22,7 +38,13 @@ const STATUS = [
 ];
 
 const creatingPesonaScreen = "CreatingPersona";
-const klasses:String[] = ["Carta-Coringa", "Emergente", "Sombra", "Supressor", "Tocha"];
+const klasses: String[] = [
+  "Carta-Coringa",
+  "Emergente",
+  "Sombra",
+  "Supressor",
+  "Tocha",
+];
 
 export default function StatusScreen({ navigation }: any) {
   const [userLevel, setUserLevel] = useState(0);
@@ -50,7 +72,9 @@ export default function StatusScreen({ navigation }: any) {
         <TextInput
           style={[styles.characterInput]}
           placeholder="Nome do personagem"
-          onChangeText={(name) => setUserName(name)}
+          onChangeText={(name) => {
+            setUserName(name);
+          }}
         />
 
         <TextInput
@@ -70,24 +94,30 @@ export default function StatusScreen({ navigation }: any) {
           inputMode="numeric"
           editable={String(userLevel).at(1) ? false : true}
           onChangeText={(value) => setUserLevel(Number(value))}
+          maxLength={2}
         />
-        
+
         <Picker style={{ width: 150, height: 50 }}>
           {klasses.map((kla) => (
-            <Picker.Item key={klasses.indexOf(kla)} value={""} label={kla.toString()} />
-          ))} 
+            <Picker.Item
+              key={klasses.indexOf(kla)}
+              value={""}
+              label={kla.toString()}
+            />
+          ))}
         </Picker>
-
       </View>
 
       <View style={styles.ImageStyle}></View>
 
       <View style={{ flexDirection: "row", padding: 15 }}>
         {STATUS.map((status) => (
-          <li key={status}><StatusPoints
-          statusName={Status[status]}
-          setPoints={(value:number) => (points[status] = value)}
-          /></li>
+          <li key={status}>
+            <StatusPoints
+              statusName={Status[status]}
+              setPoints={(value: number) => (points[status] = value)}
+            />
+          </li>
         ))}
       </View>
 
@@ -114,7 +144,26 @@ export default function StatusScreen({ navigation }: any) {
       />
 
       <Pressable
-        onPress={() => navigation.navigate("CreatingPersona")}
+        onPress={() => {
+          let character = new Character(
+            user,
+            new Player("i@g.com", "qwerty"),
+            Arcanas.DEVIL,
+            new CharacterClass(Klass.JOKER)
+          );
+          AsyncStorage.getItem("characters").then((ids) => {
+            let characters = ids ? (JSON.parse(ids!) as Array<string>) : [];
+            characters.push(character.user.userName.toString());
+            console.log(characters);
+            
+            AsyncStorage.multiSet([
+              ["characters", JSON.stringify(characters)],
+              [character.user.getName().toString(), JSON.stringify(character)],
+            ]).then(() => console.log("saved!!"));
+          });
+
+          navigation.navigate("CreatingPersona");
+        }}
         style={{
           borderWidth: 2.5,
           borderColor: "gold",
