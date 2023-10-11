@@ -1,0 +1,75 @@
+{
+  "Emergente": {
+    "skills": [
+      {
+        "skillName": "Vínculo Emergente",
+        "skillDesc": "Usuários dessa Classe podem invocar apenas suas Personae Iniciais e são incapazes de adquirir novas Personae naturalmente"
+      },
+      {
+        "skillName": "Poder Focado",
+        "skillDesc": "As Personae iniciais de Usuários Emergentes podem possuir até 4 Tipos no primeiro nível, tornando-as mais versáteis. Caso o jogador opte por sacrificar três desses Tipos, uma Persona Emergente pode começar o jogo no Nível 4, garantindo uma vantagem considerável para seu Usuário."
+      },
+      {
+        "skillName": "Cognição Receptiva",
+        "skillDesc": "Uma vez por combate, caso um Emergente desfira o golpe final em uma Sombra, ou se uma Sombra for morta pelo efeito secundário da magia de um Emergente, a Persona desse Usuário imediatamente ganha Pontos de Magia equivalentes a metade do nível da Sombra. Um grupo bem organizado pode priorizar o crescimento rápido de um Usuário Emergente e permitir que esse Usuário tenha o golpe final com mais frequência."
+      }
+    ]
+  },
+  "CartaCoringa": {
+    "skills": [
+      {
+        "skillName": "Versatilidade Inigualável",
+        "skillDesc": "A habilidade de adquirir novas Personae significa que um Usuário Carta-Coringa está sempre evoluindo e descobrindo novos poderes. Um Carta-Coringa cuidadoso pode adquirir Personae o suficiente para suprir qualquer necessidade do seu grupo."
+      },
+      {
+        "skillName": "Borboleta Social",
+        "skillDesc": "A habilidade de mudar entre as Arcanas de diversas Personae facilita as interações sociais dos Cartas-Coringa, garantindo que eles sempre têm a faceta certa para cada situação."
+      },
+      {
+        "skillName": "Convidado Especial",
+        "skillDesc": "Usuários dessa Classe podem utilizar suas Personae extras em rituais na Velvet Room. Fusão permite que o Usuário una duas espécies distintas para criar uma criatura nunca antes vista; Sacrifício remove uma Persona da lista do Usuário permanentemente para fortalecer outras Personae e Alojamento faz Cartas-Coringa perder acesso à certas Personae por alguns dias para deixa-as ainda mais poderosas."
+      }
+    ]
+  },
+  "Sombra": {
+    "skills": [
+      {
+        "skillName": "Essência Cognitiva:",
+        "skillDesc": "Usuários Sombra possuem campos de Habilidade Natural, Pontos de Magia e um deck de magias independentes da sua Persona. Essas informações começam vazias e podem ser utilizadas mesmo se o personagem não puder manifestar sua Persona."
+      },
+      {
+        "skillName": "Mente Moldável",
+        "skillDesc": "Quando um Usuário Sombra ganha um novo nível, ele pode copiar a Habilidade Natural de qualquer Persona do grupo para si mesmo. Além disso, ele ganha 1 PM para si próprio. Esse PM pode ser utilizado para copiar magias das listas das outras Personae do grupo. A Sombra e o dono da Persona com a habilidade desejada devem treinar juntos durante aproximadamente 10 minutos para que a Sombra aprenda a técnica. Um Usuário Sombra só pode possuir uma Habilidade Natural por vez, devendo esquecer a sua Habilidade atual para adquirir uma nova."
+      },
+      {
+        "skillName": "Forma Verdadeira",
+        "skillDesc": "Sombras podem possuir duas formas visualmente distintas: Uma forma humanoide que se manifesta no Universo e sua forma verdadeira e idealizada que surge apenas no Metaverso. Essa mudança é puramente estética e não afeta suas habilidades, mas enquanto no Metaverso, Sombras ganham os efeitos do Feito Explorador: Considere sua Disciplina como o dobro do seu valor original para procurar no Metaverso; o Narrador tratará seu personagem como permanentemente procurando."
+      }
+    ]
+  },
+  "Supressor": {
+    "skills": [
+        {
+            "skillName": "Máquina de Guerra",
+            "skillDesc": "Ao ganhar níveis de personagem, Supressores podem substituir um ponto do seu aumento de Habilidades Social para ganhar um ponto em uma Habilidade de Combate. Isso garante um benefício claro em estatísticas quando comparados com outros Usuários."
+        },
+        {
+            "skillName": "Aprendizado Lento",
+            "skillDesc": "A maioria dos Usuários dificuldades Supressores em encontra aumentar suas capacidades sociais depois de certo ponto. Durante qualquer Atividade que possa aumentar suas Habilidades Sociais, o Supressor deve considerar sua Habilidade Social relevante como 1d6-1 mais baixa que seu valor original durante o teste."
+        }
+    ]
+  },
+  "Tocha": {
+    "skills": [
+        {
+            "skillName": "Existência Maleável",
+            "skillDesc": "A cada dois níveis de personagem, começando no nível 2, a Tocha muda de forma discretamente, ganhando ou perdendo detalhes baseados nas novas memórias que ela criou entre os vivos. Escolha uma Sombra do bestiário com o nível igual ou menor ao do seu personagem e adicione-a à sua lista de Personas como se a tivesse obtido por negociação (Pg. 65) e descreva sua nova forma, se preferir. Tochas podem trocar entre as formas da sua Persona como Cartas Coringa, sob as mesmas restrições, mas não podem adquirir Personae através de negociação"
+        },
+
+        {
+            "skillName": "Os Dois Mundos",
+            "skillDesc": "Sua Sombra anseia pelo final da sua jornada, mas seus aliados podem te ajudar a firmar-se entre os vivos. Quando uma Tocha falha um teste de Vitalidade em Portas da Morte, outros Usuários podem usar suas ações de Interromper para fazê-la re-rolar o teste, celebrando sua memória para firmar sua presença nesse mundo mais uma vez"
+        }
+    ]
+  }
+}

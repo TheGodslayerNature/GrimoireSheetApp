@@ -24,9 +24,13 @@ export default function CharacterView(props: any) {
               source={require("../../../assets/imgs/persona.jpg")}
             />
           </View>
+          <View style={{flexDirection: 'row'}}>
 
           <Text>Nome: {character.user.userName}</Text>
           <Text>Nível: {character.user.userLevel}</Text>
+          </View>
+          {/* <Text>Classe: {character.klass.name()}</Text> */}
+
           {character.persona.map((pers) => (
             <li key={0}>
               Persona: {pers.name}; Nível: {pers.personaLevel}

@@ -2,10 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Picker } from "@react-native-picker/picker";
 import { Arcanas } from "../../components/character/Arcanas";
 import { Character } from "../../components/character/Character";
-import {
-  CharacterClass,
-  Klass,
-} from "../../components/character/CharacterClass";
+import { CharacterClass } from "../../components/character/CharacterClass2";
 import { Player } from "../../components/player/Player";
 import React, { useState } from "react";
 import {
@@ -38,6 +35,7 @@ const STATUS = [
 ];
 
 const creatingPesonaScreen = "CreatingPersona";
+
 const klasses: String[] = [
   "Carta-Coringa",
   "Emergente",
@@ -46,9 +44,18 @@ const klasses: String[] = [
   "Tocha",
 ];
 
+const classes = [
+  CharacterClass.cartaCoringa(),
+  CharacterClass.emergente(),
+  CharacterClass.sombra(),
+  CharacterClass.supressor(),
+  CharacterClass.tocha(),
+];
+
 export default function StatusScreen({ navigation }: any) {
   const [userLevel, setUserLevel] = useState(0);
   const [userName, setUserName] = useState("");
+  const [selectedClassIndex, setSelectedClassIndex] = useState<number>();
 
   const user: UserStatus = new UserStatus(userName, 2);
 
@@ -63,11 +70,9 @@ export default function StatusScreen({ navigation }: any) {
       <StatusBar />
 
       <View
-        style={[
-          {
-            flexDirection: "row",
-          },
-        ]}
+        style={{
+          flexDirection: "row",
+        }}
       >
         <TextInput
           style={[styles.characterInput]}
@@ -97,13 +102,13 @@ export default function StatusScreen({ navigation }: any) {
           maxLength={2}
         />
 
-        <Picker style={{ width: 150, height: 50 }}>
-          {klasses.map((kla) => (
-            <Picker.Item
-              key={klasses.indexOf(kla)}
-              value={""}
-              label={kla.toString()}
-            />
+        <Picker
+          style={{ width: 150, height: 50 }}
+          selectedValue={selectedClassIndex}
+          onValueChange={(i) => setSelectedClassIndex(i)}
+        >
+          {classes.map((classe, i) => (
+            <Picker.Item key={i} value={i} label={classe.name} />
           ))}
         </Picker>
       </View>
@@ -145,18 +150,30 @@ export default function StatusScreen({ navigation }: any) {
 
       <Pressable
         onPress={() => {
+          if (!selectedClassIndex) {
+            console.log("classe nao selecionada");
+            return;
+          }
+          let klass = classes[selectedClassIndex];
+          // console.log(klass.name);
+          // console.log(
+          //   `skills:\n${klass.skills
+          //     .flatMap((s) => [s.skillName, s.skillDesc, "\n"])
+          //     .join("\n")}`
+          // );
+
           let character = new Character(
             user,
             new Player("i@g.com", "qwerty"),
             Arcanas.DEVIL,
-            new CharacterClass(Klass.JOKER)
+            klass
           );
-          
+
           AsyncStorage.getItem("characters").then((ids) => {
             let characters = ids ? (JSON.parse(ids!) as Array<string>) : [];
             characters.push(character.user.userName);
             console.log(characters);
-            
+
             AsyncStorage.multiSet([
               ["characters", JSON.stringify(characters)],
               [character.user.getName(), JSON.stringify(character)],

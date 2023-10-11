@@ -10,10 +10,7 @@ import {
 
 import { Arcanas } from "../../components/character/Arcanas";
 import { Character } from "../../components/character/Character";
-import {
-  CharacterClass,
-  Klass,
-} from "../../components/character/CharacterClass";
+import { CharacterClass } from "../../components/character/CharacterClass2";
 import CharacterView from "../../components/characters/Characters";
 import { Mag, MagType } from "../../components/mag/Mag";
 import { Persona } from "../../components/persona/Persona";
@@ -38,8 +35,7 @@ const player: Player = new Player(
   valoresDoJson.player.email,
   valoresDoJson.player.password
 );
-
-const klass: CharacterClass = new CharacterClass(Klass.JOKER);
+const klass: CharacterClass = CharacterClass.emergente();
 var kaleesi: UserStatus = new UserStatus(
   valoresDoJson.userStatus.userName,
   valoresDoJson.userStatus.userLevel
@@ -93,10 +89,11 @@ export default function CharacterScreen({ navigation }: any) {
       />
 
       <View style={styles.scrollContainer}>
-        <ScrollView contentContainerStyle={styles.scrollStyle} 
-        horizontal={true}
-        pagingEnabled={true}
-        // centerContent={true}
+        <ScrollView
+          contentContainerStyle={styles.scrollStyle}
+          horizontal={true}
+          pagingEnabled={true}
+          // centerContent={true}
         >
           {characters.map((character, i) => (
             <li key={i}>
@@ -114,6 +111,17 @@ export default function CharacterScreen({ navigation }: any) {
       >
         <Text style={styles.btnTextStyle}>Criar Ficha</Text>
       </Pressable>
+
+      <View style={{ justifyContent: "flex-end" }}>
+        <Pressable
+          style={styles.btnStyle}
+          onPress={async () => {
+            await AsyncStorage.clear();
+          }}
+        >
+          <Text style={styles.btnTextStyle}>Flush</Text>
+        </Pressable>
+      </View>
     </View>
   );
 }
@@ -123,7 +131,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignContent: "center",
     alignItems: "center",
-    backgroundColor: '#084d6e',
+    backgroundColor: "#084d6e",
   },
   btnStyle: {
     justifyContent: "center",
@@ -138,11 +146,8 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "black",
   },
-  scrollContainer: {
-  },
-  imgStyle: {
-    
-  },
+  scrollContainer: {},
+  imgStyle: {},
   scrollStyle: {
     maxWidth: 350,
   },
