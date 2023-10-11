@@ -96,7 +96,7 @@ export default function CharacterScreen({ navigation }: any) {
         <ScrollView contentContainerStyle={styles.scrollStyle} 
         horizontal={true}
         pagingEnabled={true}
-        centerContent={true}
+        // centerContent={true}
         >
           {characters.map((character, i) => (
             <li key={i}>
@@ -139,10 +139,11 @@ const styles = StyleSheet.create({
     color: "black",
   },
   scrollContainer: {
-    // height: 300,
   },
-  imgStyle: {},
+  imgStyle: {
+    
+  },
   scrollStyle: {
-    maxWidth: 400
+    maxWidth: 350,
   },
 });
