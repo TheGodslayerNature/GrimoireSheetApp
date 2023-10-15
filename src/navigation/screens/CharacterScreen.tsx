@@ -11,7 +11,7 @@ import {
 import { Arcanas } from "../../components/character/Arcanas";
 import { Character } from "../../components/character/Character";
 import { CharacterClass } from "../../components/character/CharacterClass2";
-import CharacterView from "../../components/characters/Characters";
+import CharacterView from "../../components/characters/CharactersView";
 import { Mag, MagType } from "../../components/mag/Mag";
 import { Persona } from "../../components/persona/Persona";
 import { Player } from "../../components/player/Player";
@@ -31,36 +31,9 @@ amarelo: #FDED00;
 
 var valoresDoJson = personagensData[0];
 
-const player: Player = new Player(
-  valoresDoJson.player.email,
-  valoresDoJson.player.password
-);
-const klass: CharacterClass = CharacterClass.emergente();
-var kaleesi: UserStatus = new UserStatus(
-  valoresDoJson.userStatus.userName,
-  valoresDoJson.userStatus.userLevel
-);
-
-const mags: Mag[] = [];
-const persona: Persona = new Persona(
-  valoresDoJson.character.persona[0].name,
-  Arcanas.CHARIOT,
-  "",
-  "",
-  6,
-  valoresDoJson.character.persona[0].magDeck,
-  MagType.BUFF
-);
-
-const lessi: Character = new Character(kaleesi, player, Arcanas.CHARIOT, klass);
-
-{
-  lessi.setPersona(persona);
-  persona.setPersonaLevel(persona.getLevel());
-}
-
 export default function CharacterScreen({ navigation }: any) {
   const [characters, setCharacters] = useState([] as Character[]);
+  const [personas, setPersonas] = useState([] as Persona[]);
 
   useEffect(() => {
     (async () => {
@@ -76,6 +49,22 @@ export default function CharacterScreen({ navigation }: any) {
         setCharacters(loadedChars);
       } catch (error) {
         // Error retrieving data
+        console.log(error);
+      }
+    })();
+  }, []);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        let value = await AsyncStorage.getItem("personas");
+        let ids: string[] = value ? JSON.parse(value) : [];
+        console.log(ids);
+        let pairs = await AsyncStorage.multiGet(ids);
+        let loadedPersonas: Persona[] = pairs.map((p) => JSON.parse(p[1]!));
+        console.log(loadedPersonas);
+        setPersonas(loadedPersonas);
+      } catch (error) {
         console.log(error);
       }
     })();
@@ -112,16 +101,23 @@ export default function CharacterScreen({ navigation }: any) {
         <Text style={styles.btnTextStyle}>Criar Ficha</Text>
       </Pressable>
 
-      <View style={{ justifyContent: "flex-end" }}>
-        <Pressable
-          style={styles.btnStyle}
-          onPress={async () => {
-            await AsyncStorage.clear();
-          }}
-        >
-          <Text style={styles.btnTextStyle}>Flush</Text>
-        </Pressable>
-      </View>
+      <Pressable
+        style={styles.btnStyle}
+        onPress={async () => {
+          await AsyncStorage.clear();
+        }}
+      >
+        <Text style={styles.btnTextStyle}>Flush</Text>
+      </Pressable>
+
+      <Pressable
+        style={styles.btnStyle}
+        onPress={() => {
+          navigation.navigate("CreatingPersona");
+        }}
+      >
+        <Text style={styles.btnTextStyle}>Criar persona</Text>
+      </Pressable>
     </View>
   );
 }

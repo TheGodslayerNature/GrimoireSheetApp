@@ -2,27 +2,26 @@ import { Arcanas } from "components/character/Arcanas";
 import { Mag, MagType } from "components/mag/Mag";
 
 export class Persona {
-    name:String;
+    name:string;
     arcana:Arcanas;
-    conviction:String;
-    naturalSkill:String;
+    conviction:string;
+    naturalSkill:string;
     pm:number;
     magDeck:Mag[];
     magTypes:MagType[];
     personaLevel:number = 0;
     
     constructor(
-        name:String, arcana:Arcanas, 
-        conviction:String, naturalSkill:String, 
-        pm:number, mags: Mag [],
-        ...magTypes: MagType []
+        name:string, arcana:Arcanas, 
+        conviction:string, naturalSkill:string, 
+        pm:number,...magTypes: MagType []
         ){
             this.name = name;
             this.arcana = arcana;
             this.conviction = conviction;
             this.naturalSkill = naturalSkill;
             this.pm = pm;
-            this.magDeck = mags;
+            this.magDeck = [];
             this.magTypes = magTypes;
     }
 

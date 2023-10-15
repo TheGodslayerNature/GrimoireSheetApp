@@ -3,9 +3,6 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import StatusScreen from './StatusScreen';
 
-const arcanas:String[] = ["Fool", "Mage", "Priestess"];
-const klasses:String[] = ["Carta-Coringa", "Emergente", "Sombra", "Supressor", "Tochas"];
-
 export default async function CreatingCharacterScreen({navigation}:any) {
     
   return (

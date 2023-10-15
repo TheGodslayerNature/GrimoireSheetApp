@@ -3,11 +3,17 @@ import { Picker } from "@react-native-picker/picker";
 import React, {useState} from "react";
 import MagTypes from "../../components/magTypes/MagTypes";
 import personagens from "../../data/personagens.json";
+import { Persona } from "../../components/persona/Persona";
+import { Arcana } from "components/character/Character";
+import { Arcanas } from "../../components/character/Arcanas";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { MagType } from "../../components/mag/Mag";
 
 
 export default function CreatingPersona({navigation}:any) {
   const [name, setName] = useState("");
-  const [level, setLevel] = useState();
+  const [level, setLevel] = useState(0);
+  const [magType, setMagType] = useState();
 
   return (
     <View style={styles.container}>
@@ -17,11 +23,13 @@ export default function CreatingPersona({navigation}:any) {
         }}
       >
         <TextInput placeholder="Nome da persona" style={styles.inputStyle} 
-        onChangeText={(n) => {
-          setName(n); 
-          console.log(name)}}
+        onChangeText={(personaName) => {
+          setName(personaName); 
+         }}
         />
-        <TextInput placeholder="Nivel" style={styles.boxInput} />
+        <TextInput placeholder="Nivel" style={styles.boxInput} 
+        onChangeText={(personaLevel) => setLevel(Number(personaLevel))}
+        />
 
         <TextInput
           placeholder="PM"
@@ -53,7 +61,23 @@ export default function CreatingPersona({navigation}:any) {
       </View>
 
       <Pressable style={styles.criarBtn}
-      onPress={() => navigation.navigate("Character")}
+      onPress={() => {
+
+        let persona = new Persona(name,Arcanas.CHARIOT,"","",6, MagType.BUFF);
+
+       AsyncStorage.getItem("personas").then((ids) => {
+       let personas = ids ? (JSON.parse(ids!) as Array<string>) : [];
+       personas.push(persona.name);
+       console.log(personas);
+
+       AsyncStorage.multiSet([
+              ["personas", JSON.stringify(personas)],
+              [persona.name, JSON.stringify(persona)],
+            ]).then(() => console.log("saved!!"));
+       })
+
+        navigation.navigate("Character")
+      }}
       >
         <Text>Criar Persona</Text>
       </Pressable>

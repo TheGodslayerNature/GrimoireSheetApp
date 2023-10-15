@@ -36,14 +36,6 @@ const STATUS = [
 
 const creatingPesonaScreen = "CreatingPersona";
 
-const klasses: String[] = [
-  "Carta-Coringa",
-  "Emergente",
-  "Sombra",
-  "Supressor",
-  "Tocha",
-];
-
 const classes = [
   CharacterClass.cartaCoringa(),
   CharacterClass.emergente(),
@@ -57,7 +49,7 @@ export default function StatusScreen({ navigation }: any) {
   const [userName, setUserName] = useState("");
   const [selectedClassIndex, setSelectedClassIndex] = useState<number>();
 
-  const user: UserStatus = new UserStatus(userName, 2);
+  const user: UserStatus = new UserStatus(userName, userLevel);
 
   let points = [0, 0, 0, 0, 0, 0];
 
