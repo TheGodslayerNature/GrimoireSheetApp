@@ -6,6 +6,7 @@ import {
   View,
   Image,
   ScrollView,
+  FlatList,
 } from "react-native";
 
 import { Arcanas } from "../../components/character/Arcanas";
@@ -84,11 +85,15 @@ export default function CharacterScreen({ navigation }: any) {
           pagingEnabled={true}
           // centerContent={true}
         >
-          {characters.map((character, i) => (
+          <FlatList
+          data={characters}
+          renderItem={({item}) => <CharacterView character={item}/>}
+          />
+          {/* {characters.map((character, i) => (
             <li key={i}>
               <CharacterView character={character} />
             </li>
-          ))}
+          ))} */}
         </ScrollView>
       </View>
 

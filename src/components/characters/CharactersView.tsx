@@ -31,11 +31,11 @@ export default function CharacterView(props: any) {
           </View>
           {/* <Text>Classe: {character.klass.name()}</Text> */}
 
-          {character.persona.map((pers) => (
+          {/* {character.persona.map((pers) => (
             <li key={0}>
               Persona: {pers.name}; Nível: {pers.personaLevel}
             </li>
-          ))}
+          ))} */}
         </View>
       </ThemedCard>
     </View>

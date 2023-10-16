@@ -6,6 +6,7 @@ import { CharacterClass } from "../../components/character/CharacterClass2";
 import { Player } from "../../components/player/Player";
 import React, { useState } from "react";
 import {
+  FlatList,
   Pressable,
   SafeAreaView,
   StatusBar,
@@ -108,14 +109,21 @@ export default function StatusScreen({ navigation }: any) {
       <View style={styles.ImageStyle}></View>
 
       <View style={{ flexDirection: "row", padding: 15 }}>
-        {STATUS.map((status) => (
+        <FlatList
+        numColumns={Math.ceil(STATUS.length / 2)}
+        data={STATUS}
+        renderItem={({item}) => <StatusPoints 
+        statusName={Status[item]} 
+        setPoints={(value:number) => (points[item] = value)}/>}
+        />
+        {/* {STATUS.map((status) => (
           <li key={status}>
             <StatusPoints
               statusName={Status[status]}
               setPoints={(value: number) => (points[status] = value)}
             />
           </li>
-        ))}
+        ))} */}
       </View>
 
       <Pressable style={styles.btn} onPress={submitPoints}>
