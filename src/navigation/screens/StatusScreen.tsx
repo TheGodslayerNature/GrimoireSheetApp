@@ -19,6 +19,7 @@ import {
 import StatusPoints from "../../components/statusPoints/statusPoints";
 import { Status, UserStatus } from "../../components/user/UserStatus";
 import personagensData from "../../data/personagens.json";
+import { saveCharacter } from "../../util/Storage";
 
 var valoresDoJson = personagensData[0];
 
@@ -178,16 +179,7 @@ export default function StatusScreen({ navigation }: any) {
           character.setLifePoints(lifePoints);
           character.setEnergy(energy);
 
-          AsyncStorage.getItem("characters").then((ids) => {
-            let characters = ids ? (JSON.parse(ids!) as Array<string>) : [];
-            characters.push(character.user.userName);
-            console.log(characters);
-
-            AsyncStorage.multiSet([
-              ["characters", JSON.stringify(characters)],
-              [character.user.getName(), JSON.stringify(character)],
-            ]).then(() => console.log("saved!!"));
-          });
+          saveCharacter(character);
 
           navigation.navigate("CreatingPersona");
         }}

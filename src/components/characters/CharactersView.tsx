@@ -1,15 +1,35 @@
-import ThemedCard from '@rneui/themed/dist/Card';
-import { Character } from 'components/character/Character';
-import React from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import ThemedCard from "@rneui/themed/dist/Card";
+import { Character } from "components/character/Character";
+import React from "react";
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import { Icon } from "react-native-elements";
 
-export default function CharacterView(props: any) {
+export default function CharacterView(props: any,{navigation}:any) {
   let character = props.character as Character;
+  let naviga = props.navi as {navigation:any}
 
   return (
     <View style={styles.container}>
       <ThemedCard>
-        <View >
+      <Pressable
+        onPress={ () => {
+          
+        }
+        }
+          style={{
+            alignSelf: "flex-start"
+          }}
+        >
+          <Icon name="add-user" type="entypo"/>
+        </Pressable>
+        <Pressable
+          style={{
+            alignSelf: "flex-start"
+          }}
+        >
+          <Icon name="deleteuser" type="antdesign"/>
+        </Pressable>
+        <View>
           <View
             style={{
               flexDirection: "row",
@@ -24,10 +44,9 @@ export default function CharacterView(props: any) {
               source={require("../../../assets/imgs/persona.jpg")}
             />
           </View>
-          <View style={{flexDirection: 'row'}}>
-
-          <Text>Nome: {character.user.userName + " "}</Text>
-          <Text>Nível: {character.user.userLevel}</Text>
+          <View style={{ flexDirection: "row" }}>
+            <Text>Nome: {character.user.userName + " "}</Text>
+            <Text>Nível: {character.user.userLevel}</Text>
           </View>
           {/* <Text>Classe: {character.klass.name()}</Text> */}
 
@@ -42,8 +61,7 @@ export default function CharacterView(props: any) {
   );
 }
 const styles = StyleSheet.create({
-  container: {
-  },
+  container: {},
   imgStyle: {
     height: 200,
     width: 150,

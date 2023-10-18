@@ -71,7 +71,7 @@ export default function CharacterScreen({ navigation }: any) {
     })();
   }, []);
 
-  const {width} = Dimensions.get("window");
+  const { width } = Dimensions.get("window");
 
   return (
     <View style={styles.container}>
@@ -81,22 +81,22 @@ export default function CharacterScreen({ navigation }: any) {
       />
 
       {/* <View style={styles.scrollContainer}> */}
-        {/* <ScrollView */}
-          {/* contentContainerStyle={styles.scrollStyle} */}
-          {/* horizontal */}
-          {/* pagingEnabled={true} */}
-          {/* // centerContent={true} */}
-        {/* > */}
-          {/* <FlatList */}
-            {/* data={characters} */}
-            {/* renderItem={({ item }) => <CharacterView character={item} />} */}
-          {/* /> */}
-          {/* {characters.map((character, i) => (
+      {/* <ScrollView */}
+      {/* contentContainerStyle={styles.scrollStyle} */}
+      {/* horizontal */}
+      {/* pagingEnabled={true} */}
+      {/* // centerContent={true} */}
+      {/* > */}
+      {/* <FlatList */}
+      {/* data={characters} */}
+      {/* renderItem={({ item }) => <CharacterView character={item} />} */}
+      {/* /> */}
+      {/* {characters.map((character, i) => (
             <li key={i}>
               <CharacterView character={character} />
             </li>
           ))}  */}
-        {/* </ScrollView> */}
+      {/* </ScrollView> */}
       {/* </View> */}
 
       {/* <SectionList
@@ -108,18 +108,21 @@ export default function CharacterScreen({ navigation }: any) {
       }}
       />     */}
       <FlatList
-      data={characters}
-      horizontal
-      //snapToOffsets={[...Array(characters.length)].map((x, i) => i * (width*0.8-40) + (i)*40)}
-      snapToAlignment="start"
-      scrollEventThrottle={16}
-      decelerationRate={'fast'}
-      pagingEnabled
-      style={{
-        maxWidth: 350,
-        height: width / 2.6,
-      }}
-      renderItem={({item}) => <CharacterView character={item}/>}/>
+        data={characters}
+        horizontal
+        //snapToOffsets={[...Array(characters.length)].map((x, i) => i * (width*0.8-40) + (i)*40)}
+        snapToAlignment="start"
+        scrollEventThrottle={16}
+        decelerationRate={"fast"}
+        pagingEnabled
+        style={{
+          maxWidth: 350,
+          height: width / 2.6,
+        }}
+        renderItem={({ item }) => (
+          <CharacterView character={item} navi={navigation}/>
+        )}
+      />
       <Pressable
         style={styles.btnStyle}
         onPress={() => {
@@ -145,7 +148,7 @@ export default function CharacterScreen({ navigation }: any) {
         }}
       >
         <Text style={styles.btnTextStyle}>Criar persona</Text>
-      </Pressable> 
+      </Pressable>
     </View>
   );
 }
