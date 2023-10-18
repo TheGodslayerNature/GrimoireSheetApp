@@ -29,7 +29,7 @@ export default function MainContainer() {
       <Stack.Screen name={CharacterScreenName} component={CharacterScreen}/>
         <Stack.Screen name={statusScreenName} component={StatusScreen}/>
         <Stack.Screen name={creatingPesonaScreen} component={CreatingPersona}/>
-        <Stack.Screen name={characterStatus} component={CharacterStatus}/>
+        <Stack.Screen name={characterStatus} component={CharacterStatus} />
       </Stack.Navigator>
     </NavigationContainer>
     /*

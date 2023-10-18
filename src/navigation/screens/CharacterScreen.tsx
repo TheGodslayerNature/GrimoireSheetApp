@@ -120,7 +120,7 @@ export default function CharacterScreen({ navigation }: any) {
           height: width / 2.6,
         }}
         renderItem={({ item }) => (
-          <CharacterView character={item} navi={navigation}/>
+          <CharacterView character={item} navi={navigation} onPress={() => navigation.navigate("Character Status")}/>
         )}
       />
       <Pressable

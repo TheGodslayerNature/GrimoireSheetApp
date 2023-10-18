@@ -4,16 +4,15 @@ import React from "react";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { Icon } from "react-native-elements";
 
-export default function CharacterView(props: any,{navigation}:any) {
+export default function CharacterView(props: any) {
   let character = props.character as Character;
-  let naviga = props.navi as {navigation:any}
 
   return (
     <View style={styles.container}>
       <ThemedCard>
       <Pressable
         onPress={ () => {
-          
+          props.navi.navigate("Character Status");
         }
         }
           style={{
