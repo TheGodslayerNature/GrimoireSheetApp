@@ -1,20 +1,24 @@
 import { View, Text } from 'react-native'
 import { Picker } from "@react-native-picker/picker";
-import React from 'react'
+import React, {useState} from 'react'
 import { MagType } from '../../components/mag/Mag';
 
-const magicTypes: String[] = [ "Select an magic","PHYSICAL" ,"FIRE", "ICE", "WIND", "LIGHTNING", "LIGHT", "DARKNESS", "OMNIPOTENT", "HEALING", "DEFENSE", "BUFF", "DEBUFF", "STATUS", "INTEL", "MISCELLANEOUS"];
+export default function MagTypes(props: any) {
+  //const [magTypeIndex, setMagTypeIndex] = useState<number>();
 
-export default function MagTypes(type: any) {
-  let types = type.types as MagType; 
   return (
     <View>
         <Picker style={{ width: 150, height: 50 }}
+        selectedValue={props.magTypeIndex}
+        onValueChange={(i) => props.setMagTypeIndex(i)}
         >
-          {Object.keys(MagType).map( (arc, i) => (
-            <Picker.Item key={i} value={i} label={arc}/>
-          ))}
+          <Picker.Item key={props.magTypeIndex} value={props.magTypeIndex} label={props.mag}/>
+          
         </Picker>
     </View>
   )
 }
+
+{/* {Object.keys(MagType).map( (magType, i) => (
+            <Picker.Item key={i} value={i} label={props.magTypeIndex}/>
+          ))} */}

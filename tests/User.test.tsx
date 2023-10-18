@@ -1,15 +1,15 @@
-import { User, Status } from "../src/components/user/UserStatus";
+import { UserStatus, Status } from "../src/components/user/UserStatus";
 
 var userLevel = 1;
 
-var newUser:User;
+var newUser:UserStatus;
 
 beforeEach(() => {
-  newUser = new User("Joker", userLevel);
+  newUser = new UserStatus("Joker", userLevel);
 })
 
 test("should create the object with the correctly values", () => {
-  var user: User = new User("Joker", 1);
+  var user: UserStatus = new UserStatus("Joker", 1);
 
   expect(user.userName).toEqual("Joker");
 

@@ -48,6 +48,8 @@ const classes = [
 export default function StatusScreen({ navigation }: any) {
   const [userLevel, setUserLevel] = useState(0);
   const [userName, setUserName] = useState("");
+  const [lifePoints, setLifePoints] = useState(0);
+  const [energy, setEnergy] = useState(0);
   const [selectedClassIndex, setSelectedClassIndex] = useState<number>();
 
   const user: UserStatus = new UserStatus(userName, userLevel);
@@ -81,11 +83,12 @@ export default function StatusScreen({ navigation }: any) {
             {
               height: 50,
               width: 50,
-              borderWidth: 1.5,
+              borderWidth: 2,
               marginLeft: 50,
               alignContent: "center",
               alignItems: "center",
               textAlign: "center",
+              borderColor: "#FDED00",
             },
           ]}
           placeholder="Nível"
@@ -133,19 +136,23 @@ export default function StatusScreen({ navigation }: any) {
       <TextInput
         style={{
           borderWidth: 2,
-          textAlign: "auto",
+          textAlign: "center",
           margin: 10,
+          borderColor: "#FDED00",
         }}
         placeholder="Pontos de vida"
+        onChangeText={(lifePoints) => setLifePoints(Number(lifePoints))}
       />
 
       <TextInput
         style={{
           borderWidth: 2,
-          textAlign: "auto",
+          textAlign: "center",
           margin: 10,
+          borderColor: "#FDED00",
         }}
         placeholder="Pontos de Energia"
+        onChangeText={ (energy) => setEnergy(Number(energy))}
       />
 
       <Pressable
@@ -168,6 +175,8 @@ export default function StatusScreen({ navigation }: any) {
             Arcanas.DEVIL,
             klass
           );
+          character.setLifePoints(lifePoints);
+          character.setEnergy(energy);
 
           AsyncStorage.getItem("characters").then((ids) => {
             let characters = ids ? (JSON.parse(ids!) as Array<string>) : [];
@@ -184,7 +193,7 @@ export default function StatusScreen({ navigation }: any) {
         }}
         style={{
           borderWidth: 2.5,
-          borderColor: "gold",
+          borderColor: "#FDED00",
           borderRadius: 20,
           paddingRight: 40,
           marginTop: 20,
@@ -217,6 +226,7 @@ const styles = StyleSheet.create({
     width: "80%",
     borderWidth: 2,
     textAlign: "center",
+    borderColor: "#FDED00",
   },
   statusPoints: {
     height: 50,
@@ -224,6 +234,7 @@ const styles = StyleSheet.create({
     borderRadius: 50 / 2,
     borderWidth: 2,
     textAlign: "center",
+    borderColor: "#FDED00",
   },
   btn: {
     height: 50,
@@ -231,8 +242,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderWidth: 2,
-    borderColor: "black",
-    color: "#FDED00",
+    borderColor: "#FDED00",
     margin: 10,
   },
   ImageStyle: {},

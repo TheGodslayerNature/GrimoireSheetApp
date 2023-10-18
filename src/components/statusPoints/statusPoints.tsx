@@ -21,5 +21,6 @@ const styles = StyleSheet.create({
     borderRadius: 50 / 2,
     borderWidth: 2,
     textAlign: "center",
+    borderColor: "#FDED00",
   },
 });

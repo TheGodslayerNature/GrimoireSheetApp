@@ -7,6 +7,8 @@ import {
   Image,
   ScrollView,
   FlatList,
+  SectionList,
+  Dimensions,
 } from "react-native";
 
 import { Arcanas } from "../../components/character/Arcanas";
@@ -26,8 +28,6 @@ Paleta de cores
 Azul petroleo: #084d6e
 
 amarelo: #FDED00;
-
-
 */
 
 var valoresDoJson = personagensData[0];
@@ -71,6 +71,8 @@ export default function CharacterScreen({ navigation }: any) {
     })();
   }, []);
 
+  const {width} = Dimensions.get("window");
+
   return (
     <View style={styles.container}>
       <Image
@@ -78,25 +80,46 @@ export default function CharacterScreen({ navigation }: any) {
         style={styles.imgStyle}
       />
 
-      <View style={styles.scrollContainer}>
-        <ScrollView
-          contentContainerStyle={styles.scrollStyle}
-          horizontal={true}
-          pagingEnabled={true}
-          // centerContent={true}
-        >
-          <FlatList
-          data={characters}
-          renderItem={({item}) => <CharacterView character={item}/>}
-          />
+      {/* <View style={styles.scrollContainer}> */}
+        {/* <ScrollView */}
+          {/* contentContainerStyle={styles.scrollStyle} */}
+          {/* horizontal */}
+          {/* pagingEnabled={true} */}
+          {/* // centerContent={true} */}
+        {/* > */}
+          {/* <FlatList */}
+            {/* data={characters} */}
+            {/* renderItem={({ item }) => <CharacterView character={item} />} */}
+          {/* /> */}
           {/* {characters.map((character, i) => (
             <li key={i}>
               <CharacterView character={character} />
             </li>
-          ))} */}
-        </ScrollView>
-      </View>
+          ))}  */}
+        {/* </ScrollView> */}
+      {/* </View> */}
 
+      {/* <SectionList
+      contentContainerStyle={{paddingHorizontal: 10}}
+      stickySectionHeadersEnabled={false}
+      sections={dummyCharacter}
+      renderItem={({item}) => {
+        return <CharacterView character={item}/>
+      }}
+      />     */}
+      <FlatList
+      data={characters}
+      horizontal
+      //snapToOffsets={[...Array(characters.length)].map((x, i) => i * (width*0.8-40) + (i)*40)}
+      snapToAlignment="start"
+      scrollEventThrottle={16}
+      decelerationRate={'fast'}
+      pagingEnabled
+      style={{
+        maxWidth: 350,
+        height: width / 2.6,
+      }}
+      renderItem={({item}) => <CharacterView character={item}/>}/>
       <Pressable
         style={styles.btnStyle}
         onPress={() => {
@@ -122,7 +145,7 @@ export default function CharacterScreen({ navigation }: any) {
         }}
       >
         <Text style={styles.btnTextStyle}>Criar persona</Text>
-      </Pressable>
+      </Pressable> 
     </View>
   );
 }
@@ -147,7 +170,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "black",
   },
-  scrollContainer: {},
   imgStyle: {},
   scrollStyle: {
     maxWidth: 350,

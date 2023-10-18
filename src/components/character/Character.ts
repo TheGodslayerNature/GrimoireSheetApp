@@ -14,6 +14,7 @@ export class Character{
     energy:number;
     damageReduction:number;
     persona:Persona[] = [];
+    lifePoints:number;
 
     constructor(user:UserStatus, player:Player, arcanas:Arcanas,klass:CharacterClass,) 
         {
@@ -23,6 +24,7 @@ export class Character{
             this.klass = klass;
             this.aspectPoints = 4;
             this.energy=  this.energyCalculate();
+            this.lifePoints = this.calculateLifePoints();
             this.damageReduction = 1;
     }
 
@@ -40,10 +42,18 @@ export class Character{
         return this.energyCalculate();
     }
 
-    lifePoints(): number {
+    setEnergy(energy:number) {
+        this.energy = energy;
+    }
+
+    calculateLifePoints(): number {
         var vitPvCalculate = (5 + this.user.getStatusPointsFor(Status.VIT)) * this.user.getLevel();
         var pv = Math.floor(25 + vitPvCalculate);
         return pv;
+    }
+
+    setLifePoints(lifePoints:number) {
+        this.lifePoints = lifePoints;
     }
 
     setPersona(persona:Persona) {
