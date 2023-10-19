@@ -77,45 +77,15 @@ export default function CharacterScreen({navigation: { navigate } }: any) {
   const { width } = Dimensions.get("window");
 
   return (
+    <ScrollView>
     <View style={styles.container}>
       <Image
         source={require("../../../assets/imgs/cabecalho-removebg-preview.png")}
         style={styles.imgStyle}
       />
-
-      {/* <View style={styles.scrollContainer}> */}
-      {/* <ScrollView */}
-      {/* contentContainerStyle={styles.scrollStyle} */}
-      {/* horizontal */}
-      {/* pagingEnabled={true} */}
-      {/* // centerContent={true} */}
-      {/* > */}
-      {/* <FlatList */}
-      {/* data={characters} */}
-      {/* renderItem={({ item }) => <CharacterView character={item} />} */}
-      {/* /> */}
-      {/* {characters.map((character, i) => (
-            <li key={i}>
-              <CharacterView character={character} />
-            </li>
-          ))}  */}
-      {/* </ScrollView> */}
-      {/* </View> */}
-
-      {/* <SectionList
-      contentContainerStyle={{paddingHorizontal: 10}}
-      stickySectionHeadersEnabled={false}
-      sections={dummyCharacter}
-      renderItem={({item}) => {
-        return <CharacterView character={item}/>
-      }}
-      />     */}
       <FlatList
         data={characters}
         horizontal
-        //snapToOffsets={[...Array(characters.length)].map((x, i) => i * (width*0.8-40) + (i)*40)}
-        snapToAlignment="start"
-        scrollEventThrottle={16}
         decelerationRate={"fast"}
         pagingEnabled
         style={{
@@ -151,6 +121,7 @@ export default function CharacterScreen({navigation: { navigate } }: any) {
         <Text style={styles.btnTextStyle}>Criar persona</Text>
       </Pressable>
     </View>
+    </ScrollView>
   );
 }
 
