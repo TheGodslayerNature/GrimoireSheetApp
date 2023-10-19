@@ -21,6 +21,9 @@ import { Player } from "../../components/player/Player";
 import { UserStatus } from "../../components/user/UserStatus";
 import personagensData from "../../data/personagens.json";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import CharacterStatus from "./CharacterStatus";
+import StatusScreen from "./StatusScreen";
+import CreatingPersona from "./CreatingPersona";
 
 /*
 Paleta de cores
@@ -32,7 +35,7 @@ amarelo: #FDED00;
 
 var valoresDoJson = personagensData[0];
 
-export default function CharacterScreen({ navigation }: any) {
+export default function CharacterScreen({navigation: { navigate } }: any) {
   const [characters, setCharacters] = useState([] as Character[]);
   const [personas, setPersonas] = useState([] as Persona[]);
 
@@ -120,15 +123,13 @@ export default function CharacterScreen({ navigation }: any) {
           height: width / 2.6,
         }}
         renderItem={({ item }) => (
-          <CharacterView character={item} navi={navigation} onPress={() => navigation.navigate("Character Status")}/>
+          <CharacterView
+            character={item}
+            onPress={(character: Character) => { navigate("CharacterStatus", {character})}}
+          />
         )}
       />
-      <Pressable
-        style={styles.btnStyle}
-        onPress={() => {
-          navigation.navigate("Status");
-        }}
-      >
+      <Pressable style={styles.btnStyle} onPress={() => { navigate(StatusScreen)}}>
         <Text style={styles.btnTextStyle}>Criar Ficha</Text>
       </Pressable>
 
@@ -144,7 +145,7 @@ export default function CharacterScreen({ navigation }: any) {
       <Pressable
         style={styles.btnStyle}
         onPress={() => {
-          navigation.navigate("CreatingPersona");
+          navigate(CreatingPersona);
         }}
       >
         <Text style={styles.btnTextStyle}>Criar persona</Text>

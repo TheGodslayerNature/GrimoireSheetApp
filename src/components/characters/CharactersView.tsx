@@ -1,20 +1,20 @@
 import ThemedCard from "@rneui/themed/dist/Card";
 import { Character } from "components/character/Character";
+import CharacterStatus from "../../navigation/screens/CharacterScreen";
 import React from "react";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { Icon } from "react-native-elements";
 
 export default function CharacterView(props: any) {
   let character = props.character as Character;
-
   return (
     <View style={styles.container}>
       <ThemedCard>
       <Pressable
-        onPress={ () => {
-          props.navi.navigate("Character Status");
-        }
-        }
+        onPress={() => {
+          // props.onPress()
+          props.onPress(character)
+        }}
           style={{
             alignSelf: "flex-start"
           }}

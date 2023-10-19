@@ -46,7 +46,7 @@ const classes = [
   CharacterClass.tocha(),
 ];
 
-export default function StatusScreen({ navigation }: any) {
+export default function StatusScreen({route , navigation }: any) {
   const [userLevel, setUserLevel] = useState(0);
   const [userName, setUserName] = useState("");
   const [lifePoints, setLifePoints] = useState(0);
@@ -61,6 +61,8 @@ export default function StatusScreen({ navigation }: any) {
     STATUS.forEach((status) => user.setPointsFor(status, points[status]));
     user.printStatusValues();
   };
+
+  {console.log(route.params)}
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar />

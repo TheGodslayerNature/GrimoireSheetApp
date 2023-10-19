@@ -15,6 +15,7 @@ import { Arcana } from "components/character/Character";
 import { Arcanas } from "../../components/character/Arcanas";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { MagType } from "../../components/mag/Mag";
+import CharacterScreen from "./CharacterScreen";
 
 export default function CreatingPersona({ navigation }: any) {
   const [name, setName] = useState("");
@@ -188,7 +189,7 @@ export default function CreatingPersona({ navigation }: any) {
             ]).then(() => console.log("saved!!"));
           });
 
-          navigation.navigate("Character");
+          navigation.navigate("CharacterScreen");
         }}
       >
         <Text>Criar Persona</Text>
