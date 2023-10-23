@@ -1,19 +1,17 @@
 import ThemedCard from "@rneui/themed/dist/Card";
 import { Character } from "components/character/Character";
-import CharacterStatus from "../../navigation/screens/CharacterScreen";
 import React from "react";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { Icon } from "react-native-elements";
 
-export default function CharacterView(props: any) {
-  let character = props.character as Character;
+export default function CharacterView({character, onPress}: Props) {
   return (
     <View style={styles.container}>
       <ThemedCard>
       <Pressable
         onPress={() => {
           // props.onPress()
-          props.onPress(character)
+          onPress(character)
         }}
           style={{
             alignSelf: "flex-start"
@@ -68,3 +66,13 @@ const styles = StyleSheet.create({
     borderColor: "gold",
   },
 });
+
+class Props {
+  character: Character;
+  onPress: (c: Character) => void;
+
+  constructor(character: Character, onPress: (c: Character) => void) {
+    this.character = character;
+    this.onPress = onPress;
+  }
+}
