@@ -17,7 +17,7 @@ export default function CharacterView({character, onPress}: Props) {
             alignSelf: "flex-start"
           }}
         >
-          <Icon name="add-user" type="entypo"/>
+          <Icon name="account-edit" type="material-community"/>
         </Pressable>
         <Pressable
           style={{

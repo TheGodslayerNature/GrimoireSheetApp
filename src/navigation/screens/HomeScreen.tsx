@@ -18,7 +18,7 @@ import CharacterView from "../../components/characters/CharactersView";
 import { Mag, MagType } from "../../components/mag/Mag";
 import { Persona } from "../../components/persona/Persona";
 import { Player } from "../../components/player/Player";
-import { UserStatus } from "../../components/user/UserStatus";
+import { UserStatus } from "../../components/userStatus/UserStatus";
 import personagensData from "../../data/personagens.json";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import CharacterStatus from "./CharacterScreen";

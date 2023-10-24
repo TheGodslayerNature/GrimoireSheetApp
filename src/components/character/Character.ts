@@ -1,6 +1,6 @@
 import { Player } from "components/player/Player";
 import { CharacterClass } from "./CharacterClass2";
-import { Status, UserStatus } from "../user/UserStatus";
+import { Status, UserStatus } from "../userStatus/UserStatus";
 import { Arcanas } from "./Arcanas";
 import { Persona } from "components/persona/Persona";
 

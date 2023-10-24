@@ -1,7 +1,7 @@
 import { View, Text, FlatList, Pressable, StyleSheet } from "react-native";
 import React, { useState } from "react";
 import StatusPoints from "../statusPoints/statusPoints";
-import { Status } from "../user/UserStatus";
+import { Status } from "../userStatus/UserStatus";
 
 type Props = {
   submit: (stats: Array<number>) => void;

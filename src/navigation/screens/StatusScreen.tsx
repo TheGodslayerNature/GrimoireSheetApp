@@ -17,7 +17,7 @@ import {
 } from "react-native";
 
 import StatusPoints from "../../components/statusPoints/statusPoints";
-import { Status, UserStatus } from "../../components/user/UserStatus";
+import { Status, UserStatus } from "../../components/userStatus/UserStatus";
 import personagensData from "../../data/personagens.json";
 import { saveCharacter } from "../../util/Storage";
 import RenderStatus from "../../components/renderStatus/RenderStatus";
