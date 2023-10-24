@@ -1,10 +1,18 @@
-import { View, Text } from 'react-native'
+import { View, Text, FlatList } from 'react-native'
 import React from 'react'
 
-export default function DificultyTest() {
+
+export default function DificultyTest(props:any) {
+  const { character } = props.route.params;
+
   return (
     <View>
-      <Text>DificultyTest</Text>
+      <FlatList 
+      data={character.user.statusPoints}
+      renderItem={({item}) => (
+        <Text>{item + " "}</Text>
+      )}
+      />
     </View>
   )
 }

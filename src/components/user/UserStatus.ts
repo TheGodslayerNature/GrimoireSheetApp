@@ -6,17 +6,17 @@ export class UserStatus {
     userLevel: number;
     statusPoints: number[];
 
-    constructor(userName: string,userLevel:number) {
+    constructor(userName: string,userLevel:number, statusPoints: Array<number> = [0,0,0,0,0,0]) {
         this.userName = userName;
         this.userLevel = userLevel;
-        this.statusPoints = [0, 0, 0, 0, 0, 0];
+        this.statusPoints = statusPoints;
     };
 
     availablePoints(): number {
         return INITIAL_MAX_POINTS - this.totalPoints();
     }
 
-    totalPoints() { 
+    totalPoints() {
         return this.statusPoints.reduce((acc, elem) => acc + elem, 0);
     }
 

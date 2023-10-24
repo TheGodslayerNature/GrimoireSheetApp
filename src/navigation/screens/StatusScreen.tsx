@@ -20,6 +20,7 @@ import StatusPoints from "../../components/statusPoints/statusPoints";
 import { Status, UserStatus } from "../../components/user/UserStatus";
 import personagensData from "../../data/personagens.json";
 import { saveCharacter } from "../../util/Storage";
+import RenderStatus from "../../components/renderStatus/RenderStatus";
 
 var valoresDoJson = personagensData[0];
 
@@ -35,6 +36,10 @@ const STATUS = [
   Status.AGI,
   Status.SOR,
 ];
+
+const STATS = [
+  {}
+]
 
 const creatingPesonaScreen = "CreatingPersona";
 
@@ -52,15 +57,9 @@ export default function StatusScreen({route , navigation }: any) {
   const [lifePoints, setLifePoints] = useState(0);
   const [energy, setEnergy] = useState(0);
   const [selectedClassIndex, setSelectedClassIndex] = useState<number>();
+  const [statusPoints, setStatusPoints] = useState<Array<number>>();
 
   const user: UserStatus = new UserStatus(userName, userLevel);
-
-  let points = [0, 0, 0, 0, 0, 0];
-
-  const submitPoints = () => {
-    STATUS.forEach((status) => user.setPointsFor(status, points[status]));
-    user.printStatusValues();
-  };
 
   {console.log(route.params)}
   return (
@@ -114,27 +113,8 @@ export default function StatusScreen({route , navigation }: any) {
 
       <View style={styles.ImageStyle}></View>
 
-      <View style={{ flexDirection: "row", padding: 15 }}>
-        <FlatList
-        numColumns={Math.ceil(STATUS.length / 2)}
-        data={STATUS}
-        renderItem={({item}) => <StatusPoints 
-        statusName={Status[item]} 
-        setPoints={(value:number) => (points[item] = value)}/>}
-        />
-        {/* {STATUS.map((status) => (
-          <li key={status}>
-            <StatusPoints
-              statusName={Status[status]}
-              setPoints={(value: number) => (points[status] = value)}
-            />
-          </li>
-        ))} */}
-      </View>
+      <RenderStatus submit={setStatusPoints}/>
 
-      <Pressable style={styles.btn} onPress={submitPoints}>
-        <Text>Adicionar Pontos</Text>
-      </Pressable>
 
       <TextInput
         style={{
@@ -173,14 +153,15 @@ export default function StatusScreen({route , navigation }: any) {
           // );
 
           let character = new Character(
-            user,
+            new UserStatus(userName, userLevel, statusPoints),
             new Player("i@g.com", "qwerty"),
             Arcanas.DEVIL,
             klass
           );
           character.setLifePoints(lifePoints);
           character.setEnergy(energy);
-
+          console.log(character);
+          
           saveCharacter(character);
 
           navigation.navigate("CreatingPersona");
