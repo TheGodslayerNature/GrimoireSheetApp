@@ -1,21 +1,20 @@
 import { View, Text, Pressable } from 'react-native'
 import React from 'react'
-import { ListItem } from '@rneui/themed'
-import { WeaponItem } from '../../../model/item/Item'
+import {Mag} from "../../../model/mag/Mag"
+import DefaultAccordion from '../../../components/accordion/DefaultAccordion'
+
+import consumables from "../../../data/consumableItem.json"
+import weapons from "../../../data/itemJson.json"
+import magias from "../../../model/mag/mags.json"
+
+let tier1Physical: Mag[] = magias.physical.Tier1 as Mag[];
 
 export default function WeaponScreen(props:any) {
     let {character} = props.route.params
+    
   return (
     <View>
-        {/* <FlatList
-        data={character.inventory}
-        /> */}
-        {/* <ListItem.Accordion>
-
-        </ListItem.Accordion> */}
-        <Pressable onPress={() => { console.log(character.inventory)}}>
-            <Text>Clique</Text>
-        </Pressable>
+      <DefaultAccordion character={character} magics={tier1Physical} weapons={weapons} consumables={consumables}/>
     </View>
   )
 }

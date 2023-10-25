@@ -1,7 +1,5 @@
 export class Item {
-
-  // Criar um objeto equipment para adicionar weapon, armor, accessory
-  
+    
   name: string;
   effect: string;
   special: string;

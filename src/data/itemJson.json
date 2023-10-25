@@ -4,8 +4,9 @@
         "damage": 4,
         "reach": 1,
         "extra": "",
-        "description": "",
+        "description": "Armas improvisadas ou encontradas no cenário.",
         "cust": 1,
-        "special": ""
+        "special": "",
+        "effect": ""
     }
 ]
