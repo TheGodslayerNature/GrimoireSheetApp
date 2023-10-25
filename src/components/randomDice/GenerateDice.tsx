@@ -1,8 +1,9 @@
 import { View, Text, StyleSheet, Pressable } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { Image } from "react-native-elements";
 
 export default function GenerateDice(props: any) {
+  const [diceType, setDiceType] = useState<number>();
   let str;
 
   let testD6 = (quantidadeDeVezes: number) => {
@@ -14,6 +15,14 @@ export default function GenerateDice(props: any) {
       console.log("valor: " + str + "\n");
     }
   };
+
+  let generateNumber = (dice:number, quantidadeDeVezes:number) => {
+    for(let i = 0; i < quantidadeDeVezes; i++) {
+      const randomNumber = Math.floor(Math.random() * (dice - 1 + 1)) + 1;
+      let str = randomNumber.toString();
+      console.log("valor: " + str + "\n");
+    }
+  }
 
   let testD4 = (quantidadeDeVezes: number) => {
     const min = 1;
@@ -27,8 +36,23 @@ export default function GenerateDice(props: any) {
   };
 
   return (
-    <View>
+    <View style={{ flexDirection: "row" }}>
+      <Pressable style={{ borderWidth: 2, borderColor: "red" }} onPress={() => {
+        setDiceType(4);
+      }}>
+        <Text>D4</Text>
+      </Pressable>
+      <Pressable style={{ borderWidth: 2, borderColor: "red" }} onPress={() => {
+        setDiceType(6)
+      }}>
+        <Text>D6</Text>
+      </Pressable>
       <Pressable
+      onPress={() => { generateNumber(diceType! ,props.numberToRoll)}}
+      >
+        <Text>{props.numberToRoll}</Text>
+      </Pressable>
+      {/* <Pressable
         style={styles.btn}
         onPress={() => {
           testD6(props.numberToRoll);
@@ -43,7 +67,7 @@ export default function GenerateDice(props: any) {
 
       <Text>{"valores do d6: " + ""}</Text>
 
-      <Text>{"valores do d4: " + ""}</Text>
+      <Text>{"valores do d4: " + ""}</Text> */}
     </View>
   );
 }
@@ -54,5 +78,6 @@ const styles = StyleSheet.create({
     width: 100,
     borderColor: "#FDED00",
     borderWidth: 5,
+    borderRadius: 16,
   },
 });

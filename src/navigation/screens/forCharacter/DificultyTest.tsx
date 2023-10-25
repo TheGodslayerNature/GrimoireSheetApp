@@ -11,7 +11,7 @@ export default function DificultyTest(props: any) {
   return (
     <View style={styles.container}>
 
-      <Picker
+      {/* <Picker
       selectedValue={indexValue}
       onValueChange={(i) => setIndexValue(i)}
       >
@@ -22,8 +22,21 @@ export default function DificultyTest(props: any) {
       
       <GenerateDice
       numberToRoll={character.user.statusPoints[indexValue!]}
-      />
+      /> */}
+{/* 
+      {character.user.statusPoints.map((value:number, index:number) => 
+        <Pressable style={{
+          width: 50,
+          margin: 10,
+          borderColor: "#FDED00",
+          borderWidth: 5,
+          borderRadius: 16,
+        }}
+        onPress={ () => console.log(value)}
+        ><Text>{Status[index]}</Text></Pressable>
+      )} */}
 
+      <GenerateDice numberToRoll={character.user.statusPoints[0]}/>
     </View>
   );
 }
