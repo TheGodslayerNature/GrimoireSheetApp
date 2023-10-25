@@ -1,32 +1,58 @@
-import { View, Text, StyleSheet, Pressable } from 'react-native'
-import React from 'react'
-import { Image } from 'react-native-elements'
+import { View, Text, StyleSheet, Pressable } from "react-native";
+import React from "react";
+import { Image } from "react-native-elements";
 
-export default function GenerateDice(props:any) {
+export default function GenerateDice(props: any) {
+  let str;
+
+  let testD6 = (quantidadeDeVezes: number) => {
+    const min = 1;
+    const max = 6;
+    for (let i = 0; i < quantidadeDeVezes; i++) {
+      const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+      let str = randomNumber.toString();
+      console.log("valor: " + str + "\n");
+    }
+  };
+
+  let testD4 = (quantidadeDeVezes: number) => {
+    const min = 1;
+    const max = 4;
+    let str = "";
+    for (let i = 0; i < quantidadeDeVezes; i++) {
+      const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+      str = randomNumber.toString();
+      console.log("valor: " + str + "\n");
+    }
+  };
+
   return (
     <View>
       <Pressable
         style={styles.btn}
-        onPress={() => props.press()}
+        onPress={() => {
+          testD6(props.numberToRoll);
+        }}
       >
-        <Text>{props.name} d6</Text>
+        <Text>{props.numberToRoll} d6</Text>
       </Pressable>
-      
-      <Pressable
-        style={styles.btn}
-        onPress={() => props.pressd4()}
-      >
-        <Text>{props.name} d4</Text>
+
+      <Pressable style={styles.btn} onPress={() => testD4(props.numberToRoll)}>
+        <Text>{props.numberToRoll} d4</Text>
       </Pressable>
+
+      <Text>{"valores do d6: " + ""}</Text>
+
+      <Text>{"valores do d4: " + ""}</Text>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
-    btn: {
-      margin: 10,
-      width: 100,
-      borderColor: '#FDED00',
-      borderWidth: 5,
-    }
-  })
+  btn: {
+    margin: 10,
+    width: 100,
+    borderColor: "#FDED00",
+    borderWidth: 5,
+  },
+});

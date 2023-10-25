@@ -3,7 +3,7 @@ import * as Progress from "react-native-progress";
 import ThemedCard from "@rneui/themed/dist/Card";
 import React, { useState } from "react";
 import Bar from "../../../util/bar";
-import { Character } from "components/character/Character";
+import { Character } from "../../../components/character/Character";
 
 export default function CharacterStatus(props: any) {
     const { character } = props.route.params;
@@ -44,16 +44,6 @@ export default function CharacterStatus(props: any) {
           label={"Pontos de aspecto"}
           updatePoints={setAspectPoint}
         />
-        {/* <Bar
-          point={"energia :" + energy}
-          removePoint={() => setEnergy(energy - 1)}
-          putPoint={() => setEnergy(energy + 1)}
-        />
-        <Bar
-          point={"Pontos de aspectos: " + aspectPoint}
-          removePoint={() => setAspectPoint(aspectPoint - 1)}
-          putPoint={() => setAspectPoint(aspectPoint + 1)}
-        /> */}
       </View>
     </View>
   )
