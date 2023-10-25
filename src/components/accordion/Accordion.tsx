@@ -56,7 +56,6 @@ export default function Accordion({ character ,persona }: Props) {
                   <Pressable
                   style={styles.btn}
                   onPress={() => {
-
                     character.persona.forEach((pers) => {
                       if(pers.name == persona.name){
                         pers.magDeck.push(item)

@@ -2,7 +2,7 @@ import { CharacterClass } from "./CharacterClass2";
 import { Status, UserAttributes } from "../userAttributes/UserAttributes";
 import { Arcanas } from "./Arcanas";
 import { Persona } from "model/persona/Persona";
-import { AccesoryItem, ArmorItem, Item, WeaponItem } from "model/item/Item";
+import { AccessoryItem, ArmorItem, Item, WeaponItem } from "model/item/Item";
 import { Equipment } from "./Equipment";
 
 export class Character {

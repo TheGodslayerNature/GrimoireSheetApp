@@ -1,20 +1,29 @@
 import { View, Text, Pressable } from 'react-native'
 import React from 'react'
 import {Mag} from "../../../model/mag/Mag"
-import DefaultAccordion from '../../../components/accordion/DefaultAccordion'
+import DefaultAccordionForItem from '../../../components/accordion/DefaultAccordionForItem'
 
 import consumables from "../../../data/consumableItem.json"
 import weapons from "../../../data/itemJson.json"
 import magias from "../../../model/mag/mags.json"
+import { WeaponItem } from '../../../model/item/Item'
 
-let tier1Physical: Mag[] = magias.physical.Tier1 as Mag[];
+let myWeapons: WeaponItem[] = weapons as WeaponItem[];
+
+let my = new WeaponItem("","","",1,5,2,"","")
 
 export default function WeaponScreen(props:any) {
     let {character} = props.route.params
     
   return (
     <View>
-      <DefaultAccordion character={character} magics={tier1Physical} weapons={weapons} consumables={consumables}/>
+      <DefaultAccordionForItem character={character} consumables={myWeapons} />
+
+      <Pressable onPress={() => {
+        if((myWeapons[0]).reach){
+          console.log("existe")
+        }
+      }}><Text>Aperte</Text></Pressable>
     </View>
   )
 }

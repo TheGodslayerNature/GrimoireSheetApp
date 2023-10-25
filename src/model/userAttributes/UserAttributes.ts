@@ -73,3 +73,12 @@ export enum Status {
     AGI,
     SOR,
 }
+
+export enum SocialPoints {
+    knowledge,
+    discipline,
+    empathy,
+    charm,
+    expression,
+    Courage
+}

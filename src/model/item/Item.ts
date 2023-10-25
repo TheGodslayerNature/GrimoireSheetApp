@@ -28,7 +28,7 @@ export class ConsumableItem extends Item {
   }
 }
 
-export class AccesoryItem extends Item {
+export class AccessoryItem extends Item {
   rarity: string;
   constructor(
     name: string,

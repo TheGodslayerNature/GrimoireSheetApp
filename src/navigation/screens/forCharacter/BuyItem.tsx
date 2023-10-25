@@ -6,6 +6,7 @@ import { Icon } from "@rneui/themed";
 import { ConsumableItem } from "../../../model/item/Item";
 import ItemAccordion from "../../../components/accordion/ItemAccordion";
 import ShowItems from "../../../components/accordion/ShowItems";
+import DefaultAccordionForItem from "../../../components/accordion/DefaultAccordionForItem";
 
 let items: ConsumableItem[] = consumableItem as ConsumableItem[];
 
@@ -15,29 +16,8 @@ export default function BuyItem(props: any) {
 
   return (
     <View style={{ flex: 1 }}>
-      <Modal transparent={true} animationType="slide" visible={modalVisible}>
-        <View>
-          <Pressable
-            onPress={() => {
-              setModalVisible(false);
-            }}
-          >
-            <Icon name="x" type="octicon" />
-          </Pressable>
-          <Text>Adicionar Magias</Text>
-
-          <ItemAccordion character={character} />
-        </View>
-      </Modal>
-      <Pressable
-        onPress={() => {
-          setModalVisible(!modalVisible);
-        }}
-      >
-        <Text>Aperte</Text>
-      </Pressable>
-
-      <ShowItems character={character}/>
+      
+      <DefaultAccordionForItem character={character} consumables={items}/>
     </View>
   );
 }

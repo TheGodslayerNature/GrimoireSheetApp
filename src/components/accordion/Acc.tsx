@@ -5,15 +5,12 @@ import { ConsumableItem, Item, WeaponItem } from "../../model/item/Item";
 import { Mag, MagType } from "../../model/mag/Mag";
 
 type Props = {
-  consumableItemData?: ConsumableItem | undefined;
-  weaponData?: WeaponItem | undefined;
-  itemData?: Item
-  magicData?: Mag | undefined
+  item: ConsumableItem | WeaponItem | Item | Mag;
   index: number;
   update?(): void
 };
 
-export default function Acc({ itemData, consumableItemData, index, weaponData, magicData, update }: Props) {
+export default function Acc({item, index ,update }: Props) {
   const [expadedItem, setExpandeItem] = useState(false);
 
   return (
@@ -23,10 +20,7 @@ export default function Acc({ itemData, consumableItemData, index, weaponData, m
         content={
           <ListItem.Content>
             <ListItem.Title>
-              <Text>{consumableItemData?.name}</Text>
-              <Text>{itemData?.name}</Text>
-              <Text>{weaponData?.name}</Text>
-              <Text>{magicData?.name}</Text>
+              <Text>{item.name}</Text>
             </ListItem.Title>
           </ListItem.Content>
         }
@@ -38,8 +32,8 @@ export default function Acc({ itemData, consumableItemData, index, weaponData, m
         {
           <ListItem key={index}>
             <ListItem.Content>
-              <Text>{itemData?.name}</Text>
-              <Text>{itemData?.effect}</Text>
+              <Text>{item.name}</Text>
+              {/* <Text>{itemData?.effect}</Text>
               <Text>{itemData?.cust}</Text>
               <Text>{itemData?.special}</Text>
               <Text>{weaponData?.name}</Text>
@@ -51,7 +45,7 @@ export default function Acc({ itemData, consumableItemData, index, weaponData, m
               <Text>{magicData?.damage}</Text>
               <Text>{consumableItemData?.effect}</Text>
               <Text>{consumableItemData?.special}</Text>
-              <Text>{consumableItemData?.cust}</Text>
+              <Text>{consumableItemData?.cust}</Text> */}
               <Pressable
                 onPress={() => {
                     update!();

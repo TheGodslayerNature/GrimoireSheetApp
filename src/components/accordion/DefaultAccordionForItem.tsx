@@ -11,20 +11,15 @@ import Acc from "./Acc";
 import { Mag } from "../../model/mag/Mag";
 import { Icon } from "@rneui/themed";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Persona } from "../../model/persona/Persona";
 
 type Props = {
-  items?: Item[] | undefined;
-  weapons?: WeaponItem[] | undefined;
-  consumables?: ConsumableItem[] | undefined;
-  magics?: Mag[] | undefined;
+  consumables: ConsumableItem[] | WeaponItem[] | Item[];
   character: Character;
 };
-export default function DefaultAccordion({
-  items,
-  weapons,
+export default function DefaultAccordionForItem({
   character,
   consumables,
-  magics,
 }: Props) {
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -44,26 +39,15 @@ export default function DefaultAccordion({
             data={consumables}
             renderItem={({ item, index }) => (
               <Acc
-                consumableItemData={item}
+                item={item}
                 index={index}
                 update={() => {
                   console.log(character);
+                  console.log(item);
                   character.inventory.push(item);
                   //   AsyncStorage.setItem(character.user.userName, JSON.stringify(character));
                 }}
               />
-            )}
-          />
-          <FlatList
-            data={weapons}
-            renderItem={({ item, index }) => (
-              <Acc weaponData={item} index={index} />
-            )}
-          />
-          <FlatList
-            data={magics}
-            renderItem={({ item, index }) => (
-              <Acc magicData={item} index={index} />
             )}
           />
         </View>
@@ -78,19 +62,20 @@ export default function DefaultAccordion({
       </Pressable>
 
       <FlatList
-        data={character.inventory}
+        data={character.inventory.filter((item) => item instanceof WeaponItem)}
         renderItem={({ item, index }) => (
           <Acc
+            item={item}
+            index={index}
             update={() => {
-              console.log(character);
               character.inventory.forEach((tem, i) => {
-                if (tem === item) {
+                if (tem.name === item.name) {
                   character.inventory.splice(i, 1);
                 }
+                console.log(character);
+                //   AsyncStorage.setItem(character.user.userName, JSON.stringify(character));
               });
             }}
-            itemData={item}
-            index={index}
           />
         )}
       />
