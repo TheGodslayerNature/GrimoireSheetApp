@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import { Mag, MagType } from "../../../components/mag/Mag";
-import ListMagic from "../../../components/listMagic/ListMagic";
+import Accordion from "../../../components/accordion/Accordion";
 
 //Usar Accordion para o drop
 
@@ -33,7 +33,9 @@ export default function BuyMagic() {
     descricao
   );
 
-  let magias:Mag[] = [magia]
+  let magias: Mag[] = [magia];
+
+  // let list2: string[] = ["Brazil", "EUA", "CHINA"]
 
   return (
     <View style={styles.container}>
@@ -42,50 +44,29 @@ export default function BuyMagic() {
           <Text style={{ fontWeight: "bold" }}>Adicionar magias</Text>
         </View>
 
-        <View style={{flexDirection: 'row'}}>
-          <Pressable
-          onPress={() => {}}
-          >
-          <Text>Nome: {magia.name}</Text>
-          </Pressable>
-          <Pressable style={styles.addBtn}>
-            <Text>Adicionar</Text>
-          </Pressable>
-        </View>
+        <View style={{ flexDirection: "row" }}>
 
-        <View>
-        <Text>----------------</Text>
-        <Text>tipo de magia: {magia.magType}</Text>
-        <Text>categoria: {magia.categoria}</Text>
-        <Text>Tier: {magia.tier}</Text>
-        <Text>Alcance: {magia.alcance}</Text>
-        <Text>----------------</Text>
-        <Text>efeito: {magia.efeito}</Text>
-        <Text>descrição: {magia.descricao}</Text>
+          <Accordion/>
 
         </View>
-
-       {/* <FlatList
-       data={magias}
-       renderItem={({item}) => <ListMagic magia={item}/>}
-       /> */}
         <Pressable
           style={{ borderWidth: 10, borderColor: "#FDED00" }}
-          onPress={() => { setModalVisible(false)}}
+          onPress={() => {
+            setModalVisible(false);
+          }}
         >
           <Text>Fechar Modal</Text>
         </Pressable>
-        
+
       </Modal>
       <View style={{ flexDirection: "row" }}>
         <Text>Magic</Text>
         <Pressable
           onPress={() => setModalVisible(true)}
-          style={{ borderWidth: 10, borderColor: "#FDED00" }}
-        >
-          <Text> Adicionar</Text>
-        </Pressable>
+          style={styles.addBtn}
+        ><Text> ++</Text></Pressable>
       </View>
+
     </View>
   );
 }

@@ -28,7 +28,7 @@ export default function DificultyTest(props: any) {
         <Text>D6</Text>
       </Pressable>
 
-      {/* <FlatList
+      <FlatList
       data={character.user.statusPoints}
       renderItem={({item, index}) => (
         // <Text>{item}</Text>
@@ -37,7 +37,7 @@ export default function DificultyTest(props: any) {
         numberToRoll={character.user.statusPoints[index]}
         attType={Status[index]}
       />
-      )}/> */}
+      )}/>
 
       {/* {character.user.statusPoints.map((value: number, index: number) => (
 
