@@ -12,7 +12,6 @@ import React, { useState } from "react";
 import { Mag, MagType } from "../../../components/mag/Mag";
 import ListMagic from "../../../components/listMagic/ListMagic";
 
-
 //Usar Accordion para o drop
 
 export default function BuyMagic() {
