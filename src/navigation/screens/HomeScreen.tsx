@@ -22,7 +22,7 @@ import { UserStatus } from "../../components/userStatus/UserStatus";
 import personagensData from "../../data/personagens.json";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import CharacterStatus from "./CharacterScreen";
-import StatusScreen from "./StatusScreen";
+import AttributesScreen from "./StatusScreen";
 import CreatingPersona from "./CreatingPersona";
 
 /*
@@ -99,7 +99,7 @@ export default function CharacterScreen({navigation: { navigate } }: any) {
           />
         )}
       />
-      <Pressable style={styles.btnStyle} onPress={() => { navigate(StatusScreen)}}>
+      <Pressable style={styles.btnStyle} onPress={() => { navigate(AttributesScreen)}}>
         <Text style={styles.btnTextStyle}>Criar Ficha</Text>
       </Pressable>
 

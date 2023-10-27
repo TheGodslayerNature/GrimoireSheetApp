@@ -7,7 +7,6 @@ import { Persona } from "components/persona/Persona";
 export class Character{
     
     user:UserStatus;
-    player:Player;
     arcanas:Arcanas;
     klass:CharacterClass;
     aspectPoints:number;
@@ -16,10 +15,9 @@ export class Character{
     persona:Persona[] = [];
     lifePoints:number;
 
-    constructor(user:UserStatus, player:Player, arcanas:Arcanas,klass:CharacterClass,) 
+    constructor(user:UserStatus, arcanas:Arcanas,klass:CharacterClass,) 
         {
             this.user = user;
-            this.player = player;
             this.arcanas = arcanas;
             this.klass = klass;
             this.aspectPoints = 4;

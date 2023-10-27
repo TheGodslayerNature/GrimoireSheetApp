@@ -1,13 +1,32 @@
 import { View, Text, FlatList, Pressable, StyleSheet } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Status } from "../../../components/userStatus/UserStatus";
 import GenerateDice from "../../../components/randomDice/GenerateDice";
 import { Picker } from "@react-native-picker/picker";
+import { Character } from "components/character/Character";
+import { Persona } from "../../../components/persona/Persona";
+import { Arcanas } from "../../../components/character/Arcanas";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function DificultyTest(props: any) {
   const { character } = props.route.params;
   const [indexValue, setIndexValue] = useState<number>();
   const [diceType, setDiceType] = useState<number>(6);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const value = await AsyncStorage.getItem(character.user.userName);
+        let ids = JSON.parse(value!) as Character;
+        let persona:Persona = new Persona("jj", Arcanas.CHARIOT, "", "", 2);
+        ids.persona.push(persona)
+        console.log(ids);
+      } catch (error) {
+        // Error retrieving data
+        console.log(error);
+      }
+    })();
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -29,23 +48,25 @@ export default function DificultyTest(props: any) {
       </Pressable>
 
       <FlatList
-      data={character.user.statusPoints}
-      renderItem={({item, index}) => (
-        // <Text>{item}</Text>
-      <GenerateDice
-        diceType={diceType}
-        numberToRoll={character.user.statusPoints[index]}
-        attType={Status[index]}
+        data={character.user.statusPoints}
+        renderItem={({ item, index }) => (
+          // <Text>{item}</Text>
+          <GenerateDice
+            diceType={diceType}
+            numberToRoll={character.user.statusPoints[index]}
+            attType={Status[index]}
+            personagem={character}
+          />
+        )}
       />
-      )}/>
 
-      {/* {character.user.statusPoints.map((value: number, index: number) => (
-
-      ))} */}
-      {/* <GenerateDice
-        numberToRoll={character.user.statusPoints[1]}
-        attType={Status[1]}
-      /> */}
+      <Pressable style={styles.btn} onPress={() => {
+        let persona:Persona = new Persona("jj", Arcanas.CHARIOT, "", "", 2);
+        character.persona.push(persona);
+        console.log(character)
+      }}>
+        <Text> add persona</Text>
+      </Pressable>
     </View>
   );
 }

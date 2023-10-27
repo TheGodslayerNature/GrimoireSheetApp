@@ -1,9 +1,10 @@
 import { View, Text, Image, StyleSheet, Pressable } from "react-native";
 import * as Progress from "react-native-progress";
 import ThemedCard from "@rneui/themed/dist/Card";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Bar from "../../../util/bar";
 import { Character } from "../../../components/character/Character";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function CharacterStatus(props: any) {
     const { character } = props.route.params;

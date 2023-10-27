@@ -1,18 +1,9 @@
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import React, { useState } from "react";
 import { Image } from "react-native-elements";
+import { Character } from "../../components/character/Character";
 
 export default function GenerateDice(props: any) {
-  const [diceType, setDiceType] = useState<number>(6);
-  // let testD6 = (quantidadeDeVezes: number) => {
-  //   const min = 1;
-  //   const max = 6;
-  //   for (let i = 0; i < quantidadeDeVezes; i++) {
-  //     const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
-  //     let str = randomNumber.toString();
-  //     console.log("valor: " + str + "\n");
-  //   }
-  // };
 
   let generateNumber = (dice:number, quantidadeDeVezes:number) => {
     const min = 1;
@@ -25,30 +16,11 @@ export default function GenerateDice(props: any) {
     console.log("valor: " + str + "\n");
   }
 
-  // let testD4 = (quantidadeDeVezes: number) => {
-  //   const min = 1;
-  //   const max = 4;
-  //   let str = "";
-  //   for (let i = 0; i < quantidadeDeVezes; i++) {
-  //     const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
-  //     str = randomNumber.toString();
-  //     console.log("valor: " + str + "\n");
-  //   }
-  // };
+  // { console.log(() => charac.getEnergy())}
 
   return (
     <View style={{ alignItems: 'center'}}>
       <View style={styles.btnView}>
-      {/* <Pressable style={styles.btn} onPress={() => {
-        setDiceType(4);
-      }}>
-        <Text>D4</Text>
-      </Pressable>
-      <Pressable style={styles.btn} onPress={() => {
-        setDiceType(6)
-      }}>
-        <Text>D6</Text>
-      </Pressable> */}
       </View>
 
       <View style={styles.atributosView}>

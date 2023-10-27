@@ -4,7 +4,7 @@ import { Arcanas } from "../../components/character/Arcanas";
 import { Character } from "../../components/character/Character";
 import { CharacterClass } from "../../components/character/CharacterClass2";
 import { Player } from "../../components/player/Player";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   FlatList,
   Pressable,
@@ -21,27 +21,11 @@ import { Status, UserStatus } from "../../components/userStatus/UserStatus";
 import personagensData from "../../data/personagens.json";
 import { saveCharacter } from "../../util/Storage";
 import RenderStatus from "../../components/renderStatus/RenderStatus";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "navigation/MainNavigator";
 
-var valoresDoJson = personagensData[0];
-
-// var RNFS =  require('react-native-fs');
-
-// var personagensPath = RNFS.DocumentDirectoryPath + "../../data/personagens.json";
-
-const STATUS = [
-  Status.FOR,
-  Status.TEC,
-  Status.VIT,
-  Status.MAG,
-  Status.AGI,
-  Status.SOR,
-];
-
-const STATS = [
-  {}
-]
-
-const creatingPesonaScreen = "CreatingPersona";
+interface Props
+  extends NativeStackScreenProps<RootStackParamList, "StatusScreen"> {}
 
 const classes = [
   CharacterClass.cartaCoringa(),
@@ -51,7 +35,7 @@ const classes = [
   CharacterClass.tocha(),
 ];
 
-export default function StatusScreen({route , navigation }: any) {
+export default function StatusScreen({ route, navigation }: Props) {
   const [userLevel, setUserLevel] = useState(0);
   const [userName, setUserName] = useState("");
   const [lifePoints, setLifePoints] = useState(0);
@@ -59,9 +43,14 @@ export default function StatusScreen({route , navigation }: any) {
   const [selectedClassIndex, setSelectedClassIndex] = useState<number>();
   const [statusPoints, setStatusPoints] = useState<Array<number>>();
 
-  const user: UserStatus = new UserStatus(userName, userLevel);
+  useEffect(() => {
+    if (route.params?.createdPersona) {
+      console.log("Persona Criada!!!!!!!!");
 
-  {console.log(route.params)}
+      console.log(route.params?.createdPersona);
+    }
+  }, [route.params?.createdPersona]);
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar />
@@ -113,8 +102,7 @@ export default function StatusScreen({route , navigation }: any) {
 
       <View style={styles.ImageStyle}></View>
 
-      <RenderStatus submit={setStatusPoints}/>
-
+      <RenderStatus submit={setStatusPoints} />
 
       <TextInput
         style={{
@@ -135,8 +123,14 @@ export default function StatusScreen({route , navigation }: any) {
           borderColor: "#FDED00",
         }}
         placeholder="Pontos de Energia"
-        onChangeText={ (energy) => setEnergy(Number(energy))}
+        onChangeText={(energy) => setEnergy(Number(energy))}
       />
+
+      <Pressable style={styles.btn}
+      onPress={ () => navigation.navigate("CreatingPersona")}
+      >
+        <Text>Criar Persona</Text>
+      </Pressable>
 
       <Pressable
         onPress={() => {
@@ -144,27 +138,28 @@ export default function StatusScreen({route , navigation }: any) {
             console.log("classe nao selecionada");
             return;
           }
+
+          if (!route.params?.createdPersona) {
+            console.log("Persona não criada!");
+            return;
+          }
+
           let klass = classes[selectedClassIndex];
-          // console.log(klass.name);
-          // console.log(
-          //   `skills:\n${klass.skills
-          //     .flatMap((s) => [s.skillName, s.skillDesc, "\n"])
-          //     .join("\n")}`
-          // );
 
           let character = new Character(
             new UserStatus(userName, userLevel, statusPoints),
-            new Player("i@g.com", "qwerty"),
             Arcanas.DEVIL,
             klass
           );
           character.setLifePoints(lifePoints);
           character.setEnergy(energy);
           console.log(character);
-          
+
+          character.setPersona(route.params.createdPersona);
+
           saveCharacter(character);
 
-          navigation.navigate("CreatingPersona");
+          navigation.navigate("HomeScreen");
         }}
         style={{
           borderWidth: 2.5,
@@ -185,6 +180,7 @@ export default function StatusScreen({route , navigation }: any) {
           CRIAR PERSONAGEM
         </Text>
       </Pressable>
+
     </SafeAreaView>
   );
 }

@@ -66,7 +66,6 @@ export default function BuyMagic() {
           style={styles.addBtn}
         ><Text> ++</Text></Pressable>
       </View>
-
     </View>
   );
 }

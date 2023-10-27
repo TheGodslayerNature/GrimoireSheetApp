@@ -42,8 +42,8 @@ export default function CharacterView({character, onPress}: Props) {
             />
           </View>
           <View style={{ flexDirection: "row" }}>
-            <Text>Nome: {character.user.userName + " "}</Text>
-            <Text>Nível: {character.user.userLevel}</Text>
+            {/* <Text>Nome: {character.user.userName + " "}</Text> */}
+            {/* <Text>Nível: {character.user.userLevel}</Text> */}
           </View>
           {/* <Text>Classe: {character.klass.name()}</Text> */}
 

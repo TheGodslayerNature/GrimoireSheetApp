@@ -6,17 +6,30 @@ import CreatingPersona from "./screens/CreatingPersona";
 import CharacterScreen from "./screens/CharacterScreen";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { RouteProp } from "@react-navigation/native";
+import { Persona } from "components/persona/Persona";
 
-const Stack = createNativeStackNavigator();
+const RootStack = createNativeStackNavigator<RootStackParamList>();
+
+type SavePersonaCallback = {
+  call: (persona: Persona) => void;
+};
+
+export type RootStackParamList = {
+  HomeScreen: undefined;
+  StatusScreen: { createdPersona: Persona } | undefined;
+  CreatingPersona: undefined;
+  CharacterScreen: undefined;
+};
 
 const MainNavigator = () => {
   return (
-    <Stack.Navigator initialRouteName={"HomeScreen"}>
-      <Stack.Screen name={"HomeScreen"} component={HomeScreen} />
-      <Stack.Screen name={"StatusScreen"} component={StatusScreen} />
-      <Stack.Screen name={"CreatingPersona"} component={CreatingPersona} />
-      <Stack.Screen name={"CharacterScreen"} component={CharacterScreen} />
-    </Stack.Navigator>
+    <RootStack.Navigator initialRouteName={"HomeScreen"}>
+      <RootStack.Screen name={"HomeScreen"} component={HomeScreen} />
+      <RootStack.Screen name={"StatusScreen"} component={StatusScreen} />
+      <RootStack.Screen name={"CreatingPersona"} component={CreatingPersona} />
+      <RootStack.Screen name={"CharacterScreen"} component={CharacterScreen} />
+    </RootStack.Navigator>
   );
 };
 
