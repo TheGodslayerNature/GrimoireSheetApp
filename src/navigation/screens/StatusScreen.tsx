@@ -19,6 +19,7 @@ import RenderStatus from "../../components/renderStatus/RenderStatus";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "navigation/MainNavigator";
 import LifeAndEnergyInput from "../../components/LifeAndEnergyInput";
+import CubeInput from "../../components/myInputs/cubeInput";
 
 interface Props
   extends NativeStackScreenProps<RootStackParamList, "StatusScreen"> {}
@@ -30,6 +31,21 @@ const classes = [
   CharacterClass.supressor(),
   CharacterClass.tocha(),
 ];
+
+let character: Character;
+
+let criarCharacter = (
+  name: string,
+  level: number,
+  points: number[],
+  klass: CharacterClass
+) => {
+  character = new Character(
+    new UserAttributes(name, level, points),
+    Arcanas.DEVIL,
+    klass
+  );
+};
 
 export default function StatusScreen({ route, navigation }: Props) {
   const [userLevel, setUserLevel] = useState(0);
@@ -51,39 +67,16 @@ export default function StatusScreen({ route, navigation }: Props) {
     <SafeAreaView style={styles.container}>
       <StatusBar />
 
-      <View
-        style={{
-          flexDirection: "row",
-        }}
-      >
+      <View style={{ flexDirection: "row" }}>
         <TextInput
-          style={[styles.characterInput]}
+          style={styles.characterInput}
           placeholder="Nome do personagem"
           onChangeText={(name) => {
             setUserName(name);
           }}
         />
 
-        <TextInput
-          style={[
-            ,
-            {
-              height: 50,
-              width: 50,
-              borderWidth: 2,
-              marginLeft: 50,
-              alignContent: "center",
-              alignItems: "center",
-              textAlign: "center",
-              borderColor: "#FDED00",
-            },
-          ]}
-          placeholder="Nível"
-          inputMode="numeric"
-          editable={String(userLevel).at(1) ? false : true}
-          onChangeText={(value) => setUserLevel(Number(value))}
-          maxLength={2}
-        />
+        <CubeInput update={(level:any) => setUserLevel(level)} />
 
         <Picker
           style={{ width: 150, height: 50 }}
@@ -96,17 +89,16 @@ export default function StatusScreen({ route, navigation }: Props) {
         </Picker>
       </View>
 
-      <View style={styles.ImageStyle}></View>
-
       <RenderStatus submit={setStatusPoints} />
 
       <LifeAndEnergyInput
-      updateLife={(life:any) => setLifePoints(life)}
-      updateEnergy={(ener:any) => setEnergy(ener)}
+        updateLife={(life: any) => setLifePoints(life)}
+        updateEnergy={(ener: any) => setEnergy(ener)}
       />
 
-      <Pressable style={styles.btn}
-      onPress={ () => navigation.navigate("CreatingPersona")}
+      <Pressable
+        style={styles.btn}
+        onPress={() => navigation.navigate("CreatingPersona")}
       >
         <Text>Criar Persona</Text>
       </Pressable>
@@ -125,11 +117,8 @@ export default function StatusScreen({ route, navigation }: Props) {
 
           let klass = classes[selectedClassIndex];
 
-          let character = new Character(
-            new UserAttributes(userName, userLevel, statusPoints),
-            Arcanas.DEVIL,
-            klass
-          );
+          criarCharacter(userName, userLevel, statusPoints!, klass);
+
           character.setLifePoints(lifePoints);
           character.setEnergy(energy);
           console.log(character);
@@ -140,26 +129,10 @@ export default function StatusScreen({ route, navigation }: Props) {
 
           navigation.navigate("HomeScreen");
         }}
-        style={{
-          borderWidth: 2.5,
-          borderColor: "#FDED00",
-          borderRadius: 20,
-          paddingRight: 40,
-          marginTop: 20,
-          justifyContent: "center",
-          alignContent: "center",
-          alignItems: "center",
-        }}
+        style={styles.btn}
       >
-        <Text
-          style={{
-            margin: 15,
-          }}
-        >
-          CRIAR PERSONAGEM
-        </Text>
+        <Text> CRIAR PERSONAGEM </Text>
       </Pressable>
-
     </SafeAreaView>
   );
 }
@@ -195,5 +168,14 @@ const styles = StyleSheet.create({
     borderColor: "#FDED00",
     margin: 10,
   },
-  ImageStyle: {},
+  inputStyle: {
+    height: 50,
+    width: 50,
+    borderWidth: 2,
+    marginLeft: 50,
+    alignContent: "center",
+    alignItems: "center",
+    textAlign: "center",
+    borderColor: "#FDED00",
+  },
 });

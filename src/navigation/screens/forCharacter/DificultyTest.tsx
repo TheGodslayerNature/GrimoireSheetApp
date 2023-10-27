@@ -1,31 +1,11 @@
 import { View, Text, FlatList, Pressable, StyleSheet } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Status } from "../../../model/userAttributes/UserAttributes";
 import GenerateDice from "../../../components/randomDice/GenerateDice";
-import { Character } from "model/character/Character";
-import { Persona } from "../../../model/persona/Persona";
-import { Arcanas } from "../../../model/character/Arcanas";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function DificultyTest(props: any) {
   const { character } = props.route.params;
-  const [indexValue, setIndexValue] = useState<number>();
   const [diceType, setDiceType] = useState<number>(6);
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const value = await AsyncStorage.getItem(character.user.userName);
-        let ids = JSON.parse(value!) as Character;
-        let persona:Persona = new Persona("jj", Arcanas.CHARIOT, "", "", 2);
-        ids.persona.push(persona)
-        console.log(ids);
-      } catch (error) {
-        // Error retrieving data
-        console.log(error);
-      }
-    })();
-  }, []);
 
   return (
     <View style={styles.container}>
@@ -58,14 +38,6 @@ export default function DificultyTest(props: any) {
           />
         )}
       />
-
-      <Pressable style={styles.btn} onPress={() => {
-        let persona:Persona = new Persona("jj", Arcanas.CHARIOT, "", "", 2);
-        character.persona.push(persona);
-        console.log(character)
-      }}>
-        <Text> add persona</Text>
-      </Pressable>
     </View>
   );
 }

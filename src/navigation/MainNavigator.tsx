@@ -6,7 +6,6 @@ import CreatingPersona from "./screens/CreatingPersona";
 import CharacterScreen from "./screens/CharacterScreen";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { RouteProp } from "@react-navigation/native";
 import { Persona } from "model/persona/Persona";
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();

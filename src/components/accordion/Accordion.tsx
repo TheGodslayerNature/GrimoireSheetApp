@@ -4,22 +4,6 @@ import { ListItem } from "@rneui/themed";
 import { Mag, MagType } from "../../model/mag/Mag";
 import magias from "../../model/mag/mags.json"
 
-const categoria: string = "Atordoar, Status, Físico(A)";
-const alcance: string = "1 alvo dentro de 5 metros";
-const efeito: string =
-  "Acerto: FORd6 dano Físico e Chance de Atordoar: 20%+5% para cada ponto da rolagem de acerto acima da esquiva do inimigo.";
-const descricao: string = "Um golpe vertical mirando no topo da cabeça.";
-
-let magia: Mag = new Mag(
-  MagType.PHYSICAL,
-  1,
-  "Rachador",
-  categoria,
-  alcance,
-  efeito,
-  descricao
-);
-
 let tier1:Mag[] = magias.physical.Tier1 as Mag[];
 
 export default function Accordion() {
@@ -42,7 +26,7 @@ export default function Accordion() {
         }}
       >
         {tier1.map((l, i) => (
-          <ListItem key={i} onPress={() => {console.log("ei")}} bottomDivider>
+          <ListItem key={i}>
             <ListItem.Content>
               <ListItem.Title>{"Tier: " + l.tier}</ListItem.Title>
               <Text>{l.efeito}</Text>
