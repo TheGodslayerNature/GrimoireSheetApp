@@ -1,7 +1,16 @@
-import { View, Text, FlatList, Pressable, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  Pressable,
+  StyleSheet,
+  Alert,
+  Modal,
+} from "react-native";
 import React, { useState } from "react";
 import { Status } from "../../../model/userAttributes/UserAttributes";
 import GenerateDice from "../../../components/randomDice/GenerateDice";
+import AlertModal from "../../../components/modalForMagic/AlertModal";
 
 export default function DificultyTest(props: any) {
   const { character } = props.route.params;
@@ -46,9 +55,21 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  textStyle: {},
+  textStyle: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center",
+  },
   btn: {
     borderWidth: 2,
     borderColor: "red",
+  },
+  button: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+  },
+  buttonOpen: {
+    backgroundColor: "#F194FF",
   },
 });

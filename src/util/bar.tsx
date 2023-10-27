@@ -7,6 +7,7 @@ export default function bar({
   totalPoints,
   label,
   updatePoints,
+  color,
 }: BarProps) {
   return (
     <View style={{ flexDirection: "row" }}>
@@ -19,6 +20,7 @@ export default function bar({
       <Progress.Bar
         progress={currentPoints / totalPoints}
         width={200}
+        color={color}
         style={{}}
       >
         <Text style={styles.textStyle}>{label + ": " + currentPoints + " / " + totalPoints}</Text>
@@ -47,5 +49,6 @@ type BarProps = {
   currentPoints: number;
   totalPoints: number;
   label: string;
+  color: string;
   updatePoints: (point: number) => void;
 }

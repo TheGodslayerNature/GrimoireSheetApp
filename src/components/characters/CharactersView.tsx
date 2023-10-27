@@ -4,7 +4,7 @@ import React from "react";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { Icon } from "react-native-elements";
 
-export default function CharacterView({character, onPress}: Props) {
+export default function CharacterView({character, onPress, dell}: Props) {
   return (
     <View style={styles.container}>
       <ThemedCard>
@@ -20,6 +20,9 @@ export default function CharacterView({character, onPress}: Props) {
           <Icon name="account-edit" type="material-community"/>
         </Pressable>
         <Pressable
+        onPress={() => {
+          dell(character.user.userName)
+        }}
           style={{
             alignSelf: "flex-start"
           }}
@@ -70,9 +73,11 @@ const styles = StyleSheet.create({
 class Props {
   character: Character;
   onPress: (c: Character) => void;
+  dell: (c: string) => void;
 
-  constructor(character: Character, onPress: (c: Character) => void) {
+  constructor(character: Character, onPress: (c: Character) => void, dell: () => void ) {
     this.character = character;
     this.onPress = onPress;
+    this.dell = dell;
   }
 }

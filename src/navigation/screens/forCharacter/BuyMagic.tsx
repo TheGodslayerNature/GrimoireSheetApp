@@ -1,18 +1,45 @@
-import {
-  View,
-  StyleSheet,
-} from "react-native";
+import { View, Text, Modal, Pressable, StyleSheet } from "react-native";
 import React, { useState } from "react";
-import ModalForMagic from "../../../components/modalForMagic/ModalForMagic";
+import Accordion from "../../../components/accordion/Accordion";
 
 //Usar Accordion para o drop
 
-export default function BuyMagic() {
+export default function BuyMagic(props:any) {
+  const [modalVisible, setModalVisible] = useState(false);
+  const { character } = props.route.params;
+
   return (
     <View style={styles.container}>
+      <View>
+        <Modal animationType="slide" visible={modalVisible}>
+          <View style={{ alignItems: "center" }}>
+            <Text style={{ fontWeight: "bold" }}>Adicionar Magias</Text>
+          </View>
 
-      <ModalForMagic/>
+          <Accordion 
+          chrac={character}
+          />
 
+          <Pressable
+            style={{ borderWidth: 10, borderColor: "#FDED00" }}
+            onPress={() => {
+              setModalVisible(false);
+            }}
+          >
+            <Text>Fechar Modal</Text>
+          </Pressable>
+        </Modal>
+
+        <View style={{ flexDirection: "row" }}>
+          <Text>Magic</Text>
+          <Pressable
+            onPress={() => setModalVisible(true)}
+            style={styles.addBtn}
+          >
+            <Text>++</Text>
+          </Pressable>
+        </View>
+      </View>
     </View>
   );
 }

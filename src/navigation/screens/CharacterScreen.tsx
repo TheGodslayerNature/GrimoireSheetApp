@@ -19,7 +19,7 @@ export default function CharacterScreen({ route }: any) {
         component={CharacterStatus}
       />
       <Tab.Screen name={"DificultyTest"} initialParams={{ character }} component={DificultyTest} />
-      <Tab.Screen name={"BuyMagic"} component={BuyMagic} />
+      <Tab.Screen name={"BuyMagic"} initialParams={{ character }} component={BuyMagic} />
     </Tab.Navigator>
   );
 }

@@ -4,14 +4,14 @@ import React, { useEffect, useState } from "react";
 import Bar from "../../../util/bar";
 
 export default function CharacterStatus(props: any) {
-    const { character } = props.route.params;
-    const [life, setLife] = useState(character.lifePoints);
-    const [energy, setEnergy] = useState(character.energy);
-    const [aspectPoint, setAspectPoint] = useState(character.aspectPoints);
-  
+  const { character } = props.route.params;
+  const [life, setLife] = useState(character.lifePoints);
+  const [energy, setEnergy] = useState(character.energy);
+  const [aspectPoint, setAspectPoint] = useState(character.aspectPoints);
+
   return (
     <View style={styles.container}>
-    <ThemedCard>
+      <ThemedCard>
         <Image
           style={styles.imgPortrait}
           source={require("../../../../assets/imgs/anne.jpg")}
@@ -25,41 +25,43 @@ export default function CharacterStatus(props: any) {
 
       <View>
         <Bar
-            currentPoints={life}
-            totalPoints={character.lifePoints}
+          color="red"
+          currentPoints={life}
+          totalPoints={character.lifePoints}
           label={"vida"}
           updatePoints={setLife}
         />
         <Bar
-            currentPoints={energy}
-            totalPoints={character.energy}
+          color="blue"
+          currentPoints={energy}
+          totalPoints={character.energy}
           label={"energia"}
           updatePoints={setEnergy}
         />
         <Bar
-            currentPoints={aspectPoint}
-            totalPoints={character.aspectPoints}
+          color="purple"
+          currentPoints={aspectPoint}
+          totalPoints={character.aspectPoints}
           label={"Pontos de aspecto"}
           updatePoints={setAspectPoint}
         />
       </View>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-    },
-    imgPortrait: {
-      width: 200,
-      height: 200,
-      borderRadius: 100,
-    },
-    btn: {
-      borderWidth: 5,
-      borderColor: "#FDED00",
-      margin: "auto",
-    },
-  });
-  
+  container: {
+    flex: 1,
+  },
+  imgPortrait: {
+    width: 200,
+    height: 200,
+    borderRadius: 100,
+  },
+  btn: {
+    borderWidth: 5,
+    borderColor: "#FDED00",
+    margin: "auto",
+  },
+});

@@ -87,6 +87,10 @@ export default function CharacterScreen({navigation: { navigate } }: any) {
         renderItem={({ item }) => (
           <CharacterView
             character={item}
+            dell={(value) => {
+            AsyncStorage.removeItem(value);
+            }
+            }
             onPress={(character: Character) => { navigate("CharacterScreen", {character})}}
           />
         )}

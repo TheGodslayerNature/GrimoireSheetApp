@@ -1,5 +1,6 @@
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import React, { useState } from "react";
+import AlertModal from "../../components/modalForMagic/AlertModal";
 
 export default function GenerateDice(props: any) {
 
@@ -24,7 +25,8 @@ export default function GenerateDice(props: any) {
       <View style={styles.atributosView}>
       <Pressable
       style={styles.btnAtt}
-      onPress={() => { generateNumber(props.diceType! ,props.numberToRoll)}}
+      onPress={() => {  
+        generateNumber(props.diceType! ,props.numberToRoll)}}
       >
         <Text>{props.numberToRoll}</Text>
         <Text>--</Text>
