@@ -1,12 +1,9 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Picker } from "@react-native-picker/picker";
-import { Arcanas } from "../../components/character/Arcanas";
-import { Character } from "../../components/character/Character";
-import { CharacterClass } from "../../components/character/CharacterClass2";
-import { Player } from "../../components/player/Player";
+import { Arcanas } from "../../model/character/Arcanas";
+import { Character } from "../../model/character/Character";
+import { CharacterClass } from "../../model/character/CharacterClass2";
 import React, { useEffect, useState } from "react";
 import {
-  FlatList,
   Pressable,
   SafeAreaView,
   StatusBar,
@@ -16,13 +13,12 @@ import {
   View,
 } from "react-native";
 
-import StatusPoints from "../../components/statusPoints/statusPoints";
-import { Status, UserStatus } from "../../components/userStatus/UserStatus";
-import personagensData from "../../data/personagens.json";
+import { UserAttributes } from "../../model/userAttributes/UserAttributes";
 import { saveCharacter } from "../../util/Storage";
 import RenderStatus from "../../components/renderStatus/RenderStatus";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "navigation/MainNavigator";
+import LifeAndEnergyInput from "../../components/LifeAndEnergyInput";
 
 interface Props
   extends NativeStackScreenProps<RootStackParamList, "StatusScreen"> {}
@@ -38,8 +34,8 @@ const classes = [
 export default function StatusScreen({ route, navigation }: Props) {
   const [userLevel, setUserLevel] = useState(0);
   const [userName, setUserName] = useState("");
-  const [lifePoints, setLifePoints] = useState(0);
-  const [energy, setEnergy] = useState(0);
+  const [lifePoints, setLifePoints] = useState<number>(0);
+  const [energy, setEnergy] = useState<number>(0);
   const [selectedClassIndex, setSelectedClassIndex] = useState<number>();
   const [statusPoints, setStatusPoints] = useState<Array<number>>();
 
@@ -104,26 +100,9 @@ export default function StatusScreen({ route, navigation }: Props) {
 
       <RenderStatus submit={setStatusPoints} />
 
-      <TextInput
-        style={{
-          borderWidth: 2,
-          textAlign: "center",
-          margin: 10,
-          borderColor: "#FDED00",
-        }}
-        placeholder="Pontos de vida"
-        onChangeText={(lifePoints) => setLifePoints(Number(lifePoints))}
-      />
-
-      <TextInput
-        style={{
-          borderWidth: 2,
-          textAlign: "center",
-          margin: 10,
-          borderColor: "#FDED00",
-        }}
-        placeholder="Pontos de Energia"
-        onChangeText={(energy) => setEnergy(Number(energy))}
+      <LifeAndEnergyInput
+      updateLife={(life:any) => setLifePoints(life)}
+      updateEnergy={(ener:any) => setEnergy(ener)}
       />
 
       <Pressable style={styles.btn}
@@ -147,7 +126,7 @@ export default function StatusScreen({ route, navigation }: Props) {
           let klass = classes[selectedClassIndex];
 
           let character = new Character(
-            new UserStatus(userName, userLevel, statusPoints),
+            new UserAttributes(userName, userLevel, statusPoints),
             Arcanas.DEVIL,
             klass
           );

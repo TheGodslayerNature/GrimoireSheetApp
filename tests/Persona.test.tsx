@@ -1,6 +1,6 @@
-import { Arcanas } from "../src/components/character/Arcanas";
-import { Mag, MagType } from "../src/components/mag/Mag";
-import { Persona } from "../src/components/persona/Persona";
+import { Arcanas } from "../src/model/character/Arcanas";
+import { Mag, MagType } from "../src/model/mag/Mag";
+import { Persona } from "../src/model/persona/Persona";
 
 test('should create on persona with the right values', () => {
     var conviccao:String = "Armonia eterna"

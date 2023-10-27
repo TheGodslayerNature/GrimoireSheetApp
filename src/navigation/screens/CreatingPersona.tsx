@@ -8,10 +8,10 @@ import {
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import React, { useState } from "react";
-import { Persona } from "../../components/persona/Persona";
-import { Arcanas } from "../../components/character/Arcanas";
+import { Persona } from "../../model/persona/Persona";
+import { Arcanas } from "../../model/character/Arcanas";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { MagType } from "../../components/mag/Mag";
+import { MagType } from "../../model/mag/Mag";
 import { RouteProp } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "navigation/MainNavigator";

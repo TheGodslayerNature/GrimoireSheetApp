@@ -1,9 +1,9 @@
 import { Player} from '../src/components/player/Player';
 import { InvalidEmailException } from '../src/components/player/InvalidEmailException';
-import { Character } from '../src/components/character/Character';
-import { User } from '../src/components/userStatus/UserStatus';
-import { CharacterClass, Klass } from '../src/components/character/CharacterClass';
-import { Arcanas } from '../src/components/character/Arcanas';
+import { Character } from '../src/model/character/Character';
+import { User } from '../src/model/userAttributes/UserAttributes';
+import { CharacterClass, Klass } from '../src/model/character/CharacterClass';
+import { Arcanas } from '../src/model/character/Arcanas';
 
 const klass:CharacterClass = new CharacterClass(Klass.JOKER);
 test('should create an player object with the email and his password', () => {

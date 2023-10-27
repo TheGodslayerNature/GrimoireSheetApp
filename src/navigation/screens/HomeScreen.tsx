@@ -11,17 +11,10 @@ import {
   Dimensions,
 } from "react-native";
 
-import { Arcanas } from "../../components/character/Arcanas";
-import { Character } from "../../components/character/Character";
-import { CharacterClass } from "../../components/character/CharacterClass2";
+import { Character } from "../../model/character/Character";
 import CharacterView from "../../components/characters/CharactersView";
-import { Mag, MagType } from "../../components/mag/Mag";
-import { Persona } from "../../components/persona/Persona";
-import { Player } from "../../components/player/Player";
-import { UserStatus } from "../../components/userStatus/UserStatus";
-import personagensData from "../../data/personagens.json";
+import { Persona } from "../../model/persona/Persona";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import CharacterStatus from "./CharacterScreen";
 import AttributesScreen from "./StatusScreen";
 import CreatingPersona from "./CreatingPersona";
 
@@ -33,7 +26,6 @@ Azul petroleo: #084d6e
 amarelo: #FDED00;
 */
 
-var valoresDoJson = personagensData[0];
 
 export default function CharacterScreen({navigation: { navigate } }: any) {
   const [characters, setCharacters] = useState([] as Character[]);

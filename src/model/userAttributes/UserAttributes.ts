@@ -1,6 +1,6 @@
 const INITIAL_MAX_POINTS:number = 18;
 
-export class UserStatus {
+export class UserAttributes {
 
     userName: string;
     userLevel: number;

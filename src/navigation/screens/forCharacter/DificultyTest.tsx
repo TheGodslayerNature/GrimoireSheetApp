@@ -1,11 +1,10 @@
 import { View, Text, FlatList, Pressable, StyleSheet } from "react-native";
 import React, { useEffect, useState } from "react";
-import { Status } from "../../../components/userStatus/UserStatus";
+import { Status } from "../../../model/userAttributes/UserAttributes";
 import GenerateDice from "../../../components/randomDice/GenerateDice";
-import { Picker } from "@react-native-picker/picker";
-import { Character } from "components/character/Character";
-import { Persona } from "../../../components/persona/Persona";
-import { Arcanas } from "../../../components/character/Arcanas";
+import { Character } from "model/character/Character";
+import { Persona } from "../../../model/persona/Persona";
+import { Arcanas } from "../../../model/character/Arcanas";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function DificultyTest(props: any) {

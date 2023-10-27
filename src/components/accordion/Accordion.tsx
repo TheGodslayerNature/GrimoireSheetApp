@@ -1,9 +1,8 @@
 import { View, Text } from "react-native";
 import React, { useState} from "react";
 import { ListItem } from "@rneui/themed";
-import { Icon } from "react-native-elements";
-import { Mag, MagType } from "../mag/Mag";
-import magias from "../mag/mags.json"
+import { Mag, MagType } from "../../model/mag/Mag";
+import magias from "../../model/mag/mags.json"
 
 const categoria: string = "Atordoar, Status, Físico(A)";
 const alcance: string = "1 alvo dentro de 5 metros";

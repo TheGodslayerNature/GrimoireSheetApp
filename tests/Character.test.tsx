@@ -1,8 +1,8 @@
-import { Arcana, Character} from "../src/components/character/Character";
+import { Arcana, Character} from "../src/model/character/Character";
 import { Player} from '../src/components/player/Player';
-import { CharacterClass, Klass } from "../src/components/character/CharacterClass";
-import { Status, User } from "../src/components/userStatus/UserStatus";
-import { Arcanas } from "../src/components/character/Arcanas";
+import { CharacterClass, Klass } from "../src/model/character/CharacterClass";
+import { Status, User } from "../src/model/userAttributes/UserAttributes";
+import { Arcanas } from "../src/model/character/Arcanas";
 
 const player: Player = new Player("jj@gmail.com", "zetaman12");
 const klass:CharacterClass = new CharacterClass(Klass.JOKER); 

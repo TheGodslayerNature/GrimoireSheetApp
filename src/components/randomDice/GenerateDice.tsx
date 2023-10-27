@@ -1,7 +1,5 @@
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import React, { useState } from "react";
-import { Image } from "react-native-elements";
-import { Character } from "../../components/character/Character";
 
 export default function GenerateDice(props: any) {
 

@@ -1,5 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Character } from "../components/character/Character";
+import { Character } from "../model/character/Character";
 
 
 export const saveCharacter = (character:Character) => {

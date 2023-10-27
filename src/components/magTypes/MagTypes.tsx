@@ -1,10 +1,8 @@
 import { View, Text } from 'react-native'
 import { Picker } from "@react-native-picker/picker";
 import React, {useState} from 'react'
-import { MagType } from '../../components/mag/Mag';
 
 export default function MagTypes(props: any) {
-  //const [magTypeIndex, setMagTypeIndex] = useState<number>();
 
   return (
     <View>
@@ -18,7 +16,3 @@ export default function MagTypes(props: any) {
     </View>
   )
 }
-
-{/* {Object.keys(MagType).map( (magType, i) => (
-            <Picker.Item key={i} value={i} label={props.magTypeIndex}/>
-          ))} */}

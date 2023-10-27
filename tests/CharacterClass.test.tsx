@@ -1,4 +1,4 @@
-import { CharacterClass } from "../src/components/character/CharacterClass";
+import { CharacterClass } from "../src/model/character/CharacterClass";
 
 test('CharacterClass should have skills for the joker class', () => {
     var klass: CharacterClass = new CharacterClass();

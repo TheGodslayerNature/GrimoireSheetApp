@@ -1,7 +1,7 @@
 import { View, Text, FlatList, Pressable, StyleSheet } from "react-native";
 import React, { useState } from "react";
-import StatusPoints from "../statusPoints/statusPoints";
-import { Status } from "../userStatus/UserStatus";
+import AttributesView from "../attributesView/AttributesView";
+import { Status } from "../../model/userAttributes/UserAttributes";
 
 type Props = {
   submit: (stats: Array<number>) => void;
@@ -31,7 +31,7 @@ export default function RenderStatus(props: Props) {
           numColumns={Math.ceil(STATUS.length / 2)}
           data={STATUS}
           renderItem={({ item: { status, update } }) => (
-            <StatusPoints statusName={Status[status]} setPoints={update} />
+            <AttributesView statusName={Status[status]} setPoints={update} />
           )}
         />
       </View>

@@ -1,5 +1,5 @@
 import ThemedCard from "@rneui/themed/dist/Card";
-import { Character } from "components/character/Character";
+import { Character } from "model/character/Character";
 import React from "react";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { Icon } from "react-native-elements";

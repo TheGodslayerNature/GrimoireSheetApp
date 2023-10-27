@@ -1,12 +1,11 @@
-import { Player } from "components/player/Player";
 import { CharacterClass } from "./CharacterClass2";
-import { Status, UserStatus } from "../userStatus/UserStatus";
+import { Status, UserAttributes } from "../userAttributes/UserAttributes";
 import { Arcanas } from "./Arcanas";
-import { Persona } from "components/persona/Persona";
+import { Persona } from "model/persona/Persona";
 
 export class Character{
     
-    user:UserStatus;
+    user:UserAttributes;
     arcanas:Arcanas;
     klass:CharacterClass;
     aspectPoints:number;
@@ -15,7 +14,7 @@ export class Character{
     persona:Persona[] = [];
     lifePoints:number;
 
-    constructor(user:UserStatus, arcanas:Arcanas,klass:CharacterClass,) 
+    constructor(user:UserAttributes, arcanas:Arcanas,klass:CharacterClass,) 
         {
             this.user = user;
             this.arcanas = arcanas;

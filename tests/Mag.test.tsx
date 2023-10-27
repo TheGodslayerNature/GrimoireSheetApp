@@ -1,4 +1,4 @@
-import { Mag, MagType } from "../src/components/mag/Mag";
+import { Mag, MagType } from "../src/model/mag/Mag";
 
 test('should create an type of magic with her effect', () => {
     var tier:number = 1;

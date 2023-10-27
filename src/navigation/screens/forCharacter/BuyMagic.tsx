@@ -9,7 +9,7 @@ import {
   FlatList,
 } from "react-native";
 import React, { useState } from "react";
-import { Mag, MagType } from "../../../components/mag/Mag";
+import { Mag, MagType } from "../../../model/mag/Mag";
 import Accordion from "../../../components/accordion/Accordion";
 
 //Usar Accordion para o drop

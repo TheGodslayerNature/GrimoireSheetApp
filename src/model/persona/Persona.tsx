@@ -1,5 +1,5 @@
-import { Arcanas } from "components/character/Arcanas";
-import { Mag, MagType } from "components/mag/Mag";
+import { Arcanas } from "model/character/Arcanas";
+import { Mag, MagType } from "model/mag/Mag";
 
 export class Persona {
     name:string;

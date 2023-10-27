@@ -1,4 +1,4 @@
-import { Item } from "../src/components/item/Item";
+import { Item } from "../src/model/item/Item";
 test('The defense item should have the right name and defense points', () => { 
    var item:Item = new Item();
 
