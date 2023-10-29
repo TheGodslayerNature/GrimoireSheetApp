@@ -29,7 +29,6 @@ amarelo: #FDED00;
 
 export default function CharacterScreen({navigation: { navigate } }: any) {
   const [characters, setCharacters] = useState([] as Character[]);
-  const [personas, setPersonas] = useState([] as Persona[]);
 
   useEffect(() => {
     (async () => {
@@ -45,22 +44,6 @@ export default function CharacterScreen({navigation: { navigate } }: any) {
         setCharacters(loadedChars);
       } catch (error) {
         // Error retrieving data
-        console.log(error);
-      }
-    })();
-  }, []);
-
-  useEffect(() => {
-    (async () => {
-      try {
-        let value = await AsyncStorage.getItem("personas");
-        let ids: string[] = value ? JSON.parse(value) : [];
-        console.log(ids);
-        let pairs = await AsyncStorage.multiGet(ids);
-        let loadedPersonas: Persona[] = pairs.map((p) => JSON.parse(p[1]!));
-        console.log(loadedPersonas);
-        setPersonas(loadedPersonas);
-      } catch (error) {
         console.log(error);
       }
     })();
@@ -87,10 +70,7 @@ export default function CharacterScreen({navigation: { navigate } }: any) {
         renderItem={({ item }) => (
           <CharacterView
             character={item}
-            dell={(value) => {
-            AsyncStorage.removeItem(value);
-            }
-            }
+           
             onPress={(character: Character) => { navigate("CharacterScreen", {character})}}
           />
         )}

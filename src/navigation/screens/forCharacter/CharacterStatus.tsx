@@ -2,12 +2,26 @@ import { View, Text, Image, StyleSheet, Pressable } from "react-native";
 import ThemedCard from "@rneui/themed/dist/Card";
 import React, { useEffect, useState } from "react";
 import Bar from "../../../util/bar";
+import { getCharacter } from "../../../util/Storage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function CharacterStatus(props: any) {
   const { character } = props.route.params;
   const [life, setLife] = useState(character.lifePoints);
   const [energy, setEnergy] = useState(character.energy);
   const [aspectPoint, setAspectPoint] = useState(character.aspectPoints);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const value = await getCharacter(character.user.userName);
+        console.log(value);
+      } catch (error) {
+        // Error retrieving data
+        console.log(error);
+      }
+    })();
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -24,12 +38,20 @@ export default function CharacterStatus(props: any) {
       </ThemedCard>
 
       <View>
+        {/*
+        //Modificando a vida funcionando ainda precisa de modificação
+
+*/}
         <Bar
           color="red"
           currentPoints={life}
           totalPoints={character.lifePoints}
           label={"vida"}
-          updatePoints={setLife}
+          updatePoints={async () => {
+            let data = await getCharacter(character.user.userName);
+            data.lifePoints--;
+            AsyncStorage.setItem(data.user.userName, JSON.stringify(data));
+          }}
         />
         <Bar
           color="blue"

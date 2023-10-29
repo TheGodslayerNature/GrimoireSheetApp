@@ -1,10 +1,21 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import ThemedCard from "@rneui/themed/dist/Card";
 import { Character } from "model/character/Character";
 import React from "react";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { Icon } from "react-native-elements";
 
-export default function CharacterView({character, onPress, dell}: Props) {
+
+let deleteCharacter = async (key:string) => {
+  try {
+    await AsyncStorage.removeItem(key);
+  }
+  catch(err){
+    console.log(err);
+  }
+} 
+
+export default function CharacterView({character, onPress}: Props) {
   return (
     <View style={styles.container}>
       <ThemedCard>
@@ -21,7 +32,7 @@ export default function CharacterView({character, onPress, dell}: Props) {
         </Pressable>
         <Pressable
         onPress={() => {
-          dell(character.user.userName)
+          deleteCharacter(character.user.userName)
         }}
           style={{
             alignSelf: "flex-start"
@@ -73,11 +84,9 @@ const styles = StyleSheet.create({
 class Props {
   character: Character;
   onPress: (c: Character) => void;
-  dell: (c: string) => void;
 
-  constructor(character: Character, onPress: (c: Character) => void, dell: () => void ) {
+  constructor(character: Character, onPress: (c: Character) => void) {
     this.character = character;
     this.onPress = onPress;
-    this.dell = dell;
   }
 }

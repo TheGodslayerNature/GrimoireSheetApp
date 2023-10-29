@@ -14,3 +14,12 @@ export const saveCharacter = (character:Character) => {
         ]).then(() => console.log("saved!!"));
       });
 }
+
+export const getCharacter = async (key:string) => {
+  try {
+    const value = await AsyncStorage.getItem(key);
+    return JSON.parse(value!);
+  } catch(err) {
+    console.log(err)
+  }
+}
