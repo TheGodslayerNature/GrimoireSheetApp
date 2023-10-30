@@ -8,6 +8,10 @@ import { Icon } from "react-native-elements";
 
 let deleteCharacter = async (key:string) => {
   try {
+    let value = await AsyncStorage.getItem("characters");
+    let ids: string[] = value ? JSON.parse(value) : [];
+    ids.forEach((item, index) => { if(item === key){ ids.splice(index, 1)} })
+    await AsyncStorage.setItem("characters",JSON.stringify(ids));
     await AsyncStorage.removeItem(key);
   }
   catch(err){
