@@ -6,16 +6,14 @@ export default function bar({
   currentPoints,
   totalPoints,
   label,
-  lessPoints,
-  // updatePoints,
+  updatePoints,
   color,
 }: BarProps) {
   return (
     <View style={{ flexDirection: "row" }}>
       <Pressable
         style={styles.btn}
-        onPress={ () => lessPoints()}
-        // onPress={() => updatePoints(currentPoints - 1)}
+        onPress={async () => updatePoints(currentPoints - 1)}
       >
         <Text>-1</Text>
       </Pressable>
@@ -27,10 +25,10 @@ export default function bar({
       >
         <Text style={styles.textStyle}>{label + ": " + currentPoints + " / " + totalPoints}</Text>
       </Progress.Bar>
+      
       <Pressable
         style={styles.btn}
-        
-        // onPress={() => updatePoints(currentPoints + 1)}
+        onPress={async () => updatePoints(currentPoints + 1)}
       >
         <Text>+1</Text>
       </Pressable>
@@ -53,7 +51,7 @@ type BarProps = {
   totalPoints: number;
   label: string;
   color: string;
-  lessPoints: () => void;
+  updatePoints: (value:number) => void;
   // morePoints: () => void;
   // updatePoints: (point: number) => void;
 }

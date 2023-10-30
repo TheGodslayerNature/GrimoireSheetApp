@@ -1,12 +1,13 @@
 import React from "react";
 
 import StatusScreen from "./screens/CreatingCharacter";
-import HomeScreen from "./screens/HomeScreen";
 import CreatingPersona from "./screens/CreatingPersona";
 import CharacterScreen from "./screens/CharacterScreen";
+import HomeScreen from "./screens/HomeScreen";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Persona } from "model/persona/Persona";
+import { Character } from "model/character/Character";
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 
@@ -15,10 +16,10 @@ type SavePersonaCallback = {
 };
 
 export type RootStackParamList = {
-  HomeScreen: undefined;
+  HomeScreen: {characterIds: string[]} | undefined;
   StatusScreen: { createdPersona: Persona } | undefined;
   CreatingPersona: undefined;
-  CharacterScreen: undefined;
+  CharacterScreen: {character: Character};
 };
 
 const MainNavigator = () => {

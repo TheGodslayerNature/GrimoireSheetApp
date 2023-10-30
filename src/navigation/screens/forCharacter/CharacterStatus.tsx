@@ -12,6 +12,16 @@ export default function CharacterStatus(props: any) {
   const [energy, setEnergy] = useState(character.energy);
   const [aspectPoint, setAspectPoint] = useState(character.aspectPoints);
 
+  // let reduceLife = async () => {
+  //   let data = await getCharacter(character.user.userName);
+  //   let v = character.currentLife;
+  //   setCurrentLife(--v);
+  //   data.currentLife = --character.currentLife;
+  //   console.log(`data : ${data.currentLife}`);
+  //   AsyncStorage.setItem(data.user.userName, JSON.stringify(data));
+  //   return data.cur
+  // };
+
   return (
     <View style={styles.container}>
       <ThemedCard>
@@ -27,36 +37,38 @@ export default function CharacterStatus(props: any) {
       </ThemedCard>
 
       <View>
-       
         <Bar
           color="red"
           currentPoints={character.currentLife}
           totalPoints={character.lifePoints}
           label={"vida"}
-          lessPoints={async () => {
-            let data = await getCharacter(character.user.userName);
-            let v = character.currentLife
-            setCurrentLife(--v);
-            data.currentLife = --character.currentLife;
-            console.log(`data : ${data.currentLife}`)
-            AsyncStorage.setItem(data.user.userName, JSON.stringify(data))
+          updatePoints={async (point:number) => {
+            setCurrentLife(point);
+            character.currentLife = point;
+            await AsyncStorage.setItem(character.user.userName, JSON.stringify(character))
           }}
         />
         <Bar
           color="blue"
-          currentPoints={energy}
+          currentPoints={character.currentEnergy}
           totalPoints={character.energy}
-          lessPoints={() => {}}
           label={"energia"}
-          // updatePoints={setEnergy}
+          updatePoints={async (point:number) => {
+            setEnergy(point);
+            character.currentEnergy = point;
+            await AsyncStorage.setItem(character.user.userName, JSON.stringify(character))
+          }}
         />
         <Bar
           color="purple"
-          currentPoints={aspectPoint}
+          currentPoints={character.currentAspectPoint}
           totalPoints={character.aspectPoints}
           label={"Pontos de aspecto"}
-          lessPoints={() => {}}
-          // updatePoints={setAspectPoint}
+          updatePoints={async (point:number) => {
+            setAspectPoint(point);
+            character.currentAspectPoint = point;
+            await AsyncStorage.setItem(character.user.userName, JSON.stringify(character))
+          }}
         />
       </View>
     </View>

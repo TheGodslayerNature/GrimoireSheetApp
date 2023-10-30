@@ -5,10 +5,15 @@ import { StyleSheet } from "react-native";
 import BuyMagic from "./forCharacter/BuyMagic";
 import CharacterStatus from "./forCharacter/CharacterStatus";
 import DificultyTest from "./forCharacter/DificultyTest";
+import { RootStackParamList } from "navigation/MainNavigator";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 const Tab = createBottomTabNavigator();
 
-export default function CharacterScreen({ route }: any) {
+interface Props
+  extends NativeStackScreenProps<RootStackParamList, "CharacterScreen"> {}
+
+export default function CharacterScreen({ route }: Props) {
   const { character } = route.params;
 
   return (

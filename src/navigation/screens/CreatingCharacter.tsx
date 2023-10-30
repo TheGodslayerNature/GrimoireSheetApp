@@ -24,12 +24,13 @@ import CubeInput from "../../components/myInputs/cubeInput";
 interface Props
   extends NativeStackScreenProps<RootStackParamList, "StatusScreen"> {}
 
-const classes = [
-  CharacterClass.cartaCoringa(),
-  CharacterClass.emergente(),
-  CharacterClass.sombra(),
-  CharacterClass.supressor(),
-  CharacterClass.tocha(),
+const selectClassOptions = [
+  { id: 0, value: {name: "Selecione a Classe", skills: []} },
+  { id: 1, value: CharacterClass.cartaCoringa() },
+  { id: 2, value: CharacterClass.emergente() },
+  { id: 3, value: CharacterClass.sombra() },
+  { id: 4, value: CharacterClass.supressor() },
+  { id: 5, value: CharacterClass.tocha() },
 ];
 
 let character: Character;
@@ -52,7 +53,8 @@ export default function StatusScreen({ route, navigation }: Props) {
   const [userName, setUserName] = useState("");
   const [lifePoints, setLifePoints] = useState<number>(0);
   const [energy, setEnergy] = useState<number>(0);
-  const [selectedClassIndex, setSelectedClassIndex] = useState<number>();
+  const [aspectPoint, setAspectPoint] = useState<number>(0);
+  const [selectedClassIndex, setSelectedClassIndex] = useState(0);
   const [statusPoints, setStatusPoints] = useState<Array<number>>();
 
   useEffect(() => {
@@ -76,15 +78,18 @@ export default function StatusScreen({ route, navigation }: Props) {
           }}
         />
 
-        <CubeInput update={(level:any) => setUserLevel(level)} />
+        <CubeInput update={(level: any) => setUserLevel(level)} />
 
         <Picker
           style={{ width: 150, height: 50 }}
           selectedValue={selectedClassIndex}
           onValueChange={(i) => setSelectedClassIndex(i)}
         >
-          {classes.map((classe, i) => (
+          {/* {classes.map((classe, i) => (
             <Picker.Item key={i} value={i} label={classe.name} />
+          ))} */}
+          {selectClassOptions.map(({ id, value }) => (
+            <Picker.Item key={id} value={id} label={value.name} />
           ))}
         </Picker>
       </View>
@@ -96,6 +101,17 @@ export default function StatusScreen({ route, navigation }: Props) {
         updateEnergy={(ener: any) => setEnergy(ener)}
       />
 
+      <TextInput
+        style={{
+          borderWidth: 2,
+          textAlign: "center",
+          margin: 10,
+          borderColor: "#FDED00",
+        }}
+        placeholder="Pontos de aspectos"
+        onChangeText={(aspect) => setAspectPoint(Number(aspect))}
+      />
+
       <Pressable
         style={styles.btn}
         onPress={() => navigation.navigate("CreatingPersona")}
@@ -104,8 +120,8 @@ export default function StatusScreen({ route, navigation }: Props) {
       </Pressable>
 
       <Pressable
-        onPress={() => {
-          if (!selectedClassIndex) {
+        onPress={async () => {
+          if (selectedClassIndex == 0) {
             console.log("classe nao selecionada");
             return;
           }
@@ -115,20 +131,23 @@ export default function StatusScreen({ route, navigation }: Props) {
             return;
           }
 
-          let klass = classes[selectedClassIndex];
+          let klass = selectClassOptions[selectedClassIndex].value;
 
           criarCharacter(userName, userLevel, statusPoints!, klass);
 
           character.setLifePoints(lifePoints);
           character.setCurrentLifePoints(lifePoints);
           character.setEnergy(energy);
+          character.setCurrentEnergy(energy);
+          character.setAspectPoints(aspectPoint);
+          character.setCurrentAspectPoint(aspectPoint);
           console.log(character);
 
           character.setPersona(route.params.createdPersona);
 
-          saveCharacter(character);
+          let characterIds = await saveCharacter(character);
 
-          navigation.navigate("HomeScreen");
+          navigation.navigate("HomeScreen", {characterIds});
         }}
         style={styles.btn}
       >
