@@ -1,6 +1,6 @@
 import React from "react";
 
-import StatusScreen from "./screens/StatusScreen";
+import StatusScreen from "./screens/CreatingCharacter";
 import HomeScreen from "./screens/HomeScreen";
 import CreatingPersona from "./screens/CreatingPersona";
 import CharacterScreen from "./screens/CharacterScreen";

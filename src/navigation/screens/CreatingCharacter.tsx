@@ -120,6 +120,7 @@ export default function StatusScreen({ route, navigation }: Props) {
           criarCharacter(userName, userLevel, statusPoints!, klass);
 
           character.setLifePoints(lifePoints);
+          character.setCurrentLifePoints(lifePoints);
           character.setEnergy(energy);
           console.log(character);
 

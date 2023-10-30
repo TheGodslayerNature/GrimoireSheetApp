@@ -15,7 +15,7 @@ import { Character } from "../../model/character/Character";
 import CharacterView from "../../components/characters/CharactersView";
 import { Persona } from "../../model/persona/Persona";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import AttributesScreen from "./StatusScreen";
+import AttributesScreen from "./CreatingCharacter";
 import CreatingPersona from "./CreatingPersona";
 
 /*

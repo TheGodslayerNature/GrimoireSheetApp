@@ -13,6 +13,7 @@ export class Character{
     damageReduction:number;
     persona:Persona[] = [];
     lifePoints:number;
+    currentLife:number = 0;
 
     constructor(user:UserAttributes, arcanas:Arcanas,klass:CharacterClass,) 
         {
@@ -51,6 +52,10 @@ export class Character{
 
     setLifePoints(lifePoints:number) {
         this.lifePoints = lifePoints;
+    }
+
+    setCurrentLifePoints(currentLife:number) {
+        this.currentLife = currentLife;
     }
 
     setPersona(persona:Persona) {
