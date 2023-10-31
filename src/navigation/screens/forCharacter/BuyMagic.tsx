@@ -1,10 +1,11 @@
-import { View, Text, Modal, Pressable, StyleSheet } from "react-native";
+import { View, Text, Modal, Pressable, StyleSheet, FlatList } from "react-native";
 import React, { useState } from "react";
 import Accordion from "../../../components/accordion/Accordion";
+import ListMagics from "../../../components/accordion/ListMagics";
 
 //Usar Accordion para o drop
 
-export default function BuyMagic(props:any) {
+export default function BuyMagic(props: any) {
   const [modalVisible, setModalVisible] = useState(false);
   const { character } = props.route.params;
 
@@ -15,11 +16,7 @@ export default function BuyMagic(props:any) {
           <View style={{ alignItems: "center" }}>
             <Text style={{ fontWeight: "bold" }}>Adicionar Magias</Text>
           </View>
-
-          <Accordion 
-          chrac={character}
-          />
-
+          <Accordion chrac={character} />
           <Pressable
             style={{ borderWidth: 10, borderColor: "#FDED00" }}
             onPress={() => {
@@ -36,10 +33,16 @@ export default function BuyMagic(props:any) {
             onPress={() => setModalVisible(true)}
             style={styles.addBtn}
           >
-            <Text>++</Text>
+            <Text>Comprar</Text>
           </Pressable>
         </View>
       </View>
+
+      <ListMagics character={character}/>
+
+      <Accordion
+      chrac={character}
+      />
     </View>
   );
 }

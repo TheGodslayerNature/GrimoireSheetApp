@@ -1,30 +1,52 @@
-import { View, Text, Pressable, StyleSheet } from "react-native";
+import { View, Text, Pressable, StyleSheet, FlatList } from "react-native";
 import React, { useState } from "react";
 import { ListItem } from "@rneui/themed";
 import { Mag, MagType } from "../../model/mag/Mag";
 import magias from "../../model/mag/mags.json";
 import { Character } from "../../model/character/Character";
 import { saveCharacter } from "../../util/Storage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 let tier1: Mag[] = magias.physical.Tier1 as Mag[];
 
 type Props = {
-  chrac:Character;
-}
+  chrac: Character;
+};
 
-export default function Accordion({chrac}:Props) {
+export default function Accordion({ chrac }: Props) {
   const [expanded, setExpanded] = useState(false);
 
   return (
     <View>
-      <ListItem.Accordion
+      <FlatList
+      data={tier1}
+      renderItem={({item, index}) => (
+        <ListItem.Accordion
         content={
-          <>
-            {/* <Icon name="place" size={30} /> */}
-            <ListItem.Content>
-              <ListItem.Title>{tier1[0].name}</ListItem.Title>
-            </ListItem.Content>
-          </>
+          <ListItem.Title>{item.name}</ListItem.Title>
+        }
+        isExpanded={expanded}
+        onPress={() => setExpanded(!expanded)}
+        >
+          <ListItem.Content>
+          <ListItem.Title>{"Tier: " + item.tier}</ListItem.Title>
+          <Text>{item.efeito}</Text>
+          <Pressable onPress={() => {}}><Text>Adicionar</Text></Pressable>
+          </ListItem.Content>
+        </ListItem.Accordion>
+      )}
+      />
+      {/* <ListItem.Accordion
+        content={
+          <ListItem.Content>
+            <ListItem.Title>
+              <FlatList
+                data={tier1}
+                renderItem={({ item, index }) => <Text>{item.name}
+                </Text>}
+              />
+            </ListItem.Title>
+          </ListItem.Content>
         }
         isExpanded={expanded}
         onPress={() => {
@@ -36,20 +58,22 @@ export default function Accordion({chrac}:Props) {
             <ListItem.Content>
               <ListItem.Title>{"Tier: " + l.tier}</ListItem.Title>
               <Text>{l.efeito}</Text>
-              {/* <ListItem.Subtitle>{l.subtitle}</ListItem.Subtitle> */}
-              <Pressable style={styles.btn}
-              onPress={() => { 
-                chrac.persona[0].magDeck.push(tier1[0]);
-                saveCharacter(chrac);
-              }}
+              <Pressable
+                style={styles.btn}
+                onPress={async () => {
+                  chrac.persona[0].magDeck.push(tier1[0]);
+                  await AsyncStorage.setItem(
+                    chrac.user.userName,
+                    JSON.stringify(chrac)
+                  );
+                }}
               >
                 <Text>Adiconar</Text>
               </Pressable>
             </ListItem.Content>
-            <ListItem.Chevron />
           </ListItem>
         ))}
-      </ListItem.Accordion>
+      </ListItem.Accordion> */}
     </View>
   );
 }

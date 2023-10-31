@@ -30,25 +30,6 @@ interface Props
 export default function HomeScreen({ navigation, route }: Props) {
   const [characters, setCharacters] = useState([] as Character[]);
 
-  // useEffect(() => {
-  //   (async () => {
-  //     try {
-  //       const value = await AsyncStorage.getItem("characters");
-  //       let ids: string[] = value ? JSON.parse(value) : [];
-  //       console.log(ids);
-  //       let pairs = await AsyncStorage.multiGet(ids);
-  //       let loadedChars: Character[] = pairs
-  //         .filter((p) => p[1] != null)
-  //         .map((p) => JSON.parse(p[1]!));
-  //       console.log(loadedChars);
-  //       setCharacters(loadedChars);
-  //     } catch (error) {
-  //       // Error retrieving data
-  //       console.log(error);
-  //     }
-  //   })();
-  // }, [characters]);
-
   useEffect(() => {
     (async () => {
       const characterIds = route.params?.characterIds;
