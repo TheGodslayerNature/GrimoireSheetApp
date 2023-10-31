@@ -1,21 +1,29 @@
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import React, { useState } from "react";
-import AlertModal from "../../components/modalForMagic/AlertModal";
-
+import PopModal from "../../components/myModals/PopModal";
 export default function GenerateDice(props: any) {
+  const [modalVisible, setModalVisible] = useState(false);
+  const [stringFormatter, setStringeFormatter] = useState<string>();
 
   let generateNumber = (dice:number, quantidadeDeVezes:number) => {
     const min = 1;
     const max = dice;
     let str = "";
+    let sum = 0;
+    let otherStr = '';
+
     for(let i = 0; i < quantidadeDeVezes; i++) {
       const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+      sum += randomNumber;
+      otherStr += `[${randomNumber.toString()}]`
       str = str + "roll " + randomNumber.toString() + ", ";
     }
     console.log("valor: " + str + "\n");
-  }
+    console.log(`A soma dos dados é ${sum}`)
+    console.log(`Dados: ${otherStr} = ${sum}`);
 
-  // { console.log(() => charac.getEnergy())}
+    setStringeFormatter(`Dados: ${otherStr} = ${sum}`); 
+  }
 
   return (
     <View style={{ alignItems: 'center'}}>
@@ -25,13 +33,23 @@ export default function GenerateDice(props: any) {
       <View style={styles.atributosView}>
       <Pressable
       style={styles.btnAtt}
-      onPress={() => {  
-        generateNumber(props.diceType! ,props.numberToRoll)}}
+      onPress={() => 
+        {  generateNumber(props.diceType! ,props.numberToRoll);
+          setModalVisible(true);
+        }
+      }
       >
         <Text>{props.numberToRoll}</Text>
         <Text>--</Text>
         <Text>{props.attType}</Text>
       </Pressable>
+
+      <PopModal
+      modalVisible={modalVisible}
+      setModalVisible={setModalVisible}
+      attribute={props.attType}
+      dice={stringFormatter}
+      />
       </View>
     </View>
   );

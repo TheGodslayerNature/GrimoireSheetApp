@@ -10,7 +10,7 @@ import {
 import React, { useState } from "react";
 import { Status } from "../../../model/userAttributes/UserAttributes";
 import GenerateDice from "../../../components/randomDice/GenerateDice";
-import AlertModal from "../../../components/modalForMagic/AlertModal";
+import PopModal from "../../../components/myModals/PopModal";
 
 export default function DificultyTest(props: any) {
   const { character } = props.route.params;
