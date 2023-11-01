@@ -2,7 +2,6 @@ import { View, Text, FlatList, Pressable } from "react-native";
 import { ListItem } from "@rneui/themed";
 import React, { useState } from "react";
 import { Character } from "../../model/character/Character";
-import Accordion from "./Accordion";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function ListMagics({ character }: Props) {

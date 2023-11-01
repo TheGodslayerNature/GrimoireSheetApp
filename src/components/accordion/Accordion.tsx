@@ -47,8 +47,12 @@ export default function Accordion({ chrac }: Props) {
                 <ListItem.Content>
                   <ListItem.Title>{item.name}</ListItem.Title>
                   <ListItem.Subtitle>{item.categoria}</ListItem.Subtitle>
+                  <Text>Alcance: {item.alcance}</Text>
+                  <Text>Efeito: {item.efeito}</Text>
                   <Text>Dano: {item.damage}</Text>
+                  <Text>Descrição: {item.descricao}</Text>
                   <Pressable
+                  style={styles.btn}
                   onPress={() => {
 
                     chrac.persona[0].magDeck.push(item);

@@ -9,7 +9,6 @@ import {
 import ThemedCard from "@rneui/themed/dist/Card";
 import React, { useEffect, useState } from "react";
 import Bar from "../../../util/bar";
-import { getCharacter } from "../../../util/Storage";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function CharacterStatus(props: any) {

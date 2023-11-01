@@ -85,9 +85,6 @@ export default function StatusScreen({ route, navigation }: Props) {
           selectedValue={selectedClassIndex}
           onValueChange={(i) => setSelectedClassIndex(i)}
         >
-          {/* {classes.map((classe, i) => (
-            <Picker.Item key={i} value={i} label={classe.name} />
-          ))} */}
           {selectClassOptions.map(({ id, value }) => (
             <Picker.Item key={id} value={id} label={value.name} />
           ))}

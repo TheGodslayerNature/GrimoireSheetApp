@@ -23,6 +23,25 @@ interface Props
 //   onSavePersona: (persona: Persona) => void;
 // }
 
+const selectMagicOptions = [
+  { id: 0, value: { name: "Selecione uma tipo de magia", MagType: [] } },
+  { id: 1, value: { name: MagType.PHYSICAL, type: MagType.PHYSICAL } },
+  { id: 2, value: { name: MagType.FIRE, type: MagType.FIRE } },
+  { id: 3, value: { name: MagType.ICE, type: MagType.ICE } },
+  { id: 4, value: { name: MagType.WIND, type: MagType.WIND } },
+  { id: 5, value: { name: MagType.LIGHTNING, type: MagType.LIGHTNING } },
+  { id: 6, value: { name: MagType.LIGHT, type: MagType.LIGHT } },
+  { id: 7, value: { name: MagType.DARKNESS, type: MagType.DARKNESS } },
+  { id: 8, value: { name: MagType.OMNIPOTENT, type: MagType.OMNIPOTENT } },
+  { id: 9, value: { name: MagType.HEALING, type: MagType.HEALING } },
+  { id: 10, value: { name: MagType.DEFENSE, type: MagType.DEFENSE } },
+  { id: 11, value: { name: MagType.BUFF, type: MagType.BUFF } },
+  { id: 12, value: { name: MagType.DEBUFF, type: MagType.DEBUFF } },
+  { id: 13, value: { name: MagType.STATUS, type: MagType.STATUS } },
+  { id: 14, value: { name: MagType.INTEL, type: MagType.INTEL } },
+  { id: 15, value: { name: MagType.MISCELLANEOUS, type: MagType.MISCELLANEOUS } },
+];
+
 export default function CreatingPersona(props: Props) {
   const [name, setName] = useState("");
   const [level, setLevel] = useState(0);
@@ -114,11 +133,32 @@ export default function CreatingPersona(props: Props) {
             selectedValue={magTypeIndex}
             onValueChange={(i) => setMagTypeIndex(i)}
           >
-            {Object.keys(MagType).map((magType, index) => (
-              <Picker.Item key={index} value={index} label={magType} />
+            {selectMagicOptions.map(({ id, value }) => (
+              <Picker.Item key={id} value={id} label={value.name} />
             ))}
           </Picker>
 
+          <Picker
+            style={{ width: 150, height: 50 }}
+            selectedValue={secondMagTypeIndex}
+            onValueChange={(i) => setSecondMagTypeIndex(i)}
+          >
+            {selectMagicOptions.map(({ id, value }) => (
+              <Picker.Item key={id} value={id} label={value.name} />
+            ))}
+          </Picker>
+
+          <Picker
+            style={{ width: 150, height: 50 }}
+            selectedValue={thirdMagTypeIndex}
+            onValueChange={(i) => setThirdMagTypeIndex(i)}
+          >
+            {selectMagicOptions.map(({ id, value }) => (
+              <Picker.Item key={id} value={id} label={value.name} />
+            ))}
+          </Picker>
+
+{/* 
           <Picker
             style={{ width: 150, height: 50 }}
             selectedValue={secondMagTypeIndex}
@@ -141,7 +181,7 @@ export default function CreatingPersona(props: Props) {
                 label={magType}
               />
             ))}
-          </Picker>
+          </Picker> */}
         </View>
 
         <Pressable
@@ -152,9 +192,9 @@ export default function CreatingPersona(props: Props) {
               return;
             }
 
-            let mag = types[magTypeIndex];
-            let secondMag = types[secondMagTypeIndex];
-            let thirdMag = types[thirdMagTypeIndex];
+            let mag = selectMagicOptions[magTypeIndex].value.type!;
+            let secondMag = selectMagicOptions[secondMagTypeIndex].value.type!;
+            let thirdMag = selectMagicOptions[thirdMagTypeIndex].value.type!;
 
             let persona = new Persona(
               name,
@@ -167,6 +207,7 @@ export default function CreatingPersona(props: Props) {
               thirdMag
             );
             persona.setPersonaLevel(level);
+            
 
             props.navigation.navigate("StatusScreen", {
               createdPersona: persona,

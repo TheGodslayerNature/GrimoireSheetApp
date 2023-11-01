@@ -17,7 +17,7 @@
         "name": "Mergulho de Ataque",
         "categoria": "Atordoar, Status, Físico (A)",
         "alcance": "1 alvo dentro de 5 metros",
-        "efeito": "Acerto: FORd6 dano Físico e Chance de Atordoar: 20%+5% para cada ponto da rolagem de acerto acima da esquiva do inimigo.",
+        "efeito": "Acerto: FORd8 dano Físico",
         "descricao": "A Persona salta e ataca durante sua descida, tentando atravessar seu alvo diagonalmente.",
         "damage": 8
       }
