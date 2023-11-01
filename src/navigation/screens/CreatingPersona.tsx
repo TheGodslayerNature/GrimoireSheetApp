@@ -15,13 +15,10 @@ import { MagType } from "../../model/mag/Mag";
 import { RouteProp } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "navigation/MainNavigator";
+import { Arcana } from "model/character/Character";
 
 interface Props
   extends NativeStackScreenProps<RootStackParamList, "CreatingPersona"> {}
-
-// type ParamList = {
-//   onSavePersona: (persona: Persona) => void;
-// }
 
 const selectMagicOptions = [
   { id: 0, value: { name: "Selecione uma tipo de magia", MagType: [] } },
@@ -42,6 +39,17 @@ const selectMagicOptions = [
   { id: 15, value: { name: MagType.MISCELLANEOUS, type: MagType.MISCELLANEOUS } },
 ];
 
+let persona:Persona;
+
+let criarPersona = (name:string,
+  arcana:Arcanas,
+  conviction:string,
+  naturalSkill:string,
+  pm:number,
+  ...magsTypes: MagType[]) => {
+    persona = new Persona(name, arcana, conviction, naturalSkill, pm, ...magsTypes)
+} 
+
 export default function CreatingPersona(props: Props) {
   const [name, setName] = useState("");
   const [level, setLevel] = useState(0);
@@ -51,24 +59,6 @@ export default function CreatingPersona(props: Props) {
   const [magTypeIndex, setMagTypeIndex] = useState<number>(0);
   const [secondMagTypeIndex, setSecondMagTypeIndex] = useState<number>(0);
   const [thirdMagTypeIndex, setThirdMagTypeIndex] = useState<number>(0);
-
-  let types = [
-    MagType.PHYSICAL,
-    MagType.FIRE,
-    MagType.ICE,
-    MagType.WIND,
-    MagType.LIGHTNING,
-    MagType.LIGHT,
-    MagType.DARKNESS,
-    MagType.OMNIPOTENT,
-    MagType.HEALING,
-    MagType.DEFENSE,
-    MagType.BUFF,
-    MagType.DEBUFF,
-    MagType.STATUS,
-    MagType.INTEL,
-    MagType.MISCELLANEOUS,
-  ];
 
   return (
     <ScrollView>
@@ -122,14 +112,9 @@ export default function CreatingPersona(props: Props) {
           />
         </View>
 
-        <View
-          style={{
-            flexDirection: "column",
-            margin: 20,
-          }}
-        >
+        <View style={styles.pickerContainer}>
           <Picker
-            style={{ width: 150, height: 50 }}
+            style={styles.pickerStyle}
             selectedValue={magTypeIndex}
             onValueChange={(i) => setMagTypeIndex(i)}
           >
@@ -139,7 +124,7 @@ export default function CreatingPersona(props: Props) {
           </Picker>
 
           <Picker
-            style={{ width: 150, height: 50 }}
+            style={styles.pickerStyle}
             selectedValue={secondMagTypeIndex}
             onValueChange={(i) => setSecondMagTypeIndex(i)}
           >
@@ -149,7 +134,7 @@ export default function CreatingPersona(props: Props) {
           </Picker>
 
           <Picker
-            style={{ width: 150, height: 50 }}
+            style={styles.pickerStyle}
             selectedValue={thirdMagTypeIndex}
             onValueChange={(i) => setThirdMagTypeIndex(i)}
           >
@@ -172,18 +157,9 @@ export default function CreatingPersona(props: Props) {
             let secondMag = selectMagicOptions[secondMagTypeIndex].value.type!;
             let thirdMag = selectMagicOptions[thirdMagTypeIndex].value.type!;
 
-            let persona = new Persona(
-              name,
-              Arcanas.CHARIOT,
-              conviction,
-              naturalSkill,
-              pm,
-              mag,
-              secondMag,
-              thirdMag
-            );
-            persona.setPersonaLevel(level);
+            criarPersona(name,Arcanas.CHARIOT, conviction, naturalSkill, pm, mag, secondMag, thirdMag);
             
+            persona.setPersonaLevel(level);
 
             props.navigation.navigate("StatusScreen", {
               createdPersona: persona,
@@ -204,16 +180,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "#084d6e",
   },
-  checkBoxContainer: {
-    marginBottom: 20,
-  },
   checkBoxStyle: {
     alignSelf: "center",
   },
   inputStyle: {
     width: 150,
     borderWidth: 2,
-    borderColor: "#FDED00",
+    borderColor: "black",
     margin: 15,
     alignContent: "center",
     alignItems: "center",
@@ -228,16 +201,15 @@ const styles = StyleSheet.create({
     alignContent: "center",
     alignItems: "center",
     textAlign: "center",
-    borderColor: "#FDED00",
+    borderColor: "black",
   },
   criarBtn: {
-    width: "20%",
-    height: 50,
+    width: "40%",
+    height: 25,
     borderWidth: 2.5,
-    borderColor: "#FDED00",
+    backgroundColor: "#FDED00",
+    borderColor: "black",
     borderRadius: 20,
-    paddingRight: 40,
-    marginTop: 20,
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
@@ -245,11 +217,18 @@ const styles = StyleSheet.create({
   textBox: {
     width: 250,
     borderWidth: 2,
-    borderColor: "#FDED00",
+    borderColor: "black",
     margin: 15,
     alignContent: "center",
     alignItems: "center",
     textAlign: "center",
     fontWeight: "bold",
   },
+  pickerContainer: {
+
+  },
+  pickerStyle: {
+    width: 150, 
+    height: 50 
+  }
 });
