@@ -157,31 +157,7 @@ export default function CreatingPersona(props: Props) {
               <Picker.Item key={id} value={id} label={value.name} />
             ))}
           </Picker>
-
-{/* 
-          <Picker
-            style={{ width: 150, height: 50 }}
-            selectedValue={secondMagTypeIndex}
-            onValueChange={(i) => setSecondMagTypeIndex(i)}
-          >
-            {Object.keys(MagType).map((magType, index) => (
-              <Picker.Item key={index} value={index} label={magType} />
-            ))}
-          </Picker>
-
-          <Picker
-            style={{ width: 150, height: 50 }}
-            selectedValue={thirdMagTypeIndex}
-            onValueChange={(i) => setThirdMagTypeIndex(i)}
-          >
-            {Object.keys(MagType).map((magType, thirdMagTypeIndex) => (
-              <Picker.Item
-                key={thirdMagTypeIndex}
-                value={thirdMagTypeIndex}
-                label={magType}
-              />
-            ))}
-          </Picker> */}
+          
         </View>
 
         <Pressable

@@ -26,7 +26,7 @@ export default function RenderStatus(props: Props) {
 
   return (
     <View style={styles.container}>
-      <View style={{ flexDirection: "row", padding: 15 }}>
+      <View style={styles.attContainer}>
         <FlatList
           numColumns={Math.ceil(STATUS.length / 2)}
           data={STATUS}
@@ -42,7 +42,7 @@ export default function RenderStatus(props: Props) {
           props.submit([forca, tecnica, vitalidade, magia, agilidade, sorte])
         }
       >
-        <Text>Adicionar Pontos</Text>
+        <Text style={styles.textStyle}>Adicionar Pontos</Text>
       </Pressable>
     </View>
   );
@@ -54,13 +54,20 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  attContainer: {
+    padding: "10%" 
+  },
   btn: {
-    height: 50,
-    width: "30%",
+    height: "20%",
+    width: "55%",
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: "#FDED00",
     borderWidth: 2,
-    borderColor: "#FDED00",
-    margin: 10,
+    borderColor: "black",
   },
+  textStyle: {
+    fontWeight: 'bold',
+    fontSize: 13
+  }
 });

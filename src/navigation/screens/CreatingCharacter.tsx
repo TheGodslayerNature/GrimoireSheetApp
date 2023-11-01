@@ -68,8 +68,8 @@ export default function StatusScreen({ route, navigation }: Props) {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar />
-
-      <View style={{ flexDirection: "row" }}>
+      
+      <View style={{ flexDirection: "row", height: "10%"}}>
         <TextInput
           style={styles.characterInput}
           placeholder="Nome do personagem"
@@ -81,7 +81,7 @@ export default function StatusScreen({ route, navigation }: Props) {
         <CubeInput update={(level: any) => setUserLevel(level)} />
 
         <Picker
-          style={{ width: 150, height: 50 }}
+          style={{ width: "150%", height: "50%" }}
           selectedValue={selectedClassIndex}
           onValueChange={(i) => setSelectedClassIndex(i)}
         >
@@ -162,8 +162,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   characterInput: {
-    height: 50,
-    width: "80%",
+    height: '50%',
+    width: "150%",
     borderWidth: 2,
     textAlign: "center",
     borderColor: "#FDED00",

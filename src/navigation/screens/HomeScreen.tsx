@@ -56,11 +56,9 @@ export default function HomeScreen({ navigation, route }: Props) {
   const { width } = Dimensions.get("window");
 
   return (
-    <ScrollView>
       <View style={styles.container}>
         <Image
           source={require("../../../assets/imgs/cabecalho-removebg-preview.png")}
-          style={styles.imgStyle}
         />
         <FlatList
           data={characters}
@@ -68,8 +66,8 @@ export default function HomeScreen({ navigation, route }: Props) {
           decelerationRate={"fast"}
           pagingEnabled
           style={{
-            maxWidth: 350,
-            height: width / 2.6,
+            maxWidth: "90%",
+            maxHeight: width / 1.3,
           }}
           renderItem={({ item }) => (
             <CharacterView
@@ -99,16 +97,15 @@ export default function HomeScreen({ navigation, route }: Props) {
           <Text style={styles.btnTextStyle}>Flush</Text>
         </Pressable>
 
-        <Pressable
+        {/* <Pressable
           style={styles.btnStyle}
           onPress={() => {
             navigation.navigate("CreatingPersona");
           }}
         >
           <Text style={styles.btnTextStyle}>Criar persona</Text>
-        </Pressable>
+        </Pressable> */}
       </View>
-    </ScrollView>
   );
 }
 
@@ -123,17 +120,15 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
-    width: "20%",
-    height: "12%",
+    width: "22%",
+    height: "8%",
     backgroundColor: "#FDED00",
-    margin: 25,
+    borderWidth: 2,
+    borderColor: "black",
+    margin: "1%",
   },
   btnTextStyle: {
     fontWeight: "bold",
     color: "black",
-  },
-  imgStyle: {},
-  scrollStyle: {
-    maxWidth: 350,
   },
 });
