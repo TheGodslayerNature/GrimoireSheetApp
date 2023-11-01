@@ -69,7 +69,7 @@ export default function StatusScreen({ route, navigation }: Props) {
     <SafeAreaView style={styles.container}>
       <StatusBar />
       
-      <View style={{ flexDirection: "row", height: "10%"}}>
+      <View style={{ flexDirection: "row", height: "8%"}}>
         <TextInput
           style={styles.characterInput}
           placeholder="Nome do personagem"
@@ -81,7 +81,7 @@ export default function StatusScreen({ route, navigation }: Props) {
         <CubeInput update={(level: any) => setUserLevel(level)} />
 
         <Picker
-          style={{ width: "150%", height: "50%" }}
+          style={{ width: "280%", height: "50%" }}
           selectedValue={selectedClassIndex}
           onValueChange={(i) => setSelectedClassIndex(i)}
         >
@@ -96,24 +96,14 @@ export default function StatusScreen({ route, navigation }: Props) {
       <LifeAndEnergyInput
         updateLife={(life: any) => setLifePoints(life)}
         updateEnergy={(ener: any) => setEnergy(ener)}
-      />
-
-      <TextInput
-        style={{
-          borderWidth: 2,
-          textAlign: "center",
-          margin: 10,
-          borderColor: "#FDED00",
-        }}
-        placeholder="Pontos de aspectos"
-        onChangeText={(aspect) => setAspectPoint(Number(aspect))}
+        updateAspectPoint={(asp:any) => setAspectPoint(asp)}
       />
 
       <Pressable
         style={styles.btn}
         onPress={() => navigation.navigate("CreatingPersona")}
       >
-        <Text>Criar Persona</Text>
+        <Text style={styles.textStyle}>Criar Persona</Text>
       </Pressable>
 
       <Pressable
@@ -148,7 +138,7 @@ export default function StatusScreen({ route, navigation }: Props) {
         }}
         style={styles.btn}
       >
-        <Text> CRIAR PERSONAGEM </Text>
+        <Text style={styles.textStyle}> CRIAR PERSONAGEM </Text>
       </Pressable>
     </SafeAreaView>
   );
@@ -163,26 +153,19 @@ const styles = StyleSheet.create({
   },
   characterInput: {
     height: '50%',
-    width: "150%",
+    width: "350%",
     borderWidth: 2,
     textAlign: "center",
-    borderColor: "#FDED00",
-  },
-  statusPoints: {
-    height: 50,
-    width: 50,
-    borderRadius: 50 / 2,
-    borderWidth: 2,
-    textAlign: "center",
-    borderColor: "#FDED00",
+    borderColor: "black",
   },
   btn: {
     height: 50,
-    width: "30%",
+    width: "50%",
     alignItems: "center",
     justifyContent: "center",
     borderWidth: 2,
-    borderColor: "#FDED00",
+    backgroundColor: '#FDED00',
+    borderColor: "black",
     margin: 10,
   },
   inputStyle: {
@@ -193,6 +176,10 @@ const styles = StyleSheet.create({
     alignContent: "center",
     alignItems: "center",
     textAlign: "center",
-    borderColor: "#FDED00",
+    borderColor: "black",
   },
+  textStyle: {
+    fontSize: 12,
+    fontWeight: 'bold',
+  }
 });

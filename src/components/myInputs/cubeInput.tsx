@@ -17,13 +17,14 @@ export default function cubeInput(props:any) {
 
 const styles = StyleSheet.create({
   inputStyle: {
-    height: "50%",
-    width: "50%",
+    height: "55%",
+    width: "45%",
     borderWidth: 2,
-    marginLeft: 50,
+    marginLeft: "30%",
     alignContent: "center",
     alignItems: "center",
     textAlign: "center",
-    borderColor: "#FDED00",
+    // backgroundColor: "#FDED00",
+    borderColor: "black",
   },
 });

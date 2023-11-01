@@ -65,6 +65,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#FDED00",
     borderWidth: 2,
     borderColor: "black",
+    margin: 10
   },
   textStyle: {
     fontWeight: 'bold',
