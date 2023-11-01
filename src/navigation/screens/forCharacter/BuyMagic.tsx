@@ -36,13 +36,11 @@ export default function BuyMagic(props: any) {
             <Text>Comprar</Text>
           </Pressable>
         </View>
+
+        <ListMagics
+        character={character}
+        />
       </View>
-
-      <ListMagics character={character}/>
-
-      <Accordion
-      chrac={character}
-      />
     </View>
   );
 }
