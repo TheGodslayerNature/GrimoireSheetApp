@@ -18,24 +18,27 @@ export default function DificultyTest(props: any) {
 
   return (
     <View style={styles.container}>
-      <Pressable
-        style={styles.btn}
-        onPress={() => {
-          setDiceType(4);
-        }}
-      >
-        <Text>D4</Text>
-      </Pressable>
-      <Pressable
-        style={styles.btn}
-        onPress={() => {
-          setDiceType(6);
-        }}
-      >
-        <Text>D6</Text>
-      </Pressable>
+      <View style={styles.btnContainer}>
+        <Pressable
+          style={styles.btn}
+          onPress={() => {
+            setDiceType(4);
+          }}
+        >
+          <Text style={styles.btnText}>D4</Text>
+        </Pressable>
+        <Pressable
+          style={styles.btn}
+          onPress={() => {
+            setDiceType(6);
+          }}
+        >
+          <Text style={styles.btnText}>D6</Text>
+        </Pressable>
+      </View>
 
       <FlatList
+        //numColumns={character.user.statusPoints.length / 2}
         data={character.user.statusPoints}
         renderItem={({ item, index }) => (
           // <Text>{item}</Text>
@@ -54,6 +57,12 @@ export default function DificultyTest(props: any) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    alignItems: "center",
+    alignContent: "center",
+  },
+  btnContainer: {
+    height: "10%",
+    flexDirection: "row",
   },
   textStyle: {
     color: "white",
@@ -61,15 +70,16 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   btn: {
+    width: 80,
+    height: "40%",
     borderWidth: 2,
-    borderColor: "red",
+    borderColor: "black",
+    backgroundColor: "#FDED00",
+    margin: 20,
+    alignItems: "center",
+    justifyContent: 'center'
   },
-  button: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
-  },
-  buttonOpen: {
-    backgroundColor: "#F194FF",
+  btnText: {
+    fontWeight: "bold",
   },
 });

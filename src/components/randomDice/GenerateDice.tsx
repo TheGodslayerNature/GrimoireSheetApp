@@ -56,14 +56,6 @@ export default function GenerateDice(props: any) {
 }
 
 const styles = StyleSheet.create({
-  btn: {
-    margin: 20,
-    width: 100,
-    borderColor: "#FDED00",
-    borderWidth: 5,
-    borderRadius: 16,
-    alignItems: 'center'
-  },
   btnAtt: {
     borderWidth: 3, 
     borderColor: 'black',

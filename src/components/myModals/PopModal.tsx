@@ -26,9 +26,9 @@ export default function PopModal(props:any) {
 
 const styles = StyleSheet.create({
   modalContainer: {
-    maxWidth: 250,
-    maxHeight: 450,
-    // borderWidth: 3,
+    maxWidth: "80%",
+    maxHeight: "50%",
+    borderWidth: 3,
     borderRadius: 2,
     borderColor: 'gray',
     backgroundColor: "#FAFAFA",
@@ -38,12 +38,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     alignContent: 'center',
-    marginTop: 22,
-    marginLeft: 30
+    margin: '10%'
+    //marginTop: 22,
+   // marginLeft: 30
   },
   titleText: {
     color: "#F000000",
-    opacity: 1000,
+    //opacity: 1000,
     fontWeight: "bold",
     fontSize: 22,
   },

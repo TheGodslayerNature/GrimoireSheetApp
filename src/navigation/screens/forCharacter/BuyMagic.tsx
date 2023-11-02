@@ -1,4 +1,11 @@
-import { View, Text, Modal, Pressable, StyleSheet, FlatList } from "react-native";
+import {
+  View,
+  Text,
+  Modal,
+  Pressable,
+  StyleSheet,
+  FlatList,
+} from "react-native";
 import React, { useState } from "react";
 import Accordion from "../../../components/accordion/Accordion";
 import ListMagics from "../../../components/accordion/ListMagics";
@@ -26,9 +33,10 @@ export default function BuyMagic(props: any) {
             <Text>Fechar Modal</Text>
           </Pressable>
         </Modal>
+      </View>
 
-        <View style={{ flexDirection: "row" }}>
-          <Text>Magic</Text>
+      <View>
+        <View style={styles.topViewContainer}>
           <Pressable
             onPress={() => setModalVisible(true)}
             style={styles.addBtn}
@@ -36,10 +44,10 @@ export default function BuyMagic(props: any) {
             <Text>Comprar</Text>
           </Pressable>
         </View>
+      </View>
 
-        <ListMagics
-        character={character}
-        />
+      <View style={styles.listMagicsContainer}>
+        <ListMagics character={character} />
       </View>
     </View>
   );
@@ -48,16 +56,14 @@ export default function BuyMagic(props: any) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
     alignItems: "center",
-    marginTop: 22,
   },
   addBtn: {
-    marginLeft: 60,
     height: 20,
     width: 80,
     backgroundColor: "#FDED00",
     borderWidth: 2,
-    borderRadius: 5,
   },
+  topViewContainer: {},
+  listMagicsContainer: {},
 });
