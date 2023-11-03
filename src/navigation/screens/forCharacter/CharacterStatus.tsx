@@ -10,6 +10,7 @@ import ThemedCard from "@rneui/themed/dist/Card";
 import React, { useEffect, useState } from "react";
 import Bar from "../../../util/bar";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import CharacterInformation from "../../../components/characters/CharacterInformation";
 
 export default function CharacterStatus(props: any) {
   const { character } = props.route.params;
@@ -20,19 +21,9 @@ export default function CharacterStatus(props: any) {
 
   return (
     <View style={styles.container}>
-      <ThemedCard>
-        <Image
-          style={styles.imgPortrait}
-          source={require("../../../../assets/imgs/anne.jpg")}
-        />
-        <Text>Nome: {character.user.userName}</Text>
-        <Text>nivel: {character.user.userLevel}</Text>
-        <Text>classe: {character.klass.name}</Text>
-        <Text>Arcana: {character.arcanas.arcanaName}</Text>
-        <Text>Redução de dano: {character.damageReduction}</Text>
-      </ThemedCard>
-
       <View>
+        <CharacterInformation character={character} />
+
         <Bar
           color="red"
           currentPoints={character.currentLife}
@@ -83,15 +74,15 @@ export default function CharacterStatus(props: any) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#084d6e",
   },
   imgPortrait: {
     width: 200,
     height: 200,
     borderRadius: 100,
   },
-  btn: {
-    borderWidth: 5,
-    borderColor: "#FDED00",
-    margin: "auto",
+  characterInformationContainer: {},
+  informationTextStyle: {
+    fontSize: 14,
   },
 });

@@ -13,6 +13,12 @@ export default function bar({
     <View style={{ flexDirection: "row" }}>
       <Pressable
         style={styles.btn}
+        onPress={async () => updatePoints(currentPoints - 5)}
+      >
+        <Text>-5</Text>
+      </Pressable>
+      <Pressable
+        style={styles.btn}
         onPress={async () => updatePoints(currentPoints - 1)}
       >
         <Text>-1</Text>
@@ -20,29 +26,41 @@ export default function bar({
       <Progress.Bar
         progress={currentPoints / totalPoints}
         width={200}
-        color={color}
-        style={{}}
+        color={color} 
+        style={{margin: 5}}
       >
-        <Text style={styles.textStyle}>{label + ": " + currentPoints + " / " + totalPoints}</Text>
+        <Text style={styles.textStyle}>
+          {label + ": " + currentPoints + " / " + totalPoints}
+        </Text>
       </Progress.Bar>
-      
+
       <Pressable
         style={styles.btn}
         onPress={async () => updatePoints(currentPoints + 1)}
       >
         <Text>+1</Text>
       </Pressable>
+      <Pressable
+        style={styles.btn}
+        onPress={async () => updatePoints(currentPoints + 5)}
+      >
+        <Text>+5</Text>
+      </Pressable>
     </View>
   );
 }
 const styles = StyleSheet.create({
   btn: {
-    borderWidth: 5,
-    borderColor: "#FDED00",
+    borderWidth: 2,
+    borderColor: "black",
+    backgroundColor: "#FDED00",
     margin: "auto",
+    width: 25,
+    alignItems: "center",
   },
   textStyle: {
     textAlign: "center",
+    fontSize: 14,
   },
 });
 
@@ -51,7 +69,7 @@ type BarProps = {
   totalPoints: number;
   label: string;
   color: string;
-  updatePoints: (value:number) => void;
+  updatePoints: (value: number) => void;
   // morePoints: () => void;
   // updatePoints: (point: number) => void;
-}
+};

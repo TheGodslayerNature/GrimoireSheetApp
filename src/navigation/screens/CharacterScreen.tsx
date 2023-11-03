@@ -7,6 +7,7 @@ import CharacterStatus from "./forCharacter/CharacterStatus";
 import DificultyTest from "./forCharacter/DificultyTest";
 import { RootStackParamList } from "navigation/MainNavigator";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { Icon } from "react-native-elements";
 
 const Tab = createBottomTabNavigator();
 
@@ -17,14 +18,30 @@ export default function CharacterScreen({ route }: Props) {
   const { character } = route.params;
 
   return (
-    <Tab.Navigator initialRouteName={"CharacterStatus"} screenOptions={{ headerShown: false }}>
+    <Tab.Navigator
+      initialRouteName={"CharacterStatus"}
+      screenOptions={{ headerShown: false }}
+    >
       <Tab.Screen
         name={"CharacterStatus"}
         initialParams={{ character }}
         component={CharacterStatus}
+        options={{ tabBarIcon: ({}) => <Icon name="user" type="antdesign" /> }}
       />
-      <Tab.Screen name={"DificultyTest"} initialParams={{ character }} component={DificultyTest} />
-      <Tab.Screen name={"BuyMagic"} initialParams={{ character }} component={BuyMagic} />
+      <Tab.Screen
+        name={"DificultyTest"}
+        initialParams={{ character }}
+        component={DificultyTest}
+        options={{ tabBarIcon: ({}) => <Icon name="game-controller" type="entypo"/> }}
+      />
+      <Tab.Screen
+        name={"BuyMagic"}
+        initialParams={{ character }}
+        component={BuyMagic}
+        options={{
+          tabBarIcon: ({}) => <Icon name="magic" type="font-awesome" />,
+        }}
+      />
     </Tab.Navigator>
   );
 }

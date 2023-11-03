@@ -59,6 +59,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     alignContent: "center",
+    backgroundColor: '#084d6e',
   },
   btnContainer: {
     height: "10%",
