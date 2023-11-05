@@ -21,9 +21,11 @@ export default function CharacterStatus(props: any) {
 
   return (
     <View style={styles.container}>
-      <View>
+      <View style={styles.characterInformationContainer}>
         <CharacterInformation character={character} />
+      </View>
 
+      <View style={styles.barStyles}>
         <Bar
           color="red"
           currentPoints={character.currentLife}
@@ -81,7 +83,13 @@ const styles = StyleSheet.create({
     height: 200,
     borderRadius: 100,
   },
-  characterInformationContainer: {},
+  characterInformationContainer: {
+    flex: 1,
+  },
+  barStyles: {
+    alignItems: 'center',
+    margin: '15%'
+  },
   informationTextStyle: {
     fontSize: 14,
   },

@@ -17,8 +17,8 @@ export default function cubeInput(props:any) {
 
 const styles = StyleSheet.create({
   inputStyle: {
-    height: "55%",
-    width: "45%",
+    height: 50,
+    width: 50,
     borderWidth: 2,
     marginLeft: "30%",
     alignContent: "center",

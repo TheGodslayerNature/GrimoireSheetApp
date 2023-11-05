@@ -34,28 +34,28 @@ export default function RenderStatus(props: Props) {
             <AttributesView statusName={Status[status]} setPoints={update} />
           )}
         />
-      </View>
 
-      <Pressable
-        style={styles.btn}
-        onPress={() =>
-          props.submit([forca, tecnica, vitalidade, magia, agilidade, sorte])
-        }
-      >
-        <Text style={styles.textStyle}>Adicionar Pontos</Text>
-      </Pressable>
+        <Pressable
+          style={styles.btn}
+          onPress={() =>
+            props.submit([forca, tecnica, vitalidade, magia, agilidade, sorte])
+          }
+        >
+          <Text style={styles.textStyle}>Adicionar Pontos</Text>
+        </Pressable>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     backgroundColor: "#084d6e",
-    alignItems: "center",
-    justifyContent: "center",
   },
   attContainer: {
-    padding: "10%" 
+    paddingTop: "10%",
+    alignItems: "center",
   },
   btn: {
     height: "20%",
@@ -65,10 +65,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#FDED00",
     borderWidth: 2,
     borderColor: "black",
-    margin: 10
   },
   textStyle: {
-    fontWeight: 'bold',
-    fontSize: 13
-  }
+    fontWeight: "bold",
+    fontSize: 13,
+  },
 });

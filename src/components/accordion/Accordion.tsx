@@ -17,7 +17,7 @@ export default function Accordion({ chrac }: Props) {
   const [expadedItems, setExpandeItems] = useState([] as string[]);
 
   return (
-    <View>
+    <View style={styles.container}>
       <FlatList
         data={tier1}
         renderItem={({ item, index }) => (
@@ -73,6 +73,9 @@ export default function Accordion({ chrac }: Props) {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    width: 200,
+  },
   btn: {
     width: 90,
     height: 50,

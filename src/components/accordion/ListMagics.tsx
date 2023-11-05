@@ -1,4 +1,4 @@
-import { View, Text, FlatList, Pressable } from "react-native";
+import { View, Text, FlatList, Pressable, StyleSheet } from "react-native";
 import { ListItem } from "@rneui/themed";
 import React, { useState } from "react";
 import { Character } from "../../model/character/Character";
@@ -8,7 +8,7 @@ export default function ListMagics({ character }: Props) {
   const [expadedItems, setExpandeItems] = useState([] as string[]);
 
   return (
-    <View>
+    <View style={styles.container}>
       <FlatList
         data={character.persona[0].magDeck}
         renderItem={({ item, index }) => (
@@ -38,10 +38,18 @@ export default function ListMagics({ character }: Props) {
                   <ListItem.Subtitle>{item.categoria}</ListItem.Subtitle>
                   <Text>Dano: {item.damage}</Text>
                   <Pressable
+                    style={styles.btn}
                     onPress={() => {
-                      character.persona[0].magDeck.forEach((it, i) => { if( it === item){character.persona[0].magDeck.splice(i, 1) }})
+                      character.persona[0].magDeck.forEach((it, i) => {
+                        if (it === item) {
+                          character.persona[0].magDeck.splice(i, 1);
+                        }
+                      });
 
-                      AsyncStorage.setItem(character.user.userName,JSON.stringify(character));
+                      AsyncStorage.setItem(
+                        character.user.userName,
+                        JSON.stringify(character)
+                      );
                     }}
                   >
                     <Text>Retirar</Text>
@@ -55,6 +63,15 @@ export default function ListMagics({ character }: Props) {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    width: 200,
+  },
+  btn: {
+    borderWidth: 1.5,
+  },
+});
 
 type Props = {
   character: Character;
