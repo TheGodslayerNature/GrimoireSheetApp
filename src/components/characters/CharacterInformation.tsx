@@ -33,10 +33,10 @@ export default function CharacterInformation({character}:Props) {
             Redução de dano: {character.damageReduction}
           </Text>
           <Text style={styles.informationTextStyle}>
-            Movimentação: {character.user.statusPoints[5] + 3}
+            Movimentação: {character.user.statusPoints[4] + 3}
           </Text>
           <Text style={styles.informationTextStyle}>
-            Iniciativa: 1D12 + {character.user.statusPoints[5]}
+            Iniciativa: 1D12 + {character.user.statusPoints[4]}
           </Text>
         </View>
       </ThemedCard>

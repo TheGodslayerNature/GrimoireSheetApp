@@ -5,45 +5,47 @@ import React from "react";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { Icon } from "react-native-elements";
 
-
-let deleteCharacter = async (key:string) => {
+let deleteCharacter = async (key: string) => {
   try {
     let value = await AsyncStorage.getItem("characters");
     let ids: string[] = value ? JSON.parse(value) : [];
-    ids.forEach((item, index) => { if(item === key){ ids.splice(index, 1)} })
-    await AsyncStorage.setItem("characters",JSON.stringify(ids));
+    ids.forEach((item, index) => {
+      if (item === key) {
+        ids.splice(index, 1);
+      }
+    });
+    await AsyncStorage.setItem("characters", JSON.stringify(ids));
     await AsyncStorage.removeItem(key);
-  }
-  catch(err){
+  } catch (err) {
     console.log(err);
   }
-} 
+};
 
-export default function CharacterView({character, onPress}: Props) {
+export default function CharacterView({ character, onPress }: Props) {
   return (
     <View style={styles.container}>
       <ThemedCard>
-      <Pressable
-        onPress={() => {
-          // props.onPress()
-          onPress(character)
-        }}
-          style={{
-            alignSelf: "flex-start"
-          }}
-        >
-          <Icon name="account-edit" type="material-community"/>
-        </Pressable>
-        <Pressable
-        onPress={() => {
-          deleteCharacter(character.user.userName)
-        }}
-          style={{
-            alignSelf: "flex-start"
-          }}
-        >
-          <Icon name="deleteuser" type="antdesign"/>
-        </Pressable>
+          <Pressable
+            onPress={() => {
+              // props.onPress()
+              onPress(character);
+            }}
+            style={{
+              alignSelf: "flex-start",
+            }}
+          >
+            <Icon name="account-edit" type="material-community" />
+          </Pressable>
+          <Pressable
+            onPress={() => {
+              deleteCharacter(character.user.userName);
+            }}
+            style={{
+              alignSelf: "flex-start",
+            }}
+          >
+            <Icon name="deleteuser" type="antdesign" />
+          </Pressable>
         <View>
           <View
             style={{
@@ -60,16 +62,9 @@ export default function CharacterView({character, onPress}: Props) {
             />
           </View>
           <View style={{ flexDirection: "row" }}>
-            {/* <Text>Nome: {character.user.userName + " "}</Text> */}
-            {/* <Text>Nível: {character.user.userLevel}</Text> */}
+            <Text>Nome: {character.user.userName + " "}</Text>
+            <Text>Nível: {character.user.userLevel}</Text>
           </View>
-          {/* <Text>Classe: {character.klass.name()}</Text> */}
-
-          {/* {character.persona.map((pers) => (
-            <li key={0}>
-              Persona: {pers.name}; Nível: {pers.personaLevel}
-            </li>
-          ))} */}
         </View>
       </ThemedCard>
     </View>

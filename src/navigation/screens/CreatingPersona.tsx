@@ -16,6 +16,7 @@ import { RouteProp } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "navigation/MainNavigator";
 import { Arcana } from "model/character/Character";
+import MagicPicker from "../../components/MyPickers/MagicPicker";
 
 interface Props
   extends NativeStackScreenProps<RootStackParamList, "CreatingPersona"> {}
@@ -36,19 +37,31 @@ const selectMagicOptions = [
   { id: 12, value: { name: MagType.DEBUFF, type: MagType.DEBUFF } },
   { id: 13, value: { name: MagType.STATUS, type: MagType.STATUS } },
   { id: 14, value: { name: MagType.INTEL, type: MagType.INTEL } },
-  { id: 15, value: { name: MagType.MISCELLANEOUS, type: MagType.MISCELLANEOUS } },
+  {
+    id: 15,
+    value: { name: MagType.MISCELLANEOUS, type: MagType.MISCELLANEOUS },
+  },
 ];
 
-let persona:Persona;
+let persona: Persona;
 
-let criarPersona = (name:string,
-  arcana:Arcanas,
-  conviction:string,
-  naturalSkill:string,
-  pm:number,
-  ...magsTypes: MagType[]) => {
-    persona = new Persona(name, arcana, conviction, naturalSkill, pm, ...magsTypes)
-} 
+let criarPersona = (
+  name: string,
+  arcana: Arcanas,
+  conviction: string,
+  naturalSkill: string,
+  pm: number,
+  ...magsTypes: MagType[]
+) => {
+  persona = new Persona(
+    name,
+    arcana,
+    conviction,
+    naturalSkill,
+    pm,
+    ...magsTypes
+  );
+};
 
 export default function CreatingPersona(props: Props) {
   const [name, setName] = useState("");
@@ -112,8 +125,23 @@ export default function CreatingPersona(props: Props) {
           />
         </View>
 
+        <MagicPicker
+          magTypeIndex={magTypeIndex}
+          update={(i) => setMagTypeIndex(i)}
+        />
+
+        <MagicPicker
+          magTypeIndex={secondMagTypeIndex}
+          update={(i) => setSecondMagTypeIndex(i)}
+        />
+
+        <MagicPicker
+          magTypeIndex={thirdMagTypeIndex}
+          update={(i) => setThirdMagTypeIndex(i)}
+        />
+
         <View style={styles.pickerContainer}>
-          <Picker
+          {/* <Picker
             style={styles.pickerStyle}
             selectedValue={magTypeIndex}
             onValueChange={(i) => setMagTypeIndex(i)}
@@ -141,8 +169,7 @@ export default function CreatingPersona(props: Props) {
             {selectMagicOptions.map(({ id, value }) => (
               <Picker.Item key={id} value={id} label={value.name} />
             ))}
-          </Picker>
-          
+          </Picker> */}
         </View>
 
         <Pressable
@@ -157,8 +184,17 @@ export default function CreatingPersona(props: Props) {
             let secondMag = selectMagicOptions[secondMagTypeIndex].value.type!;
             let thirdMag = selectMagicOptions[thirdMagTypeIndex].value.type!;
 
-            criarPersona(name,Arcanas.CHARIOT, conviction, naturalSkill, pm, mag, secondMag, thirdMag);
-            
+            criarPersona(
+              name,
+              Arcanas.CHARIOT,
+              conviction,
+              naturalSkill,
+              pm,
+              mag,
+              secondMag,
+              thirdMag
+            );
+
             persona.setPersonaLevel(level);
 
             props.navigation.navigate("StatusScreen", {
@@ -224,11 +260,5 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontWeight: "bold",
   },
-  pickerContainer: {
-
-  },
-  pickerStyle: {
-    width: 150, 
-    height: 50 
-  }
+  pickerContainer: {},
 });

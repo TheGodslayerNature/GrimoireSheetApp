@@ -85,10 +85,10 @@ export default function StatusScreen({ route, navigation }: Props) {
 
           <CubeInput update={(level: number) => setUserLevel(level)} />
 
-          <Pressable style={{ backgroundColor: "#fff" }}>
+          <Pressable style={{ backgroundColor: "#fff", height: 30, marginTop: 10, marginLeft: 35}}>
             <Picker
               itemStyle={{}}
-              style={{ width: 300, height: 30 }}
+              style={{height: 30 }}
               selectedValue={selectedClassIndex}
               onValueChange={(i) => setSelectedClassIndex(i)}
             >
