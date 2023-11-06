@@ -71,8 +71,8 @@ export default function StatusScreen({ route, navigation }: Props) {
   }, [route.params?.createdPersona]);
 
   return (
-    <SafeAreaView style={styles.container}>
-      <KeyboardAvoidingView behavior="padding">
+    <KeyboardAvoidingView behavior="padding">
+      <SafeAreaView style={styles.container}>
         <StatusBar />
         <View style={{ flexDirection: "row" }}>
           <TextInput
@@ -83,9 +83,9 @@ export default function StatusScreen({ route, navigation }: Props) {
             }}
           />
 
-          <CubeInput update={(level: any) => setUserLevel(level)} />
+          <CubeInput update={(level: number) => setUserLevel(level)} />
 
-          <TouchableOpacity style={{ backgroundColor: "#fff" }}>
+          <Pressable style={{ backgroundColor: "#fff" }}>
             <Picker
               itemStyle={{}}
               style={{ width: 300, height: 30 }}
@@ -96,28 +96,37 @@ export default function StatusScreen({ route, navigation }: Props) {
                 <Picker.Item key={id} value={id} label={value.name} />
               ))}
             </Picker>
-          </TouchableOpacity>
+          </Pressable>
         </View>
 
-        <Modal animationType="fade" visible={modalState}>
-          <RenderStatus submit={setStatusPoints} />
+        <View style={{alignItems: 'center'}}>
+          <Modal animationType="fade" visible={modalState}>
+            <RenderStatus submit={setStatusPoints} />
 
-          <Pressable
-            style={styles.btn}
-            onPress={() => setModalState(!modalState)}
-          >
-            <Text>Voltar</Text>
+            <Pressable
+              style={styles.btn}
+              onPress={() => setModalState(!modalState)}
+            >
+              <Text>Voltar</Text>
+            </Pressable>
+          </Modal>
+
+          <Pressable style={styles.btn} onPress={() => setModalState(true)}>
+            <Text>Escolha os pontos</Text>
           </Pressable>
-        </Modal>
-
-        <Pressable style={styles.btn} onPress={() => setModalState(true)}>
-          <Text>Escolha os pontos</Text>
-        </Pressable>
+        </View>
 
         <LifeAndEnergyInput
-          updateLife={(life: any) => setLifePoints(life)}
-          updateEnergy={(ener: any) => setEnergy(ener)}
-          updateAspectPoint={(asp: any) => setAspectPoint(asp)}
+          placeholder="Vida"
+          update={(life: number) => setLifePoints(life)}
+        />
+        <LifeAndEnergyInput
+          placeholder="Energia"
+          update={(energy: number) => setEnergy(energy)}
+        />
+        <LifeAndEnergyInput
+          placeholder="Aspectos"
+          update={(aspect: number) => setAspectPoint(aspect)}
         />
 
         <View style={styles.btnContainer}>
@@ -163,8 +172,8 @@ export default function StatusScreen({ route, navigation }: Props) {
             <Text style={styles.textStyle}> CRIAR PERSONAGEM </Text>
           </Pressable>
         </View>
-      </KeyboardAvoidingView>
-    </SafeAreaView>
+      </SafeAreaView>
+    </KeyboardAvoidingView>
   );
 }
 

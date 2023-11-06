@@ -20,6 +20,16 @@
         "efeito": "Acerto: FORd8 dano Físico",
         "descricao": "A Persona salta e ataca durante sua descida, tentando atravessar seu alvo diagonalmente.",
         "damage": 8
+      },
+      {
+        "magType": "FIRE",
+        "tier": 1,
+        "name": "Agi",
+        "categoria": "Fogo (A)",
+        "alcance": "1 alvo dentro de 8 metros.",
+        "efeito": "Acerto: MAGd6 dano de Fogo.",
+        "descricao": "Uma pequena bola de fogo atinge o inimigo.",
+        "damage": 6
       }
     ]
   }

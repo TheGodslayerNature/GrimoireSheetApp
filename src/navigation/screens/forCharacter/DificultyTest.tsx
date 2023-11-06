@@ -27,6 +27,13 @@ export default function DificultyTest(props: any) {
         >
           <Text style={styles.btnText}>D4</Text>
         </Pressable>
+
+        <Text
+          style={styles.ActualDice}
+        >
+          Atual: D{diceType}
+        </Text>
+
         <Pressable
           style={styles.btn}
           onPress={() => {
@@ -59,7 +66,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     alignContent: "center",
-    backgroundColor: '#084d6e',
+    backgroundColor: "#084d6e",
   },
   btnContainer: {
     height: "10%",
@@ -78,7 +85,18 @@ const styles = StyleSheet.create({
     backgroundColor: "#FDED00",
     margin: 20,
     alignItems: "center",
-    justifyContent: 'center'
+    justifyContent: "center",
+  },
+  ActualDice: {
+    borderWidth: 1.5,
+    borderColor: "black",
+    height: 20,
+    alignItems: "center",
+    margin: 20,
+    width: 80,
+    justifyContent: 'center',
+    alignContent: 'center',
+    backgroundColor: '#FDED00'
   },
   btnText: {
     fontWeight: "bold",

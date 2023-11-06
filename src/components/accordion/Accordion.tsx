@@ -74,7 +74,7 @@ export default function Accordion({ chrac }: Props) {
 
 const styles = StyleSheet.create({
   container: {
-    width: 200,
+    width: 300,
   },
   btn: {
     width: 90,

@@ -30,7 +30,7 @@ export default function BuyMagic(props: any) {
             >
               <Icon name="x" type="octicon" />
             </Pressable>
-            <Text style={{ fontWeight: "bold" }}>Adicionar Magias</Text>
+            <Text style={styles.titleStyle}>Adicionar Magias</Text>
 
             <Accordion chrac={character} />
           </View>
@@ -61,13 +61,17 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#084d6e",
   },
+  titleStyle: {
+    fontWeight: 'bold',
+    marginBottom: 20,
+  },
   ModalContainer: {
     alignItems: "center",
     borderWidth: 4,
     borderColor: "#FDED00",
   },
   outModalBtn: {
-    borderWidth: 10,
+    marginLeft: 300,
   },
   addBtn: {
     height: 40,

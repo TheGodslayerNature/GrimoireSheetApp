@@ -3,7 +3,7 @@ import React, { useState } from "react";
 
 export default function AttributesView(props: any) {
   return (
-    <View style={{paddingHorizontal: 10}}>
+    <View style={{paddingHorizontal: 20}}>
       <TextInput
         style={styles.statusPoints}
         inputMode="numeric"

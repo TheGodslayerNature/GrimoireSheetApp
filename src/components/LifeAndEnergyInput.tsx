@@ -1,29 +1,15 @@
 import { View, Text, TextInput, StyleSheet } from "react-native";
 import React from "react";
 
-export default function LifeAndEnergyInput(props: any) {
+export default function LifeAndEnergyInput({update,placeholder}:Props) {
+
   return (
     <View style={styles.container}>
       <TextInput
         style={styles.inputsStyle}
-        placeholder="Pontos de vida"
-        keyboardType="numeric"
-  
-        onChangeText={(lifePoints) => props.updateLife(Number(lifePoints))}
-      />
-
-      <TextInput
-        style={styles.inputsStyle}
-        placeholder="Pontos de Energia"
-        keyboardType="numeric"
-        onChangeText={(energy) => props.updateEnergy(Number(energy))}
-      />
-
-      <TextInput
-        style={styles.inputsStyle}
-        keyboardType="numeric"
-        placeholder="Pontos de aspectos"
-        onChangeText={(aspect) => props.updateAspectPoint(Number(aspect))}
+        placeholder={placeholder}
+        inputMode="numeric"
+        onChangeText={(lifePoints) =>  update(Number(lifePoints))}
       />
     </View>
   );
@@ -45,6 +31,6 @@ const styles = StyleSheet.create({
 });
 
 type Props = {
-  // update(value:any): void;
-  life: number;
+  update(value:any): void;
+  placeholder:string
 };

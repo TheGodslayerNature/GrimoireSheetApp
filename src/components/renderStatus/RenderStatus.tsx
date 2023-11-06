@@ -34,7 +34,9 @@ export default function RenderStatus(props: Props) {
             <AttributesView statusName={Status[status]} setPoints={update} />
           )}
         />
+      </View>
 
+      <View style={{alignItems: 'center', marginTop: 25, height: '60%'}}>
         <Pressable
           style={styles.btn}
           onPress={() =>
@@ -58,8 +60,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   btn: {
-    height: "20%",
-    width: "55%",
+    height: "8%",
+    width: "22%",
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#FDED00",
