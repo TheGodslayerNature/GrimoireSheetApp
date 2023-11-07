@@ -1,14 +1,21 @@
-import { View, Text, Pressable } from "react-native";
+import { View, Text, Pressable, StyleSheet } from "react-native";
 import React from "react";
 
 export default function ModifyPersona(props: any) {
-  const { character } = props.route.params;
+  const { persona } = props.route.params;
   
   return (
-    <View>
-      <Pressable onPress={() => console.log(character)}>
+    <View style={styles.container}>
+      <Pressable onPress={() => console.log(persona)}>
         <Text>Aperte</Text>
       </Pressable>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#084d6e",
+  }
+})

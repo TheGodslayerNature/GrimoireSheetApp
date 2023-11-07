@@ -4,14 +4,16 @@ import { RootStackParamList } from "navigation/MainNavigator";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import ModifyPersona from "./ModifyPersona";
+import { Icon } from "react-native-elements";
+import BuyMagic from "../BuyMagic";
 
 const Tab = createBottomTabNavigator();
 
 interface Props
-  extends NativeStackScreenProps<RootStackParamList, "PersonaStatus"> {}
+  extends NativeStackScreenProps<RootStackParamList, "PersonaScreen"> {}
 
-export default function PersonaStatus({ route }: Props) {
-  const { character } = route.params;
+export default function PersonaScreen({ route }: Props) {
+  const { persona } = route.params;
 
   return (
     <Tab.Navigator
@@ -19,10 +21,18 @@ export default function PersonaStatus({ route }: Props) {
       screenOptions={{ headerShown: false }}
     >
       <Tab.Screen
-        initialParams={{ character }}
+        initialParams={{persona}}
         name="ModifyPersona"
         component={ModifyPersona}
         options={{}}
+      />
+      <Tab.Screen
+        name={"BuyMagic"}
+        initialParams={{ persona }}
+        component={BuyMagic}
+        options={{
+          tabBarIcon: ({}) => <Icon name="magic" type="font-awesome" />,
+        }}
       />
     </Tab.Navigator>
   );

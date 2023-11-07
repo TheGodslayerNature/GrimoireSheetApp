@@ -1,12 +1,18 @@
 import { View, Text, StyleSheet, Image, Pressable } from "react-native";
 import React from "react";
 import ThemedCard from "@rneui/themed/dist/Card";
+import { Persona } from "../../../model/persona/Persona";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "navigation/MainNavigator";
 
-export default function PersonaScreen(props: any) {
+interface Props
+  extends NativeStackScreenProps<RootStackParamList, "PersonasEdit"> {}
+
+export default function PersonasEdit(props:any) {
   const { character } = props.route.params;
   return (
     <View style={styles.container}>
-      {character.persona.map((item:any, index:any) => (
+      {character.persona.map((item:Persona, index:any) => (
         <ThemedCard>
           <View style={styles.personaView}>
             <Image
@@ -14,8 +20,12 @@ export default function PersonaScreen(props: any) {
               source={require("../../../../assets/imgs/persona.jpg")}
             />
             <Text>{item.name}</Text>
-            <Pressable onPress={() => props.navigation.navigate("PersonaStatus",{character: character})}><Text>Modificar</Text></Pressable>
-            {/* <Text>{index}</Text> */}
+            <Pressable onPress={() => {
+              let persona = item as Persona; 
+              props.navigation.navigate('PersonaScreen', {persona})
+              console.log(item)
+              }}>
+                <Text>Modificar</Text></Pressable>
           </View>
         </ThemedCard>
       ))}
