@@ -5,12 +5,15 @@ import {
   StyleSheet,
   Pressable,
   FlatList,
+  TextInput,
+  Modal,
 } from "react-native";
 import ThemedCard from "@rneui/themed/dist/Card";
 import React, { useEffect, useState } from "react";
 import Bar from "../../../util/bar";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import CharacterInformation from "../../../components/characters/CharacterInformation";
+import ChangeCharacterInput from "../../../components/myModals/ChangeCharacterInput";
 
 export default function CharacterStatus(props: any) {
   const { character } = props.route.params;
@@ -18,11 +21,29 @@ export default function CharacterStatus(props: any) {
   const [currentLife, setCurrentLife] = useState<number>(character.currentLife);
   const [energy, setEnergy] = useState(character.energy);
   const [aspectPoint, setAspectPoint] = useState(character.aspectPoints);
+  const [modalState, setModalState] = useState(false);
 
   return (
     <View style={styles.container}>
       <View style={styles.characterInformationContainer}>
         <CharacterInformation character={character} />
+      </View>
+
+      <ChangeCharacterInput
+        character={character}
+        modalState={modalState}
+        setModalState={setModalState}
+      />
+
+      <View style={styles.viewForChangeStatusBtn}>
+        <Pressable
+          style={styles.btnForChangeStatus}
+          onPress={() => {
+            setModalState(true);
+          }}
+        >
+          <Text>Editar</Text>
+        </Pressable>
       </View>
 
       <View style={styles.barStyles}>
@@ -87,10 +108,32 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   barStyles: {
-    alignItems: 'center',
-    margin: '15%'
+    alignItems: "center",
+    margin: "15%",
   },
   informationTextStyle: {
     fontSize: 14,
   },
+  modalStyles: {
+    borderWidth: 1.6,
+    borderColor: "red",
+    height: 50,
+  },
+  btn: {
+    borderRadius: 5,
+    height: 20,
+    width: 50,
+    borderWidth: 2,
+    borderColor: "black",
+  },
+  viewForChangeStatusBtn: {
+    alignItems: 'center'
+  },
+  btnForChangeStatus: {
+    borderRadius: 5,
+    height: 20,
+    width: 50,
+    borderWidth: 2,
+    borderColor: "black",
+  }
 });

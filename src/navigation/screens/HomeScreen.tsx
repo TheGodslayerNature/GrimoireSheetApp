@@ -48,8 +48,9 @@ export default function HomeScreen({ navigation, route }: Props) {
   const loadCharacters = async (ids: string[]) => {
     let entries = await AsyncStorage.multiGet(ids);
     let loadedCharacters: Character[] = entries
-      .filter(([_, char]) => char)
-      .map(([_, char]) => JSON.parse(char!));
+      .filter(([_, character]) => character)
+      .map(([_, character]) => JSON.parse(character!));
+
     return loadedCharacters;
   };
 

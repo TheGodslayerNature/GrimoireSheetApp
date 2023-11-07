@@ -70,6 +70,4 @@ type BarProps = {
   label: string;
   color: string;
   updatePoints: (value: number) => void;
-  // morePoints: () => void;
-  // updatePoints: (point: number) => void;
 };

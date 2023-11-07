@@ -4,6 +4,7 @@ import StatusScreen from "./screens/CreatingCharacter";
 import CreatingPersona from "./screens/CreatingPersona";
 import CharacterScreen from "./screens/CharacterScreen";
 import HomeScreen from "./screens/HomeScreen";
+import PersonaStatus from "./screens/forCharacter/forPersona/PersonaStatus";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Persona } from "model/persona/Persona";
@@ -20,6 +21,7 @@ export type RootStackParamList = {
   StatusScreen: { createdPersona: Persona } | undefined;
   CreatingPersona: undefined;
   CharacterScreen: {character: Character};
+  PersonaStatus: {character: Character};
 };
 
 const MainNavigator = () => {
@@ -29,6 +31,7 @@ const MainNavigator = () => {
       <RootStack.Screen name={"StatusScreen"} component={StatusScreen} />
       <RootStack.Screen name={"CreatingPersona"} component={CreatingPersona} />
       <RootStack.Screen name={"CharacterScreen"} component={CharacterScreen} />
+      <RootStack.Screen name={"PersonaStatus"} component={PersonaStatus}/>
     </RootStack.Navigator>
   );
 };

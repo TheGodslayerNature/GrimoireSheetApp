@@ -1,6 +1,5 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React, { useState } from "react";
-import { StyleSheet } from "react-native";
 
 import BuyMagic from "./forCharacter/BuyMagic";
 import CharacterStatus from "./forCharacter/CharacterStatus";
@@ -8,6 +7,7 @@ import DificultyTest from "./forCharacter/DificultyTest";
 import { RootStackParamList } from "navigation/MainNavigator";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Icon } from "react-native-elements";
+import PersonaScreen from "./forCharacter/PersonaScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -40,6 +40,14 @@ export default function CharacterScreen({ route }: Props) {
         component={BuyMagic}
         options={{
           tabBarIcon: ({}) => <Icon name="magic" type="font-awesome" />,
+        }}
+      />
+      <Tab.Screen
+        name={"PersonaScreen"}
+        initialParams={{ character}}
+        component={PersonaScreen}
+        options={{
+          tabBarIcon: ({}) => <Icon name="tripadvisor" type="entypo" />,
         }}
       />
     </Tab.Navigator>
