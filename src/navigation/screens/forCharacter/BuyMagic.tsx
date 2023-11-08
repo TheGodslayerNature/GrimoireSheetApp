@@ -16,6 +16,7 @@ import { Icon } from "@rneui/themed";
 export default function BuyMagic(props: any) {
   const [modalVisible, setModalVisible] = useState(false);
   const { persona } = props.route.params;
+  const { character } = props.route.params;
 
   return (
     <View style={styles.container}>
@@ -32,7 +33,7 @@ export default function BuyMagic(props: any) {
             </Pressable>
             <Text style={styles.titleStyle}>Adicionar Magias</Text>
 
-            {/* <Accordion chrac={character} /> */}
+            <Accordion character={character} persona={persona} />
           </View>
         </Modal>
       </View>

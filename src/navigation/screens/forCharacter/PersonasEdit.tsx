@@ -18,8 +18,7 @@ export default function PersonasEdit(props:any) {
       renderItem={({item}) => (
         <PersonaView persona={item}
         onPress={ (persona:Persona) => {
-              props.navigation.navigate("PersonaScreen", { persona });
-              console.log(persona);
+              props.navigation.navigate("PersonaScreen", { persona, character});
         }}
         />
       )}

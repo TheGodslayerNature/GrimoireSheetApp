@@ -140,38 +140,6 @@ export default function CreatingPersona(props: Props) {
           update={(i) => setThirdMagTypeIndex(i)}
         />
 
-        <View style={styles.pickerContainer}>
-          {/* <Picker
-            style={styles.pickerStyle}
-            selectedValue={magTypeIndex}
-            onValueChange={(i) => setMagTypeIndex(i)}
-          >
-            {selectMagicOptions.map(({ id, value }) => (
-              <Picker.Item key={id} value={id} label={value.name} />
-            ))}
-          </Picker>
-
-          <Picker
-            style={styles.pickerStyle}
-            selectedValue={secondMagTypeIndex}
-            onValueChange={(i) => setSecondMagTypeIndex(i)}
-          >
-            {selectMagicOptions.map(({ id, value }) => (
-              <Picker.Item key={id} value={id} label={value.name} />
-            ))}
-          </Picker>
-
-          <Picker
-            style={styles.pickerStyle}
-            selectedValue={thirdMagTypeIndex}
-            onValueChange={(i) => setThirdMagTypeIndex(i)}
-          >
-            {selectMagicOptions.map(({ id, value }) => (
-              <Picker.Item key={id} value={id} label={value.name} />
-            ))}
-          </Picker> */}
-        </View>
-
         <Pressable
           style={styles.criarBtn}
           onPress={() => {

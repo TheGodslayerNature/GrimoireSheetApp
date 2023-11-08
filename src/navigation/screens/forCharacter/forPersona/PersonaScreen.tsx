@@ -14,6 +14,7 @@ interface Props
 
 export default function PersonaScreen({ route }: Props) {
   const { persona } = route.params;
+  const { character} = route.params;
 
   return (
     <Tab.Navigator
@@ -21,14 +22,14 @@ export default function PersonaScreen({ route }: Props) {
       screenOptions={{ headerShown: false }}
     >
       <Tab.Screen
-        initialParams={{persona}}
+        initialParams={{persona, character}}
         name="ModifyPersona"
         component={ModifyPersona}
         options={{}}
       />
       <Tab.Screen
         name={"BuyMagic"}
-        initialParams={{ persona }}
+        initialParams={{ persona, character}}
         component={BuyMagic}
         options={{
           tabBarIcon: ({}) => <Icon name="magic" type="font-awesome" />,

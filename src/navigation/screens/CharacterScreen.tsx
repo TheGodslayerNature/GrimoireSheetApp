@@ -1,5 +1,5 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import React, { useState } from "react";
+import React, { Component, useState } from "react";
 
 import BuyMagic from "./forCharacter/BuyMagic";
 import CharacterStatus from "./forCharacter/CharacterStatus";
@@ -8,13 +8,14 @@ import { RootStackParamList } from "navigation/MainNavigator";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Icon } from "react-native-elements";
 import PersonasEdit from "./forCharacter/PersonasEdit";
+import CreatePersona from "./forCharacter/CreatePersona";
 
 const Tab = createBottomTabNavigator();
 
 interface Props
   extends NativeStackScreenProps<RootStackParamList, "CharacterScreen"> {}
 
-export default function CharacterScreen(props:any) {
+export default function CharacterScreen(props: any) {
   const { character } = props.route.params;
 
   return (
@@ -32,16 +33,19 @@ export default function CharacterScreen(props:any) {
         name={"DificultyTest"}
         initialParams={{ character }}
         component={DificultyTest}
-        options={{ tabBarIcon: ({}) => <Icon name="game-controller" type="entypo"/> }}
+        options={{
+          tabBarIcon: ({}) => <Icon name="game-controller" type="entypo" />,
+        }}
       />
       <Tab.Screen
         name={"PersonasEdit"}
-        initialParams={{character}}
+        initialParams={{ character }}
         component={PersonasEdit}
         options={{
           tabBarIcon: ({}) => <Icon name="tripadvisor" type="entypo" />,
         }}
       />
+      <Tab.Screen name={"CreatePersona"} initialParams={{}} component={CreatePersona}/>
     </Tab.Navigator>
   );
 }

@@ -23,7 +23,7 @@ export type RootStackParamList = {
   CreatingPersona: undefined;
   CharacterScreen: {character: Character};
   PersonasEdit: {character: Character};
-  PersonaScreen: {persona: Persona};
+  PersonaScreen: {persona: Persona, character: Character};
 };
 
 const MainNavigator = () => {

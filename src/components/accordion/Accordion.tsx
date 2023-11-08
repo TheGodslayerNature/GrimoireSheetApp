@@ -6,14 +6,16 @@ import magias from "../../model/mag/mags.json";
 import { Character } from "../../model/character/Character";
 import { saveCharacter } from "../../util/Storage";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Persona } from "../../model/persona/Persona";
 
 let tier1: Mag[] = magias.physical.Tier1 as Mag[];
 
 type Props = {
-  chrac: Character;
+  persona: Persona;
+  character: Character;
 };
 
-export default function Accordion({ chrac }: Props) {
+export default function Accordion({ character ,persona }: Props) {
   const [expadedItems, setExpandeItems] = useState([] as string[]);
 
   return (
@@ -55,9 +57,14 @@ export default function Accordion({ chrac }: Props) {
                   style={styles.btn}
                   onPress={() => {
 
-                    chrac.persona[0].magDeck.push(item);
+                    character.persona.forEach((pers) => {
+                      if(pers.name == persona.name){
+                        pers.magDeck.push(item)
+                      }
+                    })
 
-                    AsyncStorage.setItem(chrac.user.userName, JSON.stringify(chrac));
+                    AsyncStorage.setItem(character.user.userName, JSON.stringify(character));
+                    console.log(character)
                   }}
                   >
                     <Text>Adicionar</Text>

@@ -3,10 +3,11 @@ import React from "react";
 
 export default function ModifyPersona(props: any) {
   const { persona } = props.route.params;
+  const { character } = props.route.params;
   
   return (
     <View style={styles.container}>
-      <Pressable onPress={() => console.log(persona)}>
+      <Pressable onPress={() => {console.log(persona); console.log(character)}}>
         <Text>Aperte</Text>
       </Pressable>
     </View>
