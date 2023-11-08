@@ -50,7 +50,7 @@ export default function BuyMagic(props: any) {
       </View>
 
       <View style={styles.listMagicsContainer}>
-        {/* <ListMagics character={character} /> */}
+        <ListMagics character={character} persona={persona}/>
       </View>
     </View>
   );
