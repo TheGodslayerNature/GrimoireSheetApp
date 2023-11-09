@@ -62,8 +62,8 @@ export default function ChangeCharacterInput({
             }}
           />
 
-          <Pressable onPress={() => setModalState(false)}>
-            <Text>Sair</Text>
+          <Pressable style={styles.btn} onPress={() => setModalState(false)}>
+            <Text style={styles.textStyle}>Sair</Text>
           </Pressable>
         </View>
       </Modal>
@@ -89,5 +89,18 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     textAlign: "center",
     borderColor: "black",
+    margin: 10,
   },
+  btn: {
+    height: 20,
+    width: 80,
+    borderWidth: 1.2,
+    borderColor: "black",
+    backgroundColor: "#FDED00",
+    alignItems: 'center',
+    alignContent: 'center'
+  },
+  textStyle: {
+    fontSize: 14,
+  }
 });

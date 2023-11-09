@@ -132,8 +132,10 @@ const styles = StyleSheet.create({
   btnForChangeStatus: {
     borderRadius: 5,
     height: 20,
-    width: 50,
+    width: 70,
     borderWidth: 2,
     borderColor: "black",
+    backgroundColor: '#FDED00',
+    alignItems: "center"
   }
 });

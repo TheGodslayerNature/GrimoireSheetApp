@@ -25,7 +25,9 @@ export default function PersonaScreen({ route }: Props) {
         initialParams={{persona, character}}
         name="ModifyPersona"
         component={ModifyPersona}
-        options={{}}
+        options={{
+          tabBarIcon: ({}) => <Icon name="dingding" type="antdesign"/>
+        }}
       />
       <Tab.Screen
         name={"BuyMagic"}

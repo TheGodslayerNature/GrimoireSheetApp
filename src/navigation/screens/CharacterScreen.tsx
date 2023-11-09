@@ -8,7 +8,7 @@ import { RootStackParamList } from "navigation/MainNavigator";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Icon } from "react-native-elements";
 import PersonasEdit from "./forCharacter/PersonasEdit";
-import CreatePersona from "./forCharacter/CreatePersona";
+import NewPersona from "./forCharacter/CreatePersona";
 
 const Tab = createBottomTabNavigator();
 
@@ -45,7 +45,14 @@ export default function CharacterScreen(props: any) {
           tabBarIcon: ({}) => <Icon name="tripadvisor" type="entypo" />,
         }}
       />
-      <Tab.Screen name={"CreatePersona"} initialParams={{}} component={CreatePersona}/>
+      <Tab.Screen
+        name={"NewPersona"}
+        initialParams={{ character }}
+        component={NewPersona}
+        options={{
+          tabBarIcon: ({}) => <Icon name="new" type="entypo"/>
+        }}
+      />
     </Tab.Navigator>
   );
 }
