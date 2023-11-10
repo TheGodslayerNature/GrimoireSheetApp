@@ -17,22 +17,19 @@ type Props = {
 };
 
 export default function EditAttributes(props: Props) {
-  const [statusPoints, setStatusPoints] = useState<Array<number>>();
   const character  = props.character;
 
   //Criar um metodo no storage para atualizar dos dados dos personagens
   return (
     <View style={styles.container}>
-      <RenderStatus submit={setStatusPoints} />
+      <RenderStatus submit={(points) => {
+        character.user.statusPoints = points
+        AsyncStorage.setItem(character.user.userName, JSON.stringify(character))
+        }} />
       <Pressable
         style={styles.btn}
         onPress={() => {
-          props.onPress();
-          character.user.statusPoints = statusPoints!
-          
-          AsyncStorage.setItem(character.user.userName, JSON.stringify(character))
-          console.log(character.user.statusPoints);
-        }}
+          props.onPress();}}
       >
         <Text>Voltar</Text>
       </Pressable>
