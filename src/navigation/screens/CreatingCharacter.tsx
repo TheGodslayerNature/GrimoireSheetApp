@@ -4,6 +4,7 @@ import { Character } from "../../model/character/Character";
 import { CharacterClass } from "../../model/character/CharacterClass2";
 import React, { useEffect, useState } from "react";
 import {
+  Image,
   KeyboardAvoidingView,
   Modal,
   Pressable,
@@ -74,6 +75,10 @@ export default function StatusScreen({ route, navigation }: Props) {
     <KeyboardAvoidingView behavior="padding">
       <SafeAreaView style={styles.container}>
         <StatusBar />
+        <Image
+        style={{maxWidth: "100%"}}
+        source={require("../../../assets/imgs/cabecalho-removebg-preview.png")}
+      />
         <View style={{ flexDirection: "row" }}>
           <TextInput
             style={styles.characterInput}

@@ -5,23 +5,23 @@ import React from "react";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { Icon } from "react-native-elements";
 
-let deleteCharacter = async (key: string) => {
-  try {
-    let value = await AsyncStorage.getItem("characters");
-    let ids: string[] = value ? JSON.parse(value) : [];
-    ids.forEach((item, index) => {
-      if (item === key) {
-        ids.splice(index, 1);
-      }
-    });
-    await AsyncStorage.setItem("characters", JSON.stringify(ids));
-    await AsyncStorage.removeItem(key);
-  } catch (err) {
-    console.log(err);
-  }
-};
+// let deleteCharacter = async (key: string) => {
+//   try {
+//     let value = await AsyncStorage.getItem("characters");
+//     let ids: string[] = value ? JSON.parse(value) : [];
+//     ids.forEach((item, index) => {
+//       if (item === key) {
+//         ids.splice(index, 1);
+//       }
+//     });
+//     await AsyncStorage.setItem("characters", JSON.stringify(ids));
+//     await AsyncStorage.removeItem(key);
+//   } catch (err) {
+//     console.log(err);
+//   }
+// };
 
-export default function CharacterView({ character, onPress }: Props) {
+export default function CharacterView({ character, onPress, deleteCharacter }: Props) {
   return (
     <View style={styles.container}>
       <ThemedCard>
@@ -38,7 +38,7 @@ export default function CharacterView({ character, onPress }: Props) {
           </Pressable>
           <Pressable
             onPress={() => {
-              deleteCharacter(character.user.userName);
+              deleteCharacter(character);
             }}
             style={{
               alignSelf: "flex-start",
@@ -83,9 +83,11 @@ const styles = StyleSheet.create({
 class Props {
   character: Character;
   onPress: (c: Character) => void;
+  deleteCharacter: (c: Character) => void;
 
-  constructor(character: Character, onPress: (c: Character) => void) {
+  constructor(character: Character, onPress: (c: Character) => void, deleteCharacter: (c: Character) => void) {
     this.character = character;
     this.onPress = onPress;
+    this.deleteCharacter = deleteCharacter;
   }
 }

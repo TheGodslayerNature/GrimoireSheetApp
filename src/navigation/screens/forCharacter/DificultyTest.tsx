@@ -44,7 +44,7 @@ export default function DificultyTest(props: any) {
 
       <Modal visible={modalState} animationType="fade">
 
-      <EditAttributes onPress={() => setModalState(false)}/>
+      <EditAttributes character={character} onPress={() => {setModalState(false);}}/>
 
       </Modal>
 

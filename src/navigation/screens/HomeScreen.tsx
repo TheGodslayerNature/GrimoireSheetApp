@@ -15,6 +15,7 @@ import CharacterView from "../../components/characters/CharactersView";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "navigation/MainNavigator";
+import ImgTitle from "../../components/imgTitle/ImgTitle";
 
 /*
 Paleta de cores
@@ -29,11 +30,10 @@ interface Props
 
 export default function HomeScreen({ navigation, route }: Props) {
   const [characters, setCharacters] = useState([] as Character[]);
+  const characterIds = route.params?.characterIds;
 
   useEffect(() => {
     (async () => {
-      const characterIds = route.params?.characterIds;
-
       if (!characterIds) {
         const loadedIds = await AsyncStorage.getItem("characters");
         const parsedIds: string[] = loadedIds ? JSON.parse(loadedIds) : [];
@@ -54,59 +54,70 @@ export default function HomeScreen({ navigation, route }: Props) {
     return loadedCharacters;
   };
 
+  const removeCharacter = async (character: Character) => {
+    try {
+      characterIds!.forEach((item, index) => {
+        if (item === character.user.userName) {
+          characterIds!.splice(index, 1);
+        }
+      });
+      await AsyncStorage.setItem("characters", JSON.stringify(characterIds!));
+      await AsyncStorage.removeItem(character.user.userName);
+
+      let loadedCharacters = await loadCharacters(characterIds!);
+
+      setCharacters(loadedCharacters);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   const { width } = Dimensions.get("window");
 
   return (
-      <View style={styles.container}>
-        <Image
-          source={require("../../../assets/imgs/cabecalho-removebg-preview.png")}
-        />
-        <FlatList
-          data={characters}
-          horizontal
-          decelerationRate={"fast"}
-          pagingEnabled
-          style={{
-            maxWidth: "90%",
-            maxHeight: width / 1.3,
-          }}
-          renderItem={({ item }) => (
-            <CharacterView
-              character={item}
-              onPress={(character: Character) => {
-                navigation.navigate("CharacterScreen", { character });
-              }}
-            />
-          )}
-        />
-        <Pressable
-          style={styles.btnStyle}
-          onPress={() => {
-            navigation.navigate("StatusScreen");
-          }}
-        >
-          <Text style={styles.btnTextStyle}>Criar Ficha</Text>
-        </Pressable>
+    <View style={styles.container}>
+      {/* <ImgTitle/> */}
+      <Image
+        style={styles.imgStyle}
+        source={require("../../../assets/imgs/cabecalho-removebg-preview.png")}
+      />
+      <FlatList
+        data={characters}
+        horizontal
+        decelerationRate={"fast"}
+        pagingEnabled
+        style={{
+          maxWidth: "90%",
+          maxHeight: width / 1.3,
+        }}
+        renderItem={({ item }) => (
+          <CharacterView
+            character={item}
+            deleteCharacter={ (character:Character) => removeCharacter(character)}
+            onPress={(character: Character) => {
+              navigation.navigate("CharacterScreen", { character });
+            }}
+          />
+        )}
+      />
+      <Pressable
+        style={styles.btnStyle}
+        onPress={() => {
+          navigation.navigate("StatusScreen");
+        }}
+      >
+        <Text style={styles.btnTextStyle}>Criar Ficha</Text>
+      </Pressable>
 
-        <Pressable
-          style={styles.btnStyle}
-          onPress={async () => {
-            await AsyncStorage.clear();
-            navigation.setParams({characterIds: undefined})
-          }}
-        >
-          <Text style={styles.btnTextStyle}>Flush</Text>
-        </Pressable>
-
-        {/* <Pressable
-          style={styles.btnStyle}
-          onPress={() => {
-            navigation.navigate("CreatingPersona");
-          }}
-        >
-          <Text style={styles.btnTextStyle}>Criar persona</Text>
-        </Pressable> */}
-      </View>
+      <Pressable
+        style={styles.btnStyle}
+        onPress={async () => {
+          await AsyncStorage.clear();
+          navigation.setParams({ characterIds: undefined });
+        }}
+      >
+        <Text style={styles.btnTextStyle}>Flush</Text>
+      </Pressable>
+    </View>
   );
 }
 
@@ -131,5 +142,8 @@ const styles = StyleSheet.create({
   btnTextStyle: {
     fontWeight: "bold",
     color: "black",
+  },
+  imgStyle: {
+    maxWidth: "100%",
   },
 });

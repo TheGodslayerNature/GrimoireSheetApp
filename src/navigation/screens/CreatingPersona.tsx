@@ -5,6 +5,7 @@ import {
   TextInput,
   Pressable,
   ScrollView,
+  Image,
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import React, { useState } from "react";
@@ -76,6 +77,10 @@ export default function CreatingPersona(props: Props) {
   return (
     <ScrollView>
       <View style={styles.container}>
+        <Image
+          style={{ maxWidth: "100%" }}
+          source={require("../../../assets/imgs/cabecalho-removebg-preview.png")}
+        />
         <View
           style={{
             flexDirection: "row",

@@ -8,32 +8,53 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import RenderStatus from "../../components/renderStatus/RenderStatus";
+import { Character } from "../../model/character/Character";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 type Props = {
-    onPress: () => void; 
-}
+  onPress: () => void;
+  character: Character;
+};
 
-export default function EditAttributes(props:Props) {
+export default function EditAttributes(props: Props) {
   const [statusPoints, setStatusPoints] = useState<Array<number>>();
+  const character  = props.character;
 
+  //Criar um metodo no storage para atualizar dos dados dos personagens
   return (
-    <View>
-        <RenderStatus submit={setStatusPoints} />
-
-        <Pressable onPress={props.onPress}>
-            <Text>Voltar</Text>
-        </Pressable>
+    <View style={styles.container}>
+      <RenderStatus submit={setStatusPoints} />
+      <Pressable
+        style={styles.btn}
+        onPress={() => {
+          props.onPress();
+          character.user.statusPoints = statusPoints!
+          
+          AsyncStorage.setItem(character.user.userName, JSON.stringify(character))
+          console.log(character.user.statusPoints);
+        }}
+      >
+        <Text>Voltar</Text>
+      </Pressable>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    height: "50%",
+    height: "100%",
     width: "100%",
     borderWidth: 2,
     borderColor: "yellow",
     alignItems: "center",
   },
-  attContainer: {},
+  btn: {
+    height: 50,
+    width: 80,
+    borderWidth: 1.2,
+    borderColor: "black",
+    backgroundColor: "#FDED00",
+    alignItems: "center",
+    justifyContent: "center",
+  },
 });
