@@ -1,5 +1,6 @@
 import { View, Text, Pressable, StyleSheet } from "react-native";
 import React from "react";
+import PersonaInformation from "../../../../components/Persona/PersonaInformation";
 
 export default function ModifyPersona(props: any) {
   const { persona } = props.route.params;
@@ -7,9 +8,7 @@ export default function ModifyPersona(props: any) {
   
   return (
     <View style={styles.container}>
-      <Pressable onPress={() => {console.log(persona); console.log(character)}}>
-        <Text>Aperte</Text>
-      </Pressable>
+      <PersonaInformation persona={persona}/>
     </View>
   );
 }
