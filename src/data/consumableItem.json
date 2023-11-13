@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Curativo Adesivo",
+    "effect": "Recupera 10PV, 1 aliado",
+    "special": "",
+    "cust": 0.25,
+    "rarity": "1d10"
+  },
+  
+  {
+    "name": "Medicina Líquida",
+    "effect": "Recupera 30PV, 1 aliado",
+    "special": "",
+    "cust": 1,
+    "rarity": "1d8-1"
+  }
+]

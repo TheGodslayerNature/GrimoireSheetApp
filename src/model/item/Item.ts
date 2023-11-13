@@ -1,8 +1,12 @@
 export class Item {
+
+  // Criar um objeto equipment para adicionar weapon, armor, accessory
+  
   name: string;
   effect: string;
   special: string;
   cust:number;
+  
   constructor(name: string, effect: string, special: string, cust: number) {
     this.name = name;
     this.effect = effect;

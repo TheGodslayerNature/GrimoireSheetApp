@@ -1,7 +1,6 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React, { Component, useState } from "react";
 
-import BuyMagic from "./forCharacter/BuyMagic";
 import CharacterStatus from "./forCharacter/CharacterStatus";
 import DificultyTest from "./forCharacter/DificultyTest";
 import { RootStackParamList } from "navigation/MainNavigator";
@@ -9,6 +8,8 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Icon } from "react-native-elements";
 import PersonasEdit from "./forCharacter/PersonasEdit";
 import NewPersona from "./forCharacter/CreatePersona";
+import BuyItem from "./forCharacter/BuyItem";
+import WeaponScreen from "./forCharacter/WeaponScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -49,6 +50,22 @@ export default function CharacterScreen(props: any) {
         name={"NewPersona"}
         initialParams={{ character }}
         component={NewPersona}
+        options={{
+          tabBarIcon: ({}) => <Icon name="new" type="entypo"/>
+        }}
+      />
+      <Tab.Screen
+        name={"BuyItem"}
+        initialParams={{ character }}
+        component={BuyItem}
+        options={{
+          tabBarIcon: ({}) => <Icon name="new" type="entypo"/>
+        }}
+      />
+       <Tab.Screen
+        name={"WeaponScreen"}
+        initialParams={{ character }}
+        component={WeaponScreen}
         options={{
           tabBarIcon: ({}) => <Icon name="new" type="entypo"/>
         }}

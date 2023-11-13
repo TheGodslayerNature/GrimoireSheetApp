@@ -2,6 +2,7 @@ import { CharacterClass } from "./CharacterClass2";
 import { Status, UserAttributes } from "../userAttributes/UserAttributes";
 import { Arcanas } from "./Arcanas";
 import { Persona } from "model/persona/Persona";
+import { Item } from "model/item/Item";
 
 export class Character {
   user: UserAttributes;
@@ -15,6 +16,7 @@ export class Character {
   currentLife: number = 0;
   currentEnergy: number = 0;
   currentAspectPoint: number = 0;
+  inventory:Item[] = [];
 
   constructor(user: UserAttributes, arcanas: Arcanas, klass: CharacterClass) {
     this.user = user;
