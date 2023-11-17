@@ -15,7 +15,7 @@ type Props = {
   character: Character;
 };
 
-export default function Accordion({ character ,persona }: Props) {
+export default function AccordionForMagics({ character ,persona }: Props) {
   const [expadedItems, setExpandeItems] = useState([] as string[]);
 
   return (

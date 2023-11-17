@@ -4,6 +4,7 @@ export class Item {
   effect: string;
   special: string;
   cust:number;
+  typeName:string = `Item`;
   
   constructor(name: string, effect: string, special: string, cust: number) {
     this.name = name;
@@ -11,11 +12,12 @@ export class Item {
     this.special = special;
     this.cust = cust;
   }
-
 }
 
 export class ConsumableItem extends Item {
   rarity: string;
+  typeName:string = `ConsumableType`;
+
   constructor(
     name: string,
     effect: string,
@@ -30,6 +32,7 @@ export class ConsumableItem extends Item {
 
 export class AccessoryItem extends Item {
   rarity: string;
+  typeName:string = `AccessoryType`;
   constructor(
     name: string,
     effect: string,
@@ -46,6 +49,7 @@ export class ArmorItem extends Item {
   damageReduction: number;
   bonus: string;
   notes: string;
+  typeName:string = `ArmorType`;
   constructor(
     name: string,
     effect: string,
@@ -67,6 +71,8 @@ export class WeaponItem extends Item {
   reach: number;
   extra: string;
   description: string;
+  typeName:string = `WeaponType`;
+
   constructor(
     name: string,
     effect: string,

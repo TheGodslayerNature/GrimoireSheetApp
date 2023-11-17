@@ -7,14 +7,14 @@ import { Mag, MagType } from "../../model/mag/Mag";
 type Props = {
   item: ConsumableItem | WeaponItem | Item | Mag;
   index: number;
-  update?(): void
+  update?(): void;
 };
 
-export default function Acc({item, index ,update }: Props) {
+export default function Acc({ item, index, update }: Props) {
   const [expadedItem, setExpandeItem] = useState(false);
 
   return (
-    <View>
+    <View style={{ flex: 1, alignItems: "center", backgroundColor: "#084d6e" }}>
       <ListItem.Accordion
         key={index}
         content={
@@ -48,7 +48,7 @@ export default function Acc({item, index ,update }: Props) {
               <Text>{consumableItemData?.cust}</Text> */}
               <Pressable
                 onPress={() => {
-                    update!();
+                  update!();
                   // console.log(character)
                   // character.inventory.push(item);
                   // AsyncStorage.setItem(character.user.userName, JSON.stringify(character));

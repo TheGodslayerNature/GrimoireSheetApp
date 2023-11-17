@@ -7,6 +7,7 @@
         "description": "Armas improvisadas ou encontradas no cenário.",
         "cust": 1,
         "special": "",
-        "effect": ""
+        "effect": "",
+        "typeName": "WeaponType"
     }
 ]

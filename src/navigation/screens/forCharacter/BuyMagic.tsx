@@ -7,7 +7,7 @@ import {
   FlatList,
 } from "react-native";
 import React, { useState } from "react";
-import Accordion from "../../../components/accordion/Accordion";
+import AccordionForMagics from "../../../components/accordion/Accordion";
 import ListMagics from "../../../components/accordion/ListMagics";
 import { Icon } from "@rneui/themed";
 
@@ -33,7 +33,7 @@ export default function BuyMagic(props: any) {
             </Pressable>
             <Text style={styles.titleStyle}>Adicionar Magias</Text>
 
-            <Accordion character={character} persona={persona} />
+            <AccordionForMagics character={character} persona={persona} />
           </View>
         </Modal>
       </View>

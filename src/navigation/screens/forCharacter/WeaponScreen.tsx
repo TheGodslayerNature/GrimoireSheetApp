@@ -1,4 +1,4 @@
-import { View, Text, Pressable } from 'react-native'
+import { View, Text, Pressable, StyleSheet } from 'react-native'
 import React from 'react'
 import {Mag} from "../../../model/mag/Mag"
 import DefaultAccordionForItem from '../../../components/accordion/DefaultAccordionForItem'
@@ -6,24 +6,21 @@ import DefaultAccordionForItem from '../../../components/accordion/DefaultAccord
 import consumables from "../../../data/consumableItem.json"
 import weapons from "../../../data/itemJson.json"
 import magias from "../../../model/mag/mags.json"
-import { WeaponItem } from '../../../model/item/Item'
+import { Item, WeaponItem } from '../../../model/item/Item'
+import ShowItems from '../../../components/accordion/ShowItems'
 
 let myWeapons: WeaponItem[] = weapons as WeaponItem[];
 
-let my = new WeaponItem("","","",1,5,2,"","")
+let my = myWeapons as WeaponItem[];
 
 export default function WeaponScreen(props:any) {
     let {character} = props.route.params
     
   return (
-    <View>
-      <DefaultAccordionForItem character={character} consumables={myWeapons} />
+    <View style={{flex: 1}}>
+      <DefaultAccordionForItem character={character} someArrayLikeItem={myWeapons} />
 
-      <Pressable onPress={() => {
-        if((myWeapons[0]).reach){
-          console.log("existe")
-        }
-      }}><Text>Aperte</Text></Pressable>
+      <ShowItems character={character} dataItem={character.inventory}/>
     </View>
   )
 }
