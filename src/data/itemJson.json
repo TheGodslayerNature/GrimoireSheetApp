@@ -1,6 +1,6 @@
 [
     {
-        "name": "basebal bat",
+        "name": "baseball bat",
         "damage": 4,
         "reach": 1,
         "extra": "",
@@ -9,5 +9,16 @@
         "special": "",
         "effect": "",
         "typeName": "WeaponType"
+    },
+    {
+        "name": "Espada Curta",
+        "damage": 6,
+        "reach": 1,
+        "extra": "",
+        "description": "Uma espada europeia simples.",
+        "cust": 1,
+        "special": "",
+        "effect": "",
+        "typeName": "WeaponType" 
     }
 ]

@@ -8,13 +8,14 @@ type Props = {
   item: ConsumableItem | WeaponItem | Item | Mag;
   index: number;
   update?(): void;
+  attack?(): void | undefined
 };
 
-export default function Acc({ item, index, update }: Props) {
+export default function Acc({ item, index, update, attack }: Props) {
   const [expadedItem, setExpandeItem] = useState(false);
 
   return (
-    <View style={{ flex: 1, alignItems: "center", backgroundColor: "#084d6e" }}>
+    <View style={{  }}>
       <ListItem.Accordion
         key={index}
         content={
@@ -33,19 +34,6 @@ export default function Acc({ item, index, update }: Props) {
           <ListItem key={index}>
             <ListItem.Content>
               <Text>{item.name}</Text>
-              {/* <Text>{itemData?.effect}</Text>
-              <Text>{itemData?.cust}</Text>
-              <Text>{itemData?.special}</Text>
-              <Text>{weaponData?.name}</Text>
-              <Text>{weaponData?.description}</Text>
-              <Text>{weaponData?.cust}</Text>
-              <Text>{magicData?.name}</Text>
-              <Text>{magicData?.categoria}</Text>
-              <Text>{magicData?.descricao}</Text>
-              <Text>{magicData?.damage}</Text>
-              <Text>{consumableItemData?.effect}</Text>
-              <Text>{consumableItemData?.special}</Text>
-              <Text>{consumableItemData?.cust}</Text> */}
               <Pressable
                 onPress={() => {
                   update!();
