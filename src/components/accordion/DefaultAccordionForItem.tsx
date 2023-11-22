@@ -35,10 +35,12 @@ type Props = {
     | AccessoryItem[]
     | ArmorItem[];
   character: Character;
+  inventory: WeaponItem[] | Item[] | ConsumableItem[];
 };
 export default function DefaultAccordionForItem({
   character,
-  someArrayLikeItem: consumables,
+  someArrayLikeItem,
+  inventory,
 }: Props) {
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -55,7 +57,7 @@ export default function DefaultAccordionForItem({
             <Icon name="x" type="octicon" />
           </Pressable>
           <FlatList
-            data={consumables}
+            data={someArrayLikeItem}
             renderItem={({ item, index }) => (
               <Acc
                 item={item}
@@ -64,7 +66,7 @@ export default function DefaultAccordionForItem({
                   console.log(character);
                   console.log(item);
                   character.inventory.push(item);
-                  //   AsyncStorage.setItem(character.user.userName, JSON.stringify(character));
+                  // AsyncStorage.setItem(character.user.userName, JSON.stringify(character));
                 }}
               />
             )}
@@ -77,12 +79,31 @@ export default function DefaultAccordionForItem({
           <Text>Escolha algum item </Text>
         </Pressable>
       </View>
+
+      <FlatList
+        style={{}}
+        data={inventory}
+        renderItem={({ item, index }) => (
+          <Acc item={item} index={index} update={() => {
+            removeActualItem(item, character);
+          }} />
+        )}
+      />
     </View>
   );
 }
 
+let removeActualItem = (item: Item, character: Character) => {
+  character.inventory.forEach((it: Item, i: number) => {
+    if (it.name == item.name) {
+      character.inventory.splice(i, 1);
+    }
+    AsyncStorage.setItem(character.user.userName, JSON.stringify(character));
+  });
+};
+
 const styles = StyleSheet.create({
-  container: { flex: 1, alignItems: "center", backgroundColor: "#084d6e" ,},
+  container: { flex: 1, alignItems: "center", backgroundColor: "#084d6e" },
   btn: {
     height: 40,
     width: 80,

@@ -13,7 +13,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 let myWeapons: WeaponItem[] = weapons as WeaponItem[];
 
-let my = myWeapons as WeaponItem[];
+let my:any[];
 
 export default function WeaponScreen(props: any) {
   const { character } = props.route.params;
@@ -23,29 +23,9 @@ export default function WeaponScreen(props: any) {
       <DefaultAccordionForItem
         character={character}
         someArrayLikeItem={myWeapons}
+        inventory={character.inventory.filter((item:Item) => item.typeName == "WeaponType")}
       />
-      <FlatList
-        style={{}}
-        data={character.inventory}
-        renderItem={({ item, index }) => (
-          <Acc
-            item={item}
-            index={index}
-            update={() => {
-              character.inventory.forEach((it: Item, i: number) => {
-                if (it.name == item.name) {
-                  character.inventory.splice(i, 1);
-                }
-              });
 
-              AsyncStorage.setItem(
-                character.user.userName,
-                JSON.stringify(character)
-              );
-            }}
-          />
-        )}
-      />
     </View>
   );
 }

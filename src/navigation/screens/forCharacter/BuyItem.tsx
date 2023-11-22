@@ -1,9 +1,9 @@
 import { View, Text, FlatList, Modal, Pressable } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import consumableItem from "../../../data/consumableItem.json";
 import { Icon } from "@rneui/themed";
-import { ConsumableItem, Item } from "../../../model/item/Item";
+import { ConsumableItem, Item, WeaponItem } from "../../../model/item/Item";
 import DefaultAccordionForItem from "../../../components/accordion/DefaultAccordionForItem";
 import ShowItems from "../../../components/accordion/ShowItems";
 import Acc from "../../../components/accordion/Acc";
@@ -19,31 +19,9 @@ export default function BuyItem(props: any) {
       <DefaultAccordionForItem
         character={character}
         someArrayLikeItem={items}
+        inventory={character.inventory}
       />
 
-      <FlatList
-        style={{ flex: 1 }}
-        data={character.inventory}
-        renderItem={({ item, index }) => (
-          <Acc
-            item={item}
-            index={index}
-            update={() => {
-
-              character.inventory.forEach((it:Item,i:number) => {
-                if(it.name == item.name){
-                  character.inventory.splice(i,1)
-                }
-              })
-
-              AsyncStorage.setItem(
-                character.user.userName,
-                JSON.stringify(character)
-              );
-            }}
-          />
-        )}
-      />
     </View>
   );
 }
