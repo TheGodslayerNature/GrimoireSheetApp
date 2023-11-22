@@ -2,8 +2,6 @@ import { View, Text, TextInput, StyleSheet } from "react-native";
 import React, { useState } from "react";
 
 export default function AttributesView(props: any) {
-
-
   return (
     <View style={{paddingHorizontal: 20,}}>
       <TextInput

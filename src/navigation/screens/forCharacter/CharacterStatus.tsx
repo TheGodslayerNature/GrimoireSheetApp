@@ -90,6 +90,14 @@ export default function CharacterStatus(props: any) {
           }}
         />
       </View>
+
+      <Pressable
+      onPress={() => {
+        console.log(character)
+      }}
+      >
+        <Text>Clique</Text>
+      </Pressable>
     </View>
   );
 }
@@ -127,7 +135,7 @@ const styles = StyleSheet.create({
     borderColor: "black",
   },
   viewForChangeStatusBtn: {
-    alignItems: 'center'
+    alignItems: "center",
   },
   btnForChangeStatus: {
     borderRadius: 5,
@@ -135,7 +143,7 @@ const styles = StyleSheet.create({
     width: 70,
     borderWidth: 2,
     borderColor: "black",
-    backgroundColor: '#FDED00',
-    alignItems: "center"
-  }
+    backgroundColor: "#FDED00",
+    alignItems: "center",
+  },
 });

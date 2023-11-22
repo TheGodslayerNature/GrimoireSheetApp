@@ -44,10 +44,11 @@ let criarCharacter = (
   name: string,
   level: number,
   points: number[],
+  socialPoints: number [],
   klass: CharacterClass
 ) => {
   character = new Character(
-    new UserAttributes(name, level, points),
+    new UserAttributes(name, level, points, socialPoints),
     Arcanas.DEVIL,
     klass
   );
@@ -61,6 +62,7 @@ export default function StatusScreen({ route, navigation }: Props) {
   const [aspectPoint, setAspectPoint] = useState<number>(0);
   const [selectedClassIndex, setSelectedClassIndex] = useState(0);
   const [statusPoints, setStatusPoints] = useState<Array<number>>();
+  const [socialPoints, setSocialPoints] = useState<Array<number>>();
   const [modalState, setModalState] = useState(false);
 
   useEffect(() => {
@@ -106,7 +108,7 @@ export default function StatusScreen({ route, navigation }: Props) {
 
         <View style={{alignItems: 'center'}}>
           <Modal animationType="fade" visible={modalState}>
-            <RenderStatus submit={setStatusPoints} />
+            <RenderStatus submit={setStatusPoints} submitSocial={setSocialPoints}/>
 
             <Pressable
               style={styles.btn}
@@ -156,7 +158,7 @@ export default function StatusScreen({ route, navigation }: Props) {
 
               let klass = selectClassOptions[selectedClassIndex].value;
 
-              criarCharacter(userName, userLevel, statusPoints!, klass);
+              criarCharacter(userName, userLevel, statusPoints!, socialPoints!,klass,);
 
               character.setLifePoints(lifePoints);
               character.setCurrentLifePoints(lifePoints);

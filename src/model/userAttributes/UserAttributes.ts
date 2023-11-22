@@ -5,11 +5,13 @@ export class UserAttributes {
     userName: string;
     userLevel: number;
     statusPoints: number[];
+    socialPoints: number[];
 
-    constructor(userName: string,userLevel:number, statusPoints: Array<number> = [0,0,0,0,0,0]) {
+    constructor(userName: string,userLevel:number, statusPoints: Array<number> = [0,0,0,0,0,0], socialPoints: Array<number>) {
         this.userName = userName;
         this.userLevel = userLevel;
         this.statusPoints = statusPoints;
+        this.socialPoints = socialPoints;
     };
 
     availablePoints(): number {
@@ -75,10 +77,10 @@ export enum Status {
 }
 
 export enum SocialPoints {
-    knowledge,
-    discipline,
-    empathy,
-    charm,
-    expression,
-    Courage
+    KNOWLEDGE,
+    DISCIPLINE,
+    EMPATHY,
+    CHARM,
+    EXPRESSION,
+    COURAGE
 }
