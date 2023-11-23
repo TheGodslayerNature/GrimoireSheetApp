@@ -27,8 +27,6 @@ export default function GenerateDice(props: any) {
 
   return (
     <View style={{ alignItems: 'center'}}>
-      <View style={styles.btnView}>
-      </View>
 
       <View style={styles.atributosView}>
       <Pressable
@@ -64,6 +62,7 @@ const styles = StyleSheet.create({
     height: 60,
     alignItems: 'center',
     justifyContent: 'center',
+    marginLeft: 40
   },
   btnView: {
     flexDirection: 'row',

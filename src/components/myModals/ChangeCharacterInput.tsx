@@ -52,7 +52,7 @@ export default function ChangeCharacterInput({
 
           <TextInput
             style={styles.inputStyle}
-            placeholder="Aspetos"
+            placeholder="Aspectos"
             onChangeText={async (aspectos: string) => {
               character.aspectPoints = Number(aspectos);
               await AsyncStorage.setItem(

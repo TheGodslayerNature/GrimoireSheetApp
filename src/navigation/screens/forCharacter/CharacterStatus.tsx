@@ -90,14 +90,6 @@ export default function CharacterStatus(props: any) {
           }}
         />
       </View>
-
-      <Pressable
-      onPress={() => {
-        console.log(character)
-      }}
-      >
-        <Text>Clique</Text>
-      </Pressable>
     </View>
   );
 }

@@ -21,10 +21,15 @@ import { Icon } from "react-native-elements";
 //   }
 // };
 
-export default function CharacterView({ character, onPress, deleteCharacter }: Props) {
+export default function CharacterView({
+  character,
+  onPress,
+  deleteCharacter,
+}: Props) {
   return (
     <View style={styles.container}>
       <ThemedCard>
+        <View style={styles.btnContainer}>
           <Pressable
             onPress={() => {
               // props.onPress()
@@ -46,6 +51,7 @@ export default function CharacterView({ character, onPress, deleteCharacter }: P
           >
             <Icon name="deleteuser" type="antdesign" />
           </Pressable>
+        </View>
         <View>
           <View
             style={{
@@ -78,6 +84,10 @@ const styles = StyleSheet.create({
     borderWidth: 1.5,
     borderColor: "gold",
   },
+  btnContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  }
 });
 
 class Props {
@@ -85,7 +95,11 @@ class Props {
   onPress: (c: Character) => void;
   deleteCharacter: (c: Character) => void;
 
-  constructor(character: Character, onPress: (c: Character) => void, deleteCharacter: (c: Character) => void) {
+  constructor(
+    character: Character,
+    onPress: (c: Character) => void,
+    deleteCharacter: (c: Character) => void
+  ) {
     this.character = character;
     this.onPress = onPress;
     this.deleteCharacter = deleteCharacter;

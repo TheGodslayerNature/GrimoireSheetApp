@@ -8,10 +8,11 @@ import {
   Modal,
 } from "react-native";
 import React, { useState } from "react";
-import { Status } from "../../../model/userAttributes/UserAttributes";
+import { SocialPoints, Status } from "../../../model/userAttributes/UserAttributes";
 import GenerateDice from "../../../components/randomDice/GenerateDice";
 import PopModal from "../../../components/myModals/PopModal";
 import EditAttributes from "../../../components/edditAttributes/EditAttributes";
+import GenerateSocialPoints from "../../../components/randomDice/GenerateSocialPoints";
 
 export default function DificultyTest(props: any) {
   const { character } = props.route.params;
@@ -43,9 +44,12 @@ export default function DificultyTest(props: any) {
       </View>
 
       <Modal visible={modalState} animationType="fade">
-
-      <EditAttributes character={character} onPress={() => {setModalState(false);}}/>
-
+        <EditAttributes
+          character={character}
+          onPress={() => {
+            setModalState(false);
+          }}
+        />
       </Modal>
 
       <View style={{ maxHeight: 50 }}>
@@ -59,19 +63,31 @@ export default function DificultyTest(props: any) {
         </Pressable>
       </View>
 
-      <FlatList
-        //numColumns={character.user.statusPoints.length / 2}
-        data={character.user.statusPoints}
-        renderItem={({ item, index }) => (
-          // <Text>{item}</Text>
-          <GenerateDice
-            diceType={diceType}
-            numberToRoll={character.user.statusPoints[index]}
-            attType={Status[index]}
-            personagem={character}
+      <View style={styles.pointsContainer}>
+        <FlatList
+          //numColumns={character.user.statusPoints.length / 2}
+          data={character.user.statusPoints}
+          renderItem={({ item, index }) => (
+            // <Text>{item}</Text>
+            <GenerateDice
+              diceType={diceType}
+              numberToRoll={character.user.statusPoints[index]}
+              attType={Status[index]}
+              personagem={character}
+            />
+          )}
+        />
+
+        <FlatList
+        data={character.user.socialPoints}
+        renderItem={({item, index}) => (
+          <GenerateSocialPoints 
+          value={character.user.socialPoints[index]}
+          socialName={SocialPoints[index]}
           />
         )}
-      />
+        />
+      </View>
     </View>
   );
 }
@@ -82,6 +98,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     alignContent: "center",
     backgroundColor: "#084d6e",
+  },
+  pointsContainer: {
+    flex: 1,
+    flexDirection: 'row',
   },
   btnContainer: {
     height: "10%",
